@@ -13,5 +13,10 @@ $(function () {
       .done(function (data) {
         window.console.log(data);
       })
+      .fail(function (data) {
+        window.console.log(data);
+        $('.error_text').text(data.responseJSON.error);
+      })
+
   });
 }); 
