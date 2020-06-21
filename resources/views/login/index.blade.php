@@ -14,7 +14,7 @@
     <input type="password" id="password" class="form-control mb-4" placeholder="Password" name="password">
 
 
-    <button class="btn btn-light-green btn-block my-4 admin_create">ログイン</button>
+    <button class="btn btn-light-green btn-block my-4 admin_login">ログイン</button>
 
 
   <!-- </form> -->
