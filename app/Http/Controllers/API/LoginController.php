@@ -14,11 +14,8 @@ class LoginController extends Controller
 {
     public function createAdmin(Request $request)
     {
-        if(empty($request->input('email')) || empty($request->input('password'))){
-            return response()->json([
-                'error' => '未入力があります',
-            ], 403);
-        }
+        $this->validate($request, Rule::createRules(), Rule::createMessages());
+
         $admin = new Admin();
         $admin->name = 'name';
         $admin->email = $request->input('email');

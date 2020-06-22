@@ -11,7 +11,7 @@
 
     <input type="email" id="email" class="form-control mb-4" placeholder="E-mail" name="email">
 
-    <input type="password" id="password" class="form-control mb-4" placeholder="Password" name="password">
+    <input type="password" id="password" class="form-control mb-4" placeholder="Password(6文字以上)" name="password">
 
 
     <button class="btn btn-light-green btn-block my-4 admin_login">ログイン</button>
