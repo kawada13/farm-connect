@@ -7,7 +7,7 @@ class Rule {
     {
       return [
         'email' => 'required|email',
-        'password' => 'required|min:6',
+        'password' => 'required|min:6|integer',
         ];
     }
 
@@ -18,6 +18,7 @@ class Rule {
         'email.email' => 'メールアドレスの形式が間違っています',
         'password.required' => 'パスワードは必須です',
         'password.min' => 'パスワードは6文字以上です',
+        'password.integer' => 'パスワードは整数型で',
         ];
     }
 

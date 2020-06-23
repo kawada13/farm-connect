@@ -9,6 +9,11 @@
 
     <p class="h4 mb-4">ログイン</p>
 
+    <div class="error_text_email"></div>
+    <div class="error_text_password">
+      
+    </div>
+
     <input type="email" id="email" class="form-control mb-4" placeholder="E-mail" name="email">
 
     <input type="password" id="password" class="form-control mb-4" placeholder="Password(6文字以上)" name="password">

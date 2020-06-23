@@ -9,6 +9,7 @@ use App\Model\User;
 use App\Model\Admin;
 use Illuminate\Validation\ValidationException;
 use App\config\Rule;
+use Illuminate\Support\Str;
 
 class LoginController extends Controller
 {
@@ -24,7 +25,7 @@ class LoginController extends Controller
         $user = new User();
         $user->email = $request->input('email');
         $user->password = $request->input('password');
-
+        $user->remember_token = hash('sha256', Str::random(60));
         $user->admin_id = $admin->id;
         $user->scope = 'admins';
         $user->save();
@@ -32,6 +33,7 @@ class LoginController extends Controller
         return response()->json([
             'email' => $request->input('email'),
             'password' => $request->input('password'),
+            'token' => $user->remember_token,
         ], 200);
     }
 
@@ -54,7 +56,7 @@ class LoginController extends Controller
         }
 
         return response()->json([
-            'user' => $user->id,
+            'token' => $user->remember_token,
         ], 200);
     }
 }
