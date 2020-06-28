@@ -44,7 +44,7 @@ class Rule {
       return [
         'title' => 'required',
         'detail' => 'required',
-        'price' => 'required',
+        'price' => 'required|integer',
         ];
     }
 
@@ -54,6 +54,7 @@ class Rule {
         'title.required' => 'タイトルは必須です',
         'detail.required' => '詳細は必須です',
         'price.required' => '価格は必須です',
+        'price.integer' => '価格は数値のみです',
         ];
     }
 

@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/login/create', 'API\LoginController@createAdmin');
 Route::post('/login/admin', 'API\LoginController@loginAdmin');
+Route::post('/login/client', 'API\LoginController@loginClient');
+Route::post('/login/member', 'API\LoginController@loginMember');
+
+Route::post('/login/admin/create', 'API\LoginController@createAdmin');
+Route::post('/login/client/create', 'API\LoginController@createClient');
+Route::post('/login/member/create', 'API\LoginController@createMember');
+
 Route::post('/client/product/create', 'API\Client\ProductController@create');

@@ -13,8 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'LoginController@index');
-Route::get('/login/create', 'LoginController@create');
+Route::get('/login/admin', 'LoginController@indexAdmin');
+Route::get('/login/client', 'LoginController@indexClient');
+Route::get('/login/member', 'LoginController@indexMember');
+
+Route::get('/login/admin/create', 'LoginController@createAdmin');
+Route::get('/login/client/create', 'LoginController@createClient');
+Route::get('/login/member/create', 'LoginController@createMember');
 
 Route::get('/client/product/create', 'Client\ProductController@create');
 

@@ -7,7 +7,7 @@
   <!-- <form class="text-center border border-light p-5" action="" method="POST"> -->
   @csrf
 
-  <p class="h4 mb-4">新規追加</p>
+  <p class="h4 mb-4">商品新規追加</p>
   <p class="alert-danger error_text"></p>
 
   <input type="text" id="title" class="form-control mb-4" name="title">

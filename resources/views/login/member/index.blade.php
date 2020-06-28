@@ -7,7 +7,7 @@
   <!-- <form class="text-center border border-light p-5" action="" method="POST"> -->
     @csrf
 
-    <p class="h4 mb-4">ログイン</p>
+    <p class="h4 mb-4">ユーザーログイン</p>
 
     <div class="error_text_email"></div>
     <div class="error_text_password"></div>
@@ -17,7 +17,7 @@
     <input type="password" id="password" class="form-control mb-4" placeholder="Password(6文字以上)" name="password">
 
 
-    <button class="btn btn-light-green btn-block my-4 admin_login">ログイン</button>
+    <button class="btn btn-light-green btn-block my-4 member_login">ログイン</button>
 
 
   <!-- </form> -->
