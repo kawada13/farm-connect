@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login/create', 'API\LoginController@createAdmin');
 Route::post('/login/admin', 'API\LoginController@loginAdmin');
+Route::post('/client/product/create', 'API\Client\ProductController@create');

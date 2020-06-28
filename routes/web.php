@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'LoginController@index');
 Route::get('/login/create', 'LoginController@create');
 
+Route::get('/client/product/create', 'Client\ProductController@create');
+

@@ -7,7 +7,7 @@ class Rule {
     {
       return [
         'email' => 'required|email',
-        'password' => 'required|min:6|integer',
+        'password' => 'required|min:6',
         ];
     }
 
@@ -18,7 +18,6 @@ class Rule {
         'email.email' => 'メールアドレスの形式が間違っています',
         'password.required' => 'パスワードは必須です',
         'password.min' => 'パスワードは6文字以上です',
-        'password.integer' => 'パスワードは整数型で',
         ];
     }
 
@@ -37,6 +36,24 @@ class Rule {
         'email.email' => 'メールアドレスの形式が間違っています',
         'password.required' => 'パスワードは必須です',
         'password.min' => 'パスワードは6文字以上です',
+        ];
+    }
+
+  public static function createProductRules()
+    {
+      return [
+        'title' => 'required',
+        'detail' => 'required',
+        'price' => 'required',
+        ];
+    }
+
+  public static function createProductMessages()
+    {
+      return [
+        'title.required' => 'タイトルは必須です',
+        'detail.required' => '詳細は必須です',
+        'price.required' => '価格は必須です',
         ];
     }
 

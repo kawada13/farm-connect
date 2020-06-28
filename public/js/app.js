@@ -1,4 +1,25 @@
 $(function () {
+  $('.product_create').click(function () {
+    $.ajax('/api/client/product/create',
+      {
+        type: 'post',
+        data: {
+          title: $('#title').val(),
+          detail: $('#detail').val(),
+          price: $('#price').val(),
+        },
+        dataType: 'json'
+      }
+    ) 
+      .done(function (data) {
+        window.console.log(data);
+      })
+      .fail(function (data) {
+        window.console.log(data);
+        $('.error_text').text(data.responseJSON.error);
+      })
+
+  });
   $('.admin_create').click(function () {
     $.ajax('/api/login/create',
       {
@@ -50,8 +71,6 @@ $(function () {
   const createErrorList = (data) => {
     const errors = data.responseJSON.errors;
 
-    console.log(data);
-    
     if (Object.keys(errors).length) {
       Object.keys(errors).forEach((key) => {
         console.log(errors[key]);
@@ -63,5 +82,7 @@ $(function () {
       })
     }
   }
+
+  
 }); 
 

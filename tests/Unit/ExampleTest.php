@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
@@ -13,6 +13,12 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        $this->assertTrue(true);
+        $response = $this->json('POST',
+                    '/api/login/create',
+                    ['email' => 'aaa', 'password' => 'aaaaaaa']
+            );
+            dd($response->json());
     }
+
+    
 }
