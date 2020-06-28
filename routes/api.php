@@ -13,11 +13,12 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+// 各ログイン
 Route::post('/login/admin', 'API\LoginController@loginAdmin');
 Route::post('/login/client', 'API\LoginController@loginClient');
 Route::post('/login/member', 'API\LoginController@loginMember');
 
+// 各登録
 Route::post('/login/admin/create', 'API\LoginController@createAdmin');
 Route::post('/login/client/create', 'API\LoginController@createClient');
 Route::post('/login/member/create', 'API\LoginController@createMember');

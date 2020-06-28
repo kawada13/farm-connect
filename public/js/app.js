@@ -1,5 +1,7 @@
 $(function () {
   
+  // 生産者商品登録
+
   $('.product_create').click(function () {
     $.ajax('/api/client/product/create',
       {
@@ -8,6 +10,7 @@ $(function () {
           title: $('#title').val(),
           detail: $('#detail').val(),
           price: $('#price').val(),
+          token: $.cookie("token"),
         },
         dataType: 'json'
       }
@@ -59,7 +62,7 @@ $(function () {
     ) 
       .done(function (data) {
         window.console.log(data);
-        $.cookie("token", data.token);
+        $.cookie("token", data.token, { path: '/' });
         window.console.log($.cookie("token"));
 
       })
@@ -109,7 +112,7 @@ $(function () {
     ) 
       .done(function (data) {
         window.console.log(data);
-        $.cookie("token", data.token);
+        $.cookie("token", data.token, { path: '/' });
         window.console.log($.cookie("token"));
 
       })
@@ -159,7 +162,7 @@ $(function () {
     ) 
       .done(function (data) {
         window.console.log(data);
-        $.cookie("token", data.token);
+        $.cookie("token", data.token, { path: '/' });
         window.console.log($.cookie("token"));
 
       })

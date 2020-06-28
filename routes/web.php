@@ -13,10 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// 各ログインページ
 Route::get('/login/admin', 'LoginController@indexAdmin');
 Route::get('/login/client', 'LoginController@indexClient');
 Route::get('/login/member', 'LoginController@indexMember');
 
+// 各登録ページ
 Route::get('/login/admin/create', 'LoginController@createAdmin');
 Route::get('/login/client/create', 'LoginController@createClient');
 Route::get('/login/member/create', 'LoginController@createMember');
