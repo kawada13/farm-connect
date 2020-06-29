@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '新規追加')
+@section('title', '商品新規追加')
 
 @section('content')
 <div class="container">
@@ -10,9 +10,9 @@
   <p class="h4 mb-4">商品新規追加</p>
   <p class="alert-danger error_text"></p>
 
-  <input type="text" id="title" class="form-control mb-4" name="title">
-  <textarea id="detail" class="form-control mb-4" name="detail"></textarea>
-  <input type="text" id="price" class="form-control mb-4" name="price">
+  <input type="text" id="title" class="form-control mb-4" name="title" placeholder="タイトル">
+  <textarea id="detail" class="form-control mb-4" name="detail" placeholder="詳細"></textarea>
+  <input type="text" id="price" class="form-control mb-4" name="price" placeholder="価格">
 
 
 

@@ -49,13 +49,14 @@ $(function () {
 
   });
 
-  $('.admin_login').click(function () {
-    $.ajax('/api/login/admin',
+  $('.login').click(function () {
+    $.ajax('/api/login',
       {
         type: 'post',
         data: {
           email: $('#email').val(),
           password: $('#password').val(),
+          scope: $('#scope').val(),
         },
         dataType: 'json'
       }
@@ -189,7 +190,6 @@ $(function () {
       })
     }
   }
-
   
 }); 
 

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // 各ログイン
+Route::post('/login', 'API\LoginController@login');
 Route::post('/login/admin', 'API\LoginController@loginAdmin');
 Route::post('/login/client', 'API\LoginController@loginClient');
 Route::post('/login/member', 'API\LoginController@loginMember');

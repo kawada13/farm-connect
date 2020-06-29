@@ -8,6 +8,7 @@ class Rule {
       return [
         'email' => 'required|email',
         'password' => 'required|min:6',
+        'scope' => 'required',
         ];
     }
 
@@ -18,6 +19,7 @@ class Rule {
         'email.email' => 'メールアドレスの形式が間違っています',
         'password.required' => 'パスワードは必須です',
         'password.min' => 'パスワードは6文字以上です',
+        'scope.required' => 'ログイン認証に失敗しました',
         ];
     }
 
@@ -54,7 +56,7 @@ class Rule {
         'title.required' => 'タイトルは必須です',
         'detail.required' => '詳細は必須です',
         'price.required' => '価格は必須です',
-        'price.integer' => '価格は数値のみです',
+        'price.integer' => '価格は数値で入力してください',
         ];
     }
 
