@@ -15,13 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 // 各ログイン
 Route::post('/login', 'API\LoginController@login');
-Route::post('/login/admin', 'API\LoginController@loginAdmin');
-Route::post('/login/client', 'API\LoginController@loginClient');
-Route::post('/login/member', 'API\LoginController@loginMember');
 
 // 各登録
 Route::post('/login/admin/create', 'API\LoginController@createAdmin');
 Route::post('/login/client/create', 'API\LoginController@createClient');
 Route::post('/login/member/create', 'API\LoginController@createMember');
 
+// クライアント
 Route::post('/client/product/create', 'API\Client\ProductController@create');
+
+// メンバー
+Route::post('/member/profile/edit', 'API\UsersController@updateMemberProfile');

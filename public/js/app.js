@@ -49,6 +49,62 @@ $(function () {
 
   });
 
+  
+
+  // 生産者登録
+
+  $('.client_create').click(function () {
+    $.ajax('/api/login/client/create',
+      {
+        type: 'post',
+        data: {
+          name: $('#name').val(),
+          email: $('#email').val(),
+          password: $('#password').val(),
+          address: $('#address').val(),
+        },
+        dataType: 'json'
+      }
+    ) 
+      .done(function (data) {
+        window.console.log(data);
+      })
+      .fail(function (data) {
+        window.console.log(data);
+        createErrorList(data);
+      })
+
+  });
+
+
+  // ユーザー登録
+
+  $('.member_create').click(function () {
+    $.ajax('/api/login/member/create',
+      {
+        type: 'post',
+        data: {
+          name: $('#name').val(),
+          email: $('#email').val(),
+          password: $('#password').val(),
+          address: $('#address').val(),
+        },
+        dataType: 'json'
+      }
+    ) 
+      .done(function (data) {
+        window.console.log(data);
+      })
+      .fail(function (data) {
+        window.console.log(data);
+        createErrorList(data);
+      })
+
+  });
+
+
+  // ログイン
+
   $('.login').click(function () {
     $.ajax('/api/login',
       {
@@ -69,111 +125,9 @@ $(function () {
       })
       .fail(function (data) {
         window.console.log(data);
-
         createErrorList(data);
-
       })
 
-  });
-
-  // 生産者登録
-
-  $('.client_create').click(function () {
-    $.ajax('/api/login/client/create',
-      {
-        type: 'post',
-        data: {
-          email: $('#email').val(),
-          password: $('#password').val(),
-          address: $('#address').val(),
-        },
-        dataType: 'json'
-      }
-    ) 
-      .done(function (data) {
-        window.console.log(data);
-      })
-      .fail(function (data) {
-        window.console.log(data);
-        $('.error_text').text(data.responseJSON.error);
-      })
-
-  });
-
-  $('.client_login').click(function () {
-    $.ajax('/api/login/client',
-      {
-        type: 'post',
-        data: {
-          email: $('#email').val(),
-          password: $('#password').val(),
-        },
-        dataType: 'json'
-      }
-    ) 
-      .done(function (data) {
-        window.console.log(data);
-        $.cookie("token", data.token, { path: '/' });
-        window.console.log($.cookie("token"));
-
-      })
-      .fail(function (data) {
-        window.console.log(data);
-
-        createErrorList(data);
-
-      })
-
-  });
-
-  // ユーザー登録
-
-  $('.member_create').click(function () {
-    $.ajax('/api/login/member/create',
-      {
-        type: 'post',
-        data: {
-          email: $('#email').val(),
-          password: $('#password').val(),
-          address: $('#address').val(),
-        },
-        dataType: 'json'
-      }
-    ) 
-      .done(function (data) {
-        window.console.log(data);
-      })
-      .fail(function (data) {
-        window.console.log(data);
-        $('.error_text').text(data.responseJSON.error);
-      })
-
-  });
-
-  $('.member_login').click(function () {
-    $.ajax('/api/login/member',
-      {
-        type: 'post',
-        data: {
-          email: $('#email').val(),
-          password: $('#password').val(),
-        },
-        dataType: 'json'
-      }
-    ) 
-      .done(function (data) {
-        window.console.log(data);
-        $.cookie("token", data.token, { path: '/' });
-        window.console.log($.cookie("token"));
-
-      })
-      .fail(function (data) {
-        window.console.log(data);
-
-        createErrorList(data);
-
-      })
-      
   });
 
   const createErrorList = (data) => {
@@ -190,6 +144,31 @@ $(function () {
       })
     }
   }
+
+
+// メンバープロフィール編集
+  $('.member_edit').click(function () {
+    $.ajax('/api/member/profile/edit',
+      {
+        type: 'post',
+        data: {
+          name: $('#name').val(),
+          email: $('#email').val(),
+          address: $('#address').val(),
+          token: $.cookie("token"),
+        },
+        dataType: 'json'
+      }
+    ) 
+      .done(function (data) {
+        window.console.log(data);
+      })
+      .fail(function (data) {
+        window.console.log(data);
+        createErrorList(data);
+      })
+
+  });
   
-}); 
+});
 

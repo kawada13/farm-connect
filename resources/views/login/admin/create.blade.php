@@ -3,6 +3,7 @@
 @section('title', '新規追加')
 
 @section('content')
+@include('commons.navbar')
 <div class="container">
   <!-- <form class="text-center border border-light p-5" action="" method="POST"> -->
   @csrf

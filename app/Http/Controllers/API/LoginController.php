@@ -40,7 +40,7 @@ class LoginController extends Controller
 
     public function createAdmin(Request $request)
     {
-        $this->validate($request, Rule::createRules(), Rule::createMessages());
+        $this->validate($request, Rule::createAdminRules(), Rule::createAdminMessages());
 
         $admin = new Admin();
         $admin->name = 'name';
@@ -59,7 +59,7 @@ class LoginController extends Controller
     private static function createUser(Request $request, $scope, $id)
     {
         $user = new User();
-        $user->email = $request->input('email') ?? '';
+        $user->email = $request->input('email');
         $user->password = $request->input('password');
         $user->remember_token = hash('sha256', Str::random(60));
         $user->admin_id = $scope === 'admins' ? $id : 0;
@@ -73,10 +73,10 @@ class LoginController extends Controller
 
     public function createClient(Request $request)
     {
-        $this->validate($request, Rule::createRules(), Rule::createMessages());
+        $this->validate($request, Rule::createClientRules(), Rule::createClientMessages());
 
         $client = new Client();
-        $client->name = 'name';
+        $client->name = $request->input('name');
         $client->email = $request->input('email');
         $client->address = $request->input('address');
         $client->save();
@@ -93,10 +93,10 @@ class LoginController extends Controller
 
     public function createMember(Request $request)
     {
-        $this->validate($request, Rule::createRules(), Rule::createMessages());
+        $this->validate($request, Rule::createMemberRules(), Rule::createMemberMessages());
 
         $member = new Member();
-        $member->name = 'name';
+        $member->name = $request->input('name');
         $member->email = $request->input('email');
         $member->address = $request->input('address');
         $member->save();

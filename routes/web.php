@@ -14,14 +14,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 // 各ログインページ
-Route::get('/login/admin', 'LoginController@indexAdmin');
-Route::get('/login/client', 'LoginController@indexClient');
-Route::get('/login/member', 'LoginController@indexMember');
+Route::get('/login/admin', 'LoginController@indexAdmin')->name('admin.login');
+Route::get('/login/client', 'LoginController@indexClient')->name('client.login');
+Route::get('/login/member', 'LoginController@indexMember')->name('member.login');
 
 // 各登録ページ
-Route::get('/login/admin/create', 'LoginController@createAdmin');
-Route::get('/login/client/create', 'LoginController@createClient');
-Route::get('/login/member/create', 'LoginController@createMember');
+Route::get('/login/admin/create', 'LoginController@createAdmin')->name('admin.create');
+Route::get('/login/client/create', 'LoginController@createClient')->name('client.create');
+Route::get('/login/member/create', 'LoginController@createMember')->name('member.create');
 
-Route::get('/client/product/create', 'Client\ProductController@create');
+// クライアント
+Route::get('/product', 'Client\ProductController@index')->name('product.index');
+Route::get('/client/product/create', 'Client\ProductController@create')->name('product.create');
+
+// メンバー
+Route::get('/member/profile', 'UsersController@memberShow')->name('member.show');
+Route::get('/member/profile/edit', 'UsersController@memberEdit')->name('member.profile.edit');
 
