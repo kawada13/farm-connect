@@ -50,7 +50,6 @@ class Rule {
         'name' => 'required',
         'email' => 'required|email',
         'password' => 'required|min:6',
-        'address' => 'required',
         ];
     }
 
@@ -62,7 +61,6 @@ class Rule {
         'email.email' => 'メールアドレスの形式が間違っています',
         'password.required' => 'パスワードは必須です',
         'password.min' => 'パスワードは6文字以上です',
-        'address.required' => '住所は必須です',
         ];
     }
   public static function createMemberRules()
@@ -71,7 +69,6 @@ class Rule {
         'name' => 'required',
         'email' => 'required|email',
         'password' => 'required|min:6',
-        'address' => 'required'
         ];
     }
 
@@ -84,7 +81,6 @@ class Rule {
         'email.email' => 'メールアドレスの形式が間違っています',
         'password.required' => 'パスワードは必須です',
         'password.min' => 'パスワードは6文字以上です',
-        'address.required' => '住所は必須です',
         ];
     }
 

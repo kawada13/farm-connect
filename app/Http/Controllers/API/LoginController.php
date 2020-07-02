@@ -78,7 +78,6 @@ class LoginController extends Controller
         $client = new Client();
         $client->name = $request->input('name');
         $client->email = $request->input('email');
-        $client->address = $request->input('address');
         $client->save();
 
         $user = self::createUser($request, 'clients', $client->id);
@@ -86,7 +85,6 @@ class LoginController extends Controller
         return response()->json([
             'email' => $request->input('email'),
             'password' => $request->input('password'),
-            'address' => $request->input('address'),
             'token' => $user->remember_token,
         ], 200);
     }
@@ -98,7 +96,6 @@ class LoginController extends Controller
         $member = new Member();
         $member->name = $request->input('name');
         $member->email = $request->input('email');
-        $member->address = $request->input('address');
         $member->save();
 
         $user = self::createUser($request, 'members', $member->id);
@@ -106,7 +103,6 @@ class LoginController extends Controller
         return response()->json([
             'email' => $request->input('email'),
             'password' => $request->input('password'),
-            'address' => $request->input('address'),
             'token' => $user->remember_token,
         ], 200);
     }

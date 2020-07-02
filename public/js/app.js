@@ -61,7 +61,6 @@ $(function () {
           name: $('#name').val(),
           email: $('#email').val(),
           password: $('#password').val(),
-          address: $('#address').val(),
         },
         dataType: 'json'
       }
@@ -87,7 +86,6 @@ $(function () {
           name: $('#name').val(),
           email: $('#email').val(),
           password: $('#password').val(),
-          address: $('#address').val(),
         },
         dataType: 'json'
       }
