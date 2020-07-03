@@ -152,7 +152,6 @@ $(function () {
         data: {
           name: $('#name').val(),
           email: $('#email').val(),
-          address: $('#address').val(),
           token: $.cookie("token"),
         },
         dataType: 'json'

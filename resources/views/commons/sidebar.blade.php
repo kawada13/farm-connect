@@ -15,9 +15,6 @@
   <p>品目から探す</p>
   <br>
   <li class="nav-item">
-    <a class="nav-link" href="#!">野菜セット <i class="fas fa-chevron-right"></i></a>
-  </li>
-  <li class="nav-item">
     <a class="nav-link" href="#!">野菜 <i class="fas fa-chevron-right"></i></a>
   </li>
   <li class="nav-item">

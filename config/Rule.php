@@ -108,7 +108,6 @@ class Rule {
       return [
         'name' => 'required',
         'email' => 'required',
-        'address' => 'required',
         ];
     }
 
@@ -117,7 +116,6 @@ class Rule {
       return [
         'name.required' => '名前は必須です',
         'email.required' => 'メールは必須です',
-        'address.required' => '住所は必須です',
         ];
     }
 

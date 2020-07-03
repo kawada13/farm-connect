@@ -26,14 +26,12 @@ class UsersController extends Controller
 
         $member->name = $request->input('name');;
         $member->email = $request->input('email');
-        $member->address = $request->input('address');
         $member->save();
         
 
         return response()->json([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'password' => $request->input('password'),
             'token' => $user->remember_token,
         ], 200);
     }

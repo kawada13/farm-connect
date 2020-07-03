@@ -9,26 +9,38 @@ class UsersController extends Controller
 {
     public function memberShow(Request $request) 
     {
-        $user = User::select('*')
-        ->where('remember_token', $request->cookie('token'))
-        ->first();
         
-        $member = Member::select('*')
-        ->where('email', $user->email)
-        ->first();
+        $member = $this->memberCheck($request->cookie('token'));
 
         return view('member.show', ['member' => $member]);
+
     }
+
     public function memberEdit(Request $request) 
     {
-        $user = User::select('*')
-        ->where('remember_token', $request->cookie('token'))
-        ->first();
-        
-        $member = Member::select('*')
-        ->where('email', $user->email)
-        ->first();
+        $member = $this->memberCheck($request->cookie('token'));
 
         return view('member.edit', ['member' => $member]);
     }
+
+    public function memberAdress(Request $request) 
+    {
+        $member = $this->memberCheck($request->cookie('token'));
+
+        return view('member.address.index', ['member' => $member]);
+    }
+
+    public function memberPasswordEdit(Request $request) 
+    {
+        $member = $this->memberCheck($request->cookie('token'));
+
+        return view('member.password.edit', ['member' => $member]);
+    }
+
+    public function membersocialSetting() 
+    {
+
+        return view('member.social.index');
+    }
+
 }
