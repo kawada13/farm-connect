@@ -23,11 +23,16 @@ class UsersController extends Controller
         return view('member.edit', ['member' => $member]);
     }
 
-    public function memberAdress(Request $request) 
+    public function memberAdressIndex(Request $request) 
     {
         $member = $this->memberCheck($request->cookie('token'));
 
         return view('member.address.index', ['member' => $member]);
+    }
+    public function memberAdressCreate(Request $request) 
+    {
+
+        return view('member.address.create');
     }
 
     public function memberPasswordEdit(Request $request) 
@@ -44,3 +49,11 @@ class UsersController extends Controller
     }
 
 }
+
+
+// public function memberAdress(Request $request) 
+//     {
+//         $delinfo = Member::with(['deliveryInfos']);
+
+//         return view('member.address.index', ['delinfo' => $delinfo]);
+//     }

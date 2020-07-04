@@ -26,3 +26,4 @@ Route::post('/client/product/create', 'API\Client\ProductController@create');
 
 // メンバー
 Route::post('/member/profile/edit', 'API\UsersController@updateMemberProfile');
+Route::post('/member/address/create', 'API\UsersController@createMemberAddress');

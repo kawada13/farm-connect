@@ -119,4 +119,26 @@ class Rule {
         ];
     }
 
+  public static function createMemberDeliveryRules()
+    {
+      return [
+        'name' => 'required',
+        'zip' => 'required|integer',
+        'address' => 'required',
+        'tel' => 'required|integer',
+        ];
+    }
+
+  public static function createMemberDeliveryMessages()
+    {
+      return [
+        'name.required' => '名前は必須です',
+        'zip.required' => '郵便番号は必須です',
+        'zip.integer' => '郵便番号は数値で入力してください',
+        'address.required' => '住所は必須です',
+        'tel.required' => '電話番号は必須です',
+        'tel.integer' => '電話番号は数値で入力してください',
+        ];
+    }
+
 }

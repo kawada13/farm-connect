@@ -30,7 +30,8 @@ Route::get('/client/product/create', 'Client\ProductController@create')->name('p
 // メンバー
 Route::get('/member/profile', 'UsersController@memberShow')->name('member.show');
 Route::get('/member/profile/edit', 'UsersController@memberEdit')->name('member.profile.edit');
-Route::get('/member/address', 'UsersController@memberAdress')->name('member.address');
+Route::get('/member/address', 'UsersController@memberAdressIndex')->name('member.address');
+Route::get('/member/address/create', 'UsersController@memberAdressCreate')->name('member.address。create');
 Route::get('/member/password/edit', 'UsersController@memberPasswordEdit')->name('member.address.edit');
 Route::get('/member/social_setting/edit', 'UsersController@membersocialSetting')->name('member.social_setting.edit');
 

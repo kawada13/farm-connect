@@ -170,6 +170,31 @@ $(function () {
       })
 
   });
+
+// メンバー住所登録
+  $('.member_address_create').click(function () {
+    $.ajax('/api/member/address/create',
+      {
+        type: 'post',
+        data: {
+          name: $('#name').val(),
+          zip: $('#zip').val(),
+          address: $('#address').val(),
+          tel: $('#tel').val(),
+          token: $.cookie("token"),
+        },
+        dataType: 'json'
+      }
+    ) 
+      .done(function (data) {
+        window.console.log(data);
+      })
+      .fail(function (data) {
+        window.console.log(data);
+        createErrorList(data);
+      })
+
+  });
   
 });
 
