@@ -41,6 +41,7 @@ $(function () {
     ) 
       .done(function (data) {
         window.console.log(data);
+        $.cookie("token", data.token, { path: '/' });
       })
       .fail(function (data) {
         window.console.log(data);
@@ -67,6 +68,7 @@ $(function () {
     ) 
       .done(function (data) {
         window.console.log(data);
+        $.cookie("token", data.token, { path: '/' });
       })
       .fail(function (data) {
         window.console.log(data);
@@ -92,6 +94,8 @@ $(function () {
     ) 
       .done(function (data) {
         window.console.log(data);
+        window.console.log(data.token);
+        $.cookie("token", data.token, { path: '/' });
       })
       .fail(function (data) {
         window.console.log(data);

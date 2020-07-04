@@ -43,7 +43,7 @@ class LoginController extends Controller
         $this->validate($request, Rule::createAdminRules(), Rule::createAdminMessages());
 
         $admin = new Admin();
-        $admin->name = 'name';
+        $admin->name = $request->input('name');
         $admin->email = $request->input('email');
         $admin->save();
         
