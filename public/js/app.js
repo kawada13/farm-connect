@@ -148,7 +148,7 @@ $(function () {
   }
 
 
-// メンバープロフィール編集
+// メンバー基本情報編集
   $('.member_edit').click(function () {
     $.ajax('/api/member/profile/edit',
       {
@@ -156,6 +156,32 @@ $(function () {
         data: {
           name: $('#name').val(),
           email: $('#email').val(),
+          token: $.cookie("token"),
+        },
+        dataType: 'json'
+      }
+    ) 
+      .done(function (data) {
+        window.console.log(data);
+        location.href = "http://localhost/member/profile";
+      })
+      .fail(function (data) {
+        window.console.log(data);
+        createErrorList(data);
+      })
+
+  });
+
+// メンバーお届け先登録
+  $('.member_address_create').click(function () {
+    $.ajax('/api/member/address/create',
+      {
+        type: 'post',
+        data: {
+          name: $('#name').val(),
+          zip: $('#zip').val(),
+          address: $('#address').val(),
+          tel: $('#tel').val(),
           token: $.cookie("token"),
         },
         dataType: 'json'
@@ -171,9 +197,9 @@ $(function () {
 
   });
 
-// メンバー住所登録
-  $('.member_address_create').click(function () {
-    $.ajax('/api/member/address/create',
+// メンバーお届け先編集
+  $('.member_address_edit').click(function () {
+    $.ajax('/api/member/address/edit',
       {
         type: 'post',
         data: {
@@ -182,6 +208,7 @@ $(function () {
           address: $('#address').val(),
           tel: $('#tel').val(),
           token: $.cookie("token"),
+          param: $("location.search"),
         },
         dataType: 'json'
       }

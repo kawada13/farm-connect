@@ -54,7 +54,7 @@
               </a>
             </div>
             <div class="col-md-4 text-center">
-              <a href="{{ route('member.address.edit') }}">
+              <a href="{{ route('member.password.edit') }}">
                 <button type="button" class="btn btn-light" style="width: 200px; height: 100px;">
                   <i class="fas fa-key mb-2"></i>
                   <p class="mb-0">パスワード変更</p>
@@ -64,12 +64,10 @@
           </div>
           <div class="row mb-2">
             <div class="col-md-4 text-center">
-              <a href="#">
                 <button type="button" class="btn btn-light" style="width: 200px; height: 100px;">
                   <i class="fas fa-running mb-2"></i>
                   <p class="mb-0">ログアウト</p>
                 </button>
-              </a>
             </div>
             <div class="col-md-4 text-center">
               <a href="#">

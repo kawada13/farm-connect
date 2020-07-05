@@ -3,7 +3,16 @@
 @section('title', 'ソーシャル連携')
 
 @section('content')
-@include('commons.navbar')
+<header class="header">
+  @include('commons.navbar')
+  <section class="bread-crum">
+    <ul class="nav red lighten-5 pt-2">
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('member.show') }}">マイページへ</a>
+      </li>
+    </ul>
+  </section>
+</header>
 
 <div class="container">
   

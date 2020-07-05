@@ -3,7 +3,16 @@
 @section('title', 'ユーザーパスワード変更')
 
 @section('content')
-@include('commons.navbar')
+<header class="header">
+  @include('commons.navbar')
+  <section class="bread-crum">
+    <ul class="nav red lighten-5 pt-2">
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('member.show') }}">マイページへ</a>
+      </li>
+    </ul>
+  </section>
+</header>
 <div class="container">
   <!-- <form class="text-center border border-light p-5" action="" method="POST"> -->
   @csrf
