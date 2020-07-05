@@ -38,77 +38,71 @@
         <div class="menu_content">
           <div class="row mb-2">
             <div class="col-md-4 text-center">
-              <a href="{{ route('member.profile.edit') }}">
-                <button type="button" class="btn btn-light" style="width: 200px; height: 100px;">
-                  <i class="fas fa-user mb-2"></i>
-                  <p class="mb-0">基本情報変更</p>
-                </button>
+              <a href="{{ route('member.profile.edit') }}" class="profile-panel btn btn-light">
+                <i class="fas fa-user mb-2"></i>
+                <p class="mb-0">基本情報変更</p>
               </a>
             </div>
             <div class="col-md-4 text-center">
-              <a href="{{ route('member.address') }}">
-                <button type="button" class="btn btn-light" style="width: 200px; height: 100px;">
-                  <i class="fas fa-home mb-2"></i>
-                  <p class="mb-0">お届け情報</p>
-                </button>
+              <a href="{{ route('member.address') }}" class="profile-panel btn btn-light">
+                <i class="fas fa-home mb-2"></i>
+                <p class="mb-0">お届け情報</p>
               </a>
             </div>
             <div class="col-md-4 text-center">
-              <a href="{{ route('member.password.edit') }}">
-                <button type="button" class="btn btn-light" style="width: 200px; height: 100px;">
-                  <i class="fas fa-key mb-2"></i>
-                  <p class="mb-0">パスワード変更</p>
-                </button>
+              <a href="#" class="profile-panel btn btn-light js-modal-open">
+                <i class="fas fa-key mb-2"></i>
+                <p class="mb-0">パスワード変更</p>
               </a>
+              <div class="modal js-modal">
+                <div class="modal__bg js-modal-close"></div>
+                <div class="modal__content">
+                  <input type="password" id="password" class="form-control mb-4" placeholder="パスワード" name="password">
+                  <button class="btn btn-light-green my-4 member_address_create">保存</button>
+                  <a class="js-modal-close" href="">閉じる</a>
+                </div>
+                <!--modal__inner-->
+              </div>
+              <!--modal-->
             </div>
           </div>
           <div class="row mb-2">
             <div class="col-md-4 text-center">
-                <button type="button" class="btn btn-light" style="width: 200px; height: 100px;">
-                  <i class="fas fa-running mb-2"></i>
-                  <p class="mb-0">ログアウト</p>
-                </button>
-            </div>
-            <div class="col-md-4 text-center">
-              <a href="#">
-                <button type="button" class="btn btn-light" style="width: 200px; height: 100px;">
-                  <i class="far fa-flag mb-2"></i>
-                  <p class="mb-0">フォロー中</p>
-                </button>
+              <a href="#" class="profile-panel btn btn-light logout">
+                <i class="fas fa-running mb-2"></i>
+                <p class="mb-0">ログアウト</p>
               </a>
             </div>
             <div class="col-md-4 text-center">
-              <a href="{{ route('member.profile.edit') }}">
-                <button type="button" class="btn btn-light" style="width: 200px; height: 100px;">
-                  <i class="fas fa-heart mb-2"></i>
-                  <p class="mb-0">お気に入り</p>
-                </button>
+              <a href="#" class="profile-panel btn btn-light">
+                <i class="far fa-flag mb-2"></i>
+                <p class="mb-0">フォロー中</p>
+              </a>
+            </div>
+            <div class="col-md-4 text-center">
+              <a href="{{ route('member.profile.edit') }}" class="profile-panel btn btn-light">
+                <i class="fas fa-heart mb-2"></i>
+                <p class="mb-0">お気に入り</p>
               </a>
             </div>
           </div>
           <div class="row">
             <div class="col-md-4 text-center">
-              <a href="＃">
-                <button type="button" class="btn btn-light" style="width: 200px; height: 100px;">
-                  <i class="far fa-list-alt mb-2"></i>
-                  <p class="mb-0">購入履歴</p>
-                </button>
+              <a href="＃" class="profile-panel btn btn-light">
+                <i class="far fa-list-alt mb-2"></i>
+                <p class="mb-0">購入履歴</p>
               </a>
             </div>
             <div class="col-md-4 text-center">
-              <a href="#">
-                <button type="button" class="btn btn-light" style="width: 200px; height: 100px;">
-                  <i class="far fa-bell mb-2"></i>
-                  <p class="mb-0">通知設定</p>
-                </button>
+              <a href="#" class="profile-panel btn btn-light">
+                <i class="far fa-bell mb-2"></i>
+                <p class="mb-0">通知設定</p>
               </a>
             </div>
             <div class="col-md-4 text-center">
-              <a href="{{ route('member.social_setting.edit') }}">
-                <button type="button" class="btn btn-light" style="width: 200px; height: 100px;">
-                  <i class="far fa-share-square mb-2"></i>
-                  <p class="mb-0">ソーシャル連携</p>
-                </button>
+              <a href="{{ route('member.social_setting.edit') }}" class="profile-panel btn btn-light">
+                <i class="far fa-share-square mb-2"></i>
+                <p class="mb-0">ソーシャル連携</p>
               </a>
             </div>
           </div>

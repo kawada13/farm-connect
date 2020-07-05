@@ -23,8 +23,11 @@ Route::get('/login/admin/create', 'LoginController@createAdmin')->name('admin.cr
 Route::get('/login/client/create', 'LoginController@createClient')->name('client.create');
 Route::get('/login/member/create', 'LoginController@createMember')->name('member.create');
 
+// トップページ
+Route::get('/', 'ProductController@index')->name('product.index');
+Route::get('/product/{id}', 'ProductController@show')->name('product.show');
+
 // クライアント
-Route::get('/product', 'Client\ProductController@index')->name('product.index');
 Route::get('/client/product/create', 'Client\ProductController@create')->name('product.create');
 
 // メンバー

@@ -1,5 +1,5 @@
 $(function () {
-  
+
   // 生産者商品登録
 
   $('.product_create').click(function () {
@@ -14,7 +14,7 @@ $(function () {
         },
         dataType: 'json'
       }
-    ) 
+    )
       .done(function (data) {
         window.console.log(data);
       })
@@ -25,7 +25,7 @@ $(function () {
 
   });
 
-  
+
   // 管理者登録
 
   $('.admin_create').click(function () {
@@ -38,10 +38,10 @@ $(function () {
         },
         dataType: 'json'
       }
-    ) 
+    )
       .done(function (data) {
         window.console.log(data);
-        $.cookie("token", data.token, { path: '/' });
+        $.cookie("token_admins", data.token, { path: '/' });
       })
       .fail(function (data) {
         window.console.log(data);
@@ -50,7 +50,7 @@ $(function () {
 
   });
 
-  
+
 
   // 生産者登録
 
@@ -65,10 +65,10 @@ $(function () {
         },
         dataType: 'json'
       }
-    ) 
+    )
       .done(function (data) {
         window.console.log(data);
-        $.cookie("token", data.token, { path: '/' });
+        $.cookie("token_clients", data.token, { path: '/' });
       })
       .fail(function (data) {
         window.console.log(data);
@@ -91,11 +91,11 @@ $(function () {
         },
         dataType: 'json'
       }
-    ) 
+    )
       .done(function (data) {
         window.console.log(data);
         window.console.log(data.token);
-        $.cookie("token", data.token, { path: '/' });
+        $.cookie("token_members", data.token, { path: '/' });
       })
       .fail(function (data) {
         window.console.log(data);
@@ -118,11 +118,12 @@ $(function () {
         },
         dataType: 'json'
       }
-    ) 
+    )
       .done(function (data) {
         window.console.log(data);
-        $.cookie("token", data.token, { path: '/' });
-        window.console.log($.cookie("token"));
+        
+        $.cookie("token_"+data.scope, data.token, { path: '/' });
+        window.console.log($.cookie("token_"+data.scope));
 
       })
       .fail(function (data) {
@@ -130,6 +131,14 @@ $(function () {
         createErrorList(data);
       })
 
+  });
+
+  // ログアウト
+  $('.logout').click(function () {
+    $.cookie('token_admins', "", { path: "/", expires: -1 });
+    $.cookie('token_clients', "", { path: "/", expires: -1 });
+    $.cookie('token_members', "", { path: "/", expires: -1 });
+    location.href = "http://localhost";
   });
 
   const createErrorList = (data) => {
@@ -148,7 +157,7 @@ $(function () {
   }
 
 
-// メンバー基本情報編集
+  // メンバー基本情報編集
   $('.member_edit').click(function () {
     $.ajax('/api/member/profile/edit',
       {
@@ -156,11 +165,11 @@ $(function () {
         data: {
           name: $('#name').val(),
           email: $('#email').val(),
-          token: $.cookie("token"),
+          token: $.cookie("token_members"),
         },
         dataType: 'json'
       }
-    ) 
+    )
       .done(function (data) {
         window.console.log(data);
         location.href = "http://localhost/member/profile";
@@ -172,7 +181,7 @@ $(function () {
 
   });
 
-// メンバーお届け先登録
+  // メンバーお届け先登録
   $('.member_address_create').click(function () {
     $.ajax('/api/member/address/create',
       {
@@ -182,11 +191,11 @@ $(function () {
           zip: $('#zip').val(),
           address: $('#address').val(),
           tel: $('#tel').val(),
-          token: $.cookie("token"),
+          token: $.cookie("token_members"),
         },
         dataType: 'json'
       }
-    ) 
+    )
       .done(function (data) {
         window.console.log(data);
       })
@@ -197,31 +206,45 @@ $(function () {
 
   });
 
-// メンバーお届け先編集
+  // メンバーお届け先編集
   $('.member_address_edit').click(function () {
+    window.console.log($(this).data('deliveryId'))
     $.ajax('/api/member/address/edit',
       {
         type: 'post',
         data: {
+          deliveryId: $(this).data('deliveryId'),
           name: $('#name').val(),
           zip: $('#zip').val(),
           address: $('#address').val(),
           tel: $('#tel').val(),
-          token: $.cookie("token"),
-          param: $("location.search"),
+          token: $.cookie("token_members"),
         },
         dataType: 'json'
       }
-    ) 
+    )
       .done(function (data) {
         window.console.log(data);
+        $('.delivery_edit').html('');
+        $('.delivery_edit').html('<p>更新しました</p>');
       })
       .fail(function (data) {
         window.console.log(data);
         createErrorList(data);
       })
-
   });
-  
+
+
+  $(function () {
+    $('.js-modal-open').on('click', function () {
+      $('.js-modal').fadeIn();
+      return false;
+    });
+    $('.js-modal-close').on('click', function () {
+      $('.js-modal').fadeOut();
+      return false;
+    });
+  });
+
 });
 

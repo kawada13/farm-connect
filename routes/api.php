@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-// 各ログイン
+// 各ログイン,ログアウト
 Route::post('/login', 'API\LoginController@login');
 
 // 各登録

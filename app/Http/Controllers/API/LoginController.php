@@ -35,8 +35,10 @@ class LoginController extends Controller
 
         return response()->json([
             'token' => $user->remember_token,
+            'scope' => $user->scope,
         ], 200);
     }
+
 
     public function createAdmin(Request $request)
     {

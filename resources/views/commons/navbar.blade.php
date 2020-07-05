@@ -25,4 +25,4 @@
     </ul>
 
 </nav>
-
+{{Cookie::get('token_member')}}

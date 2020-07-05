@@ -20,7 +20,7 @@ class Controller extends BaseController
 
         if(empty($user) || empty($user->member)) 
         {
-            return redirect('/login/member');
+            return false;
         }
         return $user->member;
     }

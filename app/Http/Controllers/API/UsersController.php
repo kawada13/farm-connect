@@ -54,28 +54,28 @@ class UsersController extends Controller
             'tel' => $request->input('tel'),
         ], 200);
     }
-//     public function editMemberAddress(Request $request)
-//     {
-//         dd($request);
-//         $this->validate($request, Rule::createMemberDeliveryRules(), Rule::createMemberDeliveryMessages());
+    public function editMemberAddress(Request $request)
+    {
+        $this->validate($request, Rule::createMemberDeliveryRules(), Rule::createMemberDeliveryMessages());
 
-//         $delinfo = Delivery::find($id);
-//         $delinfo->name = $request->input('name');
-//         $delinfo->zip = $request->input('zip');
-//         $delinfo->address = $request->input('address');
-//         $delinfo->tel = $request->input('tel');
-//         $delinfo->member_id = $user->member_id;
-//         $delinfo->save();
+        $user = User::select('*')
+            ->where('remember_token', $request->input('token'))
+            ->first();
 
-
-//         return response()->json([
-//             'name' => $request->input('name'),
-//             'zip' => $request->input('zip'),
-//             'address' => $request->input('address'),
-//             'tel' => $request->input('tel'),
-//         ], 200);
-//     }
-// }
+        $delinfo = Delivery::where('id', $request->input('deliveryId'))->first();
+        $delinfo->name = $request->input('name');
+        $delinfo->zip = $request->input('zip');
+        $delinfo->address = $request->input('address');
+        $delinfo->tel = $request->input('tel');
+        $delinfo->member_id = $user->member_id;
+        $delinfo->save();
 
 
-
+        return response()->json([
+            'name' => $request->input('name'),
+            'zip' => $request->input('zip'),
+            'address' => $request->input('address'),
+            'tel' => $request->input('tel'),
+        ], 200);
+    }
+}

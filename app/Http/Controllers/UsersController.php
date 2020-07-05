@@ -11,6 +11,11 @@ class UsersController extends Controller
     public function memberShow(Request $request) 
     {
         $member = $this->memberCheck($request->cookie('token'));
+        // dd($request->cookie('token'));
+        if(empty($member))
+        {
+            return redirect('/login/member');
+        }
 
         return view('member.show', ['member' => $member]);
     }
