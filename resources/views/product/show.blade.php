@@ -4,20 +4,26 @@
 
 @section('content')
 
-@include('commons.navbar')
+
+<header class="header">
+  @include('commons.navbar')
+  <section class="bread-crum">
+    <ul class="nav red lighten-5 pt-2">
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('products.top') }}">トップへ</a>
+      </li>
+    </ul>
+  </section>
+</header>
 
 <div class="container">
 
-  <header>
 
-  <section class="main-content">
-    <div class="inner-main-content">
-      <div class="row">
-        <div class="col-md-4 left-nav">
-          @include('commons.sidebar')
-        </div>
-        
-        <div class="col-md-8 right-content">
+
+    <section class="main-content">
+      <div class="inner-main-content">
+
+        <div class="col-md-12 right-content">
           <!-- Card deck -->
           <div class="card-deck">
 
@@ -40,18 +46,21 @@
                 <p class="card-text">{{$product->detail}}</p>
                 <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
                 <p class="card-text">{{$product->price}}</p>
+                <input type="hidden" id="product_id" class="form-control mb-4" value="{{ $product->id }}" name="product_id">
+                <button class="btn btn-light-green btn-block my-4 favorite">お気に入りに追加</button>
               </div>
 
             </div>
             <!-- Card -->
 
-           
+
           </div>
           <!-- Card deck -->
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+    <p>こだわり</p>
+    <p>この生産者について</p>
 </div>
 
 @endsection

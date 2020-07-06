@@ -8,6 +8,11 @@ use App\Model\Product;
 
 class ProductController extends Controller
 {
+    public function top(Request $request) 
+    {
+        $products = Product::all();
+        return view('product.top', ['products' => $products]);
+    }
     public function index(Request $request) 
     {
         $products = Product::all();

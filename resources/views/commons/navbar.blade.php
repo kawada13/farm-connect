@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light">
 
-  <a class="navbar-brand" href="{{ route('product.index') }}">食べチョク</a>
+  <a class="navbar-brand" href="{{ route('products.top') }}">食べチョク</a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Nav"
     aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,20 +13,19 @@
       <li class="nav-item">
       <a class="nav-link" href="#"><i class="fas fa-search"></i></a>
       </li>
+      @if (Cookie::get('token_members'))
       <li class="nav-item">
       <a class="nav-link" href="{{ route('member.show') }}">マイページ</a>
       </li>
+      @else
       <li class="nav-item">
       <a class="nav-link" href="{{ route('member.create') }}">登録</a>
       </li>
       <li class="nav-item">
       <a class="nav-link" href="{{ route('member.login') }}">ログイン</a>
       </li>
-      <li class="nav-item">
-      <a class="nav-link" href="#"><i class="fas fa-concierge-bell"></i>初めての方へ</a>
-      </li>
+      @endif
     </ul>
 
 </nav>
-
 

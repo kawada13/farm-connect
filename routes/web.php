@@ -24,7 +24,8 @@ Route::get('/login/client/create', 'LoginController@createClient')->name('client
 Route::get('/login/member/create', 'LoginController@createMember')->name('member.create');
 
 // トップページ
-Route::get('/', 'ProductController@index')->name('product.index');
+Route::get('/', 'ProductController@top')->name('products.top');
+Route::get('/products', 'ProductController@index')->name('products.index');
 Route::get('/products/{id}', 'ProductController@show')->name('product.show');
 
 // クライアント

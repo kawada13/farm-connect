@@ -10,6 +10,7 @@ use App\Model\Admin;
 use App\Model\Client;
 use App\Model\Delivery;
 use App\Model\Member;
+use App\Model\Favorite;
 
 class UsersController extends Controller
 {
@@ -86,7 +87,7 @@ class UsersController extends Controller
             ->where('remember_token', $request->input('token'))
             ->first();
 
-        
+
         $user->email = $request->input('email');
         $user->password = $request->input('password');
         $user->remember_token = $request->input('token');
@@ -105,6 +106,23 @@ class UsersController extends Controller
             'client_id' => $request->input('client_id'),
             'member_id' => $request->input('member_id'),
             'scope' => $request->input('scope'),
+        ], 200);
+    }
+
+    public function favorite(Request $request)
+    {
+        $user = User::select('*')
+            ->where('remember_token', $request->input('token'))
+            ->first();
+
+        $favorite = new Favorite();
+        $favorite->member_id = $user->member_id;
+        $favorite->product_id = $request->input('product_id');
+        $favorite->save();
+        
+        return response()->json([
+            'token' => $request->input('token'),
+            'product_id' => $request->input('product_id'),
         ], 200);
     }
 }

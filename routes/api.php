@@ -29,3 +29,4 @@ Route::post('/member/profile/edit', 'API\UsersController@updateMemberProfile');
 Route::post('/member/address/create', 'API\UsersController@createMemberAddress');
 Route::post('/member/address/edit', 'API\UsersController@editMemberAddress');
 Route::post('/member/password/edit', 'API\UsersController@editMemberPassword');
+Route::post('/member/favorite', 'API\UsersController@favorite');

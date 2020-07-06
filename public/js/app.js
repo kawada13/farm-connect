@@ -278,6 +278,25 @@ $(function () {
         createErrorList(data);
       })
   });
+  // お気に入り追加
+  $('.favorite').click(function () {
+    $.ajax('/api/member/favorite',
+      {
+        type: 'post',
+        data: {
+          token: $.cookie("token_members"),
+          product_id: $('#product_id').val(),
+        },
+        dataType: 'json'
+      }
+    )
+      .done(function (data) {
+        window.console.log(data);
+      })
+      .fail(function (data) {
+        window.console.log(data);
+      })
+  });
 
 });
 

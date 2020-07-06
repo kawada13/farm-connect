@@ -2,7 +2,7 @@
   <p>一覧から探す</p>
   <br>
   <li class="nav-item">
-    <a class="nav-link" href="#!">全ての商品を見る <i class="fas fa-chevron-right"></i></a>
+    <a class="nav-link" href="{{ route('products.index') }}">全ての商品を見る <i class="fas fa-chevron-right"></i></a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#!">全ての生産者を見る <i class="fas fa-chevron-right"></i></a>
