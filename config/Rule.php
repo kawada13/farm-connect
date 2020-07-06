@@ -140,5 +140,19 @@ class Rule {
         'tel.integer' => '電話番号は数値で入力してください',
         ];
     }
+  public static function editMemberPasswordRules()
+    {
+      return [
+        'password' => 'required|min:6',
+        ];
+    }
+
+  public static function editMemberPasswordMessages()
+    {
+      return [
+        'password.required' => 'パスワードは必須です',
+        'password.min' => 'パスワードは6文字以上です',
+        ];
+    }
 
 }

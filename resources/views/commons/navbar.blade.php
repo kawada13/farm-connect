@@ -14,6 +14,9 @@
       <a class="nav-link" href="#"><i class="fas fa-search"></i></a>
       </li>
       <li class="nav-item">
+      <a class="nav-link" href="{{ route('member.show') }}">マイページ</a>
+      </li>
+      <li class="nav-item">
       <a class="nav-link" href="{{ route('member.create') }}">登録</a>
       </li>
       <li class="nav-item">
@@ -25,4 +28,5 @@
     </ul>
 
 </nav>
-{{Cookie::get('token_member')}}
+
+

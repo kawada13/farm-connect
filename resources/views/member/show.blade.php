@@ -27,7 +27,6 @@
           <div class="name_image">
             <img src="{{$member->profile_url}}" alt="avatar mx-auto white" class="rounded-circle img-fluid" style="width: 60px;">
             <span class="card-text text-center">{{$member->name}}</span>
-
           </div>
           <div class="email">
 
@@ -57,8 +56,16 @@
               <div class="modal js-modal">
                 <div class="modal__bg js-modal-close"></div>
                 <div class="modal__content">
-                  <input type="password" id="password" class="form-control mb-4" placeholder="パスワード" name="password">
-                  <button class="btn btn-light-green my-4 member_address_create">保存</button>
+                  <div class="password_edit">
+                    <div class="error_text_password"></div>
+                    <input type="password" id="password" class="form-control mb-4" placeholder="パスワード" name="password">
+                    <input type="hidden" id="email" class="form-control mb-4" value="{{ $member->user->email }}" name="email">
+                    <input type="hidden" id="admin_id" class="form-control mb-4" value="{{ $member->user->admin_id }}" name="admin_id">
+                    <input type="hidden" id="client_id" class="form-control mb-4" value="{{ $member->user->client_id }}" name="client_id">
+                    <input type="hidden" id="member_id" class="form-control mb-4" value="{{ $member->user->member_id }}" name="member_id">
+                    <input type="hidden" id="scope" class="form-control mb-4" value="{{ $member->user->scope }}" name="scope">
+                    <button class="btn btn-light-green my-4 member_password_edit">保存</button>
+                  </div>
                   <a class="js-modal-close" href="">閉じる</a>
                 </div>
                 <!--modal__inner-->

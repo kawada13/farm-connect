@@ -42,6 +42,7 @@ $(function () {
       .done(function (data) {
         window.console.log(data);
         $.cookie("token_admins", data.token, { path: '/' });
+        location.href = "http://localhost";
       })
       .fail(function (data) {
         window.console.log(data);
@@ -69,6 +70,7 @@ $(function () {
       .done(function (data) {
         window.console.log(data);
         $.cookie("token_clients", data.token, { path: '/' });
+        location.href = "http://localhost";
       })
       .fail(function (data) {
         window.console.log(data);
@@ -96,6 +98,7 @@ $(function () {
         window.console.log(data);
         window.console.log(data.token);
         $.cookie("token_members", data.token, { path: '/' });
+        location.href = "http://localhost";
       })
       .fail(function (data) {
         window.console.log(data);
@@ -124,6 +127,7 @@ $(function () {
         
         $.cookie("token_"+data.scope, data.token, { path: '/' });
         window.console.log($.cookie("token_"+data.scope));
+        location.href = "http://localhost";
 
       })
       .fail(function (data) {
@@ -198,6 +202,7 @@ $(function () {
     )
       .done(function (data) {
         window.console.log(data);
+        location.href = "http://localhost/member/address";
       })
       .fail(function (data) {
         window.console.log(data);
@@ -225,8 +230,7 @@ $(function () {
     )
       .done(function (data) {
         window.console.log(data);
-        $('.delivery_edit').html('');
-        $('.delivery_edit').html('<p>更新しました</p>');
+        location.href = "http://localhost/member/address";
       })
       .fail(function (data) {
         window.console.log(data);
@@ -234,7 +238,7 @@ $(function () {
       })
   });
 
-
+// モーダル
   $(function () {
     $('.js-modal-open').on('click', function () {
       $('.js-modal').fadeIn();
@@ -244,6 +248,35 @@ $(function () {
       $('.js-modal').fadeOut();
       return false;
     });
+  });
+
+
+  // メンバーパスワード編集
+  $('.member_password_edit').click(function () {
+    $.ajax('/api/member/password/edit',
+      {
+        type: 'post',
+        data: {
+          email: $('#email').val(),
+          password: $('#password').val(),
+          admin_id: $('#admin_id').val(),
+          client_id: $('#client_id').val(),
+          member_id: $('#member_id').val(),
+          scope: $('#scope').val(),
+          token: $.cookie("token_members"),
+        },
+        dataType: 'json'
+      }
+    )
+      .done(function (data) {
+        window.console.log(data);
+        $('.password_edit').html('');
+        $('.password_edit').html('<p>更新しました</p>');
+      })
+      .fail(function (data) {
+        window.console.log(data);
+        createErrorList(data);
+      })
   });
 
 });

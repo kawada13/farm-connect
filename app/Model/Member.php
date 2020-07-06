@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Member extends Model
 {
-    public function deliveryInfos()
+  public function user()
   {
-    return $this->hasMany('App\Model\DeliveryInfo', 'member_id', 'id');
+    return $this->hasOne('App\Model\User', 'member_id', 'id');
   }
 }

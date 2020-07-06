@@ -10,8 +10,7 @@ class UsersController extends Controller
 {
     public function memberShow(Request $request) 
     {
-        $member = $this->memberCheck($request->cookie('token'));
-        // dd($request->cookie('token'));
+        $member = $this->memberCheck($request->cookie('token_members'));
         if(empty($member))
         {
             return redirect('/login/member');
@@ -22,17 +21,17 @@ class UsersController extends Controller
 
     public function memberEdit(Request $request) 
     {
-        $member = $this->memberCheck($request->cookie('token'));
+        $member = $this->memberCheck($request->cookie('token_members'));
 
         return view('member.edit', ['member' => $member]);
     }
 
     public function memberAdressIndex(Request $request) 
     {
-        $member = $this->memberCheck($request->cookie('token'));
+        $member = $this->memberCheck($request->cookie('token_members'));
 
         $user = User::select('*')
-            ->where('remember_token', $request->cookie('token'))
+            ->where('remember_token', $request->cookie('token_members'))
             ->first();
         
         $deliveries = Delivery::select('*')
@@ -44,13 +43,13 @@ class UsersController extends Controller
     }
     public function memberAdressCreate(Request $request) 
     {
-        $member = $this->memberCheck($request->cookie('token'));
+        $member = $this->memberCheck($request->cookie('token_members'));
 
         return view('member.address.create');
     }
     public function memberAdressEdit(Request $request, $id) 
     {
-        $member = $this->memberCheck($request->cookie('token'));
+        $member = $this->memberCheck($request->cookie('token_members'));
 
         $delivery = Delivery::find($id);
 
@@ -59,14 +58,14 @@ class UsersController extends Controller
 
     public function memberPasswordEdit(Request $request) 
     {
-        $member = $this->memberCheck($request->cookie('token'));
+        $member = $this->memberCheck($request->cookie('token_members'));
 
         return view('member.password.edit', ['member' => $member]);
     }
 
     public function membersocialSetting(Request $request) 
     {
-        $member = $this->memberCheck($request->cookie('token'));
+        $member = $this->memberCheck($request->cookie('token_members'));
 
         return view('member.social.index');
     }
