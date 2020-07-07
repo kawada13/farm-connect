@@ -64,4 +64,17 @@ class UsersController extends Controller
         return view('member.social.index');
     }
 
+    public function clientShow(Request $request) 
+    {
+        $client = $this->clientCheck($request->cookie('token_clients'));
+        if(empty($client))
+        {
+            return redirect('/login/client');
+        }
+        
+
+        return view('client.show', ['client' => $client]);
+    }
+
+
 }

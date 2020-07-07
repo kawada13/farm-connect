@@ -31,6 +31,7 @@ Route::get('/products', 'ProductController@index')->name('products.index');
 Route::get('/products/{id}', 'ProductController@show')->name('product.show');
 
 // クライアント
+Route::get('/client/profile', 'UsersController@clientShow')->name('client.show');
 Route::get('/client/product/create', 'Client\ProductController@create')->name('product.create');
 
 // メンバー

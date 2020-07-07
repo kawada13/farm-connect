@@ -24,4 +24,16 @@ class Controller extends BaseController
         }
         return $user->member;
     }
+    public function clientCheck($token)
+    {
+        $user = User::with(['client'])
+        ->where('remember_token', $token)
+        ->first();
+
+        if(empty($user) || empty($user->client)) 
+        {
+            return false;
+        }
+        return $user->client;
+    }
 }

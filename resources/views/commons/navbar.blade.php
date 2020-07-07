@@ -24,6 +24,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">購入履歴</a>
             </li>
+            @elseif (Cookie::get('token_clients'))
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('client.show') }}">マイページ</a>
+            </li>
             @else
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('member.create') }}">登録</a>

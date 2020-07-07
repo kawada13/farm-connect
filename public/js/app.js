@@ -41,6 +41,9 @@ $(function () {
     )
       .done(function (data) {
         window.console.log(data);
+        $.cookie('token_admins', "", { path: "/", expires: -1 });
+        $.cookie('token_clients', "", { path: "/", expires: -1 });
+        $.cookie('token_members', "", { path: "/", expires: -1 });
         $.cookie("token_admins", data.token, { path: '/' });
         location.href = "http://localhost";
       })
@@ -69,6 +72,9 @@ $(function () {
     )
       .done(function (data) {
         window.console.log(data);
+        $.cookie('token_admins', "", { path: "/", expires: -1 });
+        $.cookie('token_clients', "", { path: "/", expires: -1 });
+        $.cookie('token_members', "", { path: "/", expires: -1 });
         $.cookie("token_clients", data.token, { path: '/' });
         location.href = "http://localhost";
       })
@@ -96,7 +102,9 @@ $(function () {
     )
       .done(function (data) {
         window.console.log(data);
-        window.console.log(data.token);
+        $.cookie('token_admins', "", { path: "/", expires: -1 });
+        $.cookie('token_clients', "", { path: "/", expires: -1 });
+        $.cookie('token_members', "", { path: "/", expires: -1 });
         $.cookie("token_members", data.token, { path: '/' });
         location.href = "http://localhost";
       })
@@ -124,7 +132,9 @@ $(function () {
     )
       .done(function (data) {
         window.console.log(data);
-
+        $.cookie('token_admins', "", { path: "/", expires: -1 });
+        $.cookie('token_clients', "", { path: "/", expires: -1 });
+        $.cookie('token_members', "", { path: "/", expires: -1 });
         $.cookie("token_" + data.scope, data.token, { path: '/' });
         window.console.log($.cookie("token_" + data.scope));
         location.href = "http://localhost";
@@ -132,6 +142,8 @@ $(function () {
       })
       .fail(function (data) {
         window.console.log(data);
+        $('.error_login').html('');
+        $('.error_login').append("<p class='alert-danger'>" + data.responseJSON.error + '</p>');
         createErrorList(data);
       })
 

@@ -9,7 +9,8 @@
     @csrf
 
     <p class="h4 mb-4">生産者ログイン</p>
-
+    
+    <div class="error_login"></div>
     <div class="error_text_email"></div>
     <div class="error_text_password"></div>
 
