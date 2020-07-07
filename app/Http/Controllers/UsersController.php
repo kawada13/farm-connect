@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Model\User;
 use App\Model\Member;
 use App\Model\Delivery;
+use App\Model\Favorite;
+
 class UsersController extends Controller
 {
     public function memberShow(Request $request) 
@@ -55,14 +57,6 @@ class UsersController extends Controller
 
         return view('member.address.edit', ['delivery' => $delivery]);
     }
-
-    public function memberPasswordEdit(Request $request) 
-    {
-        $member = $this->memberCheck($request->cookie('token_members'));
-
-        return view('member.password.edit', ['member' => $member]);
-    }
-
     public function membersocialSetting(Request $request) 
     {
         $member = $this->memberCheck($request->cookie('token_members'));

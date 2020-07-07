@@ -25,6 +25,8 @@ Route::get('/login/member/create', 'LoginController@createMember')->name('member
 
 // トップページ
 Route::get('/', 'ProductController@top')->name('products.top');
+
+// 商品
 Route::get('/products', 'ProductController@index')->name('products.index');
 Route::get('/products/{id}', 'ProductController@show')->name('product.show');
 
@@ -37,6 +39,5 @@ Route::get('/member/profile/edit', 'UsersController@memberEdit')->name('member.p
 Route::get('/member/address', 'UsersController@memberAdressIndex')->name('member.address');
 Route::get('/member/address/create', 'UsersController@memberAdressCreate')->name('member.address.create');
 Route::get('/member/address/{id}/edit', 'UsersController@memberAdressEdit')->name('member.address.edit');
-Route::get('/member/password/edit', 'UsersController@memberPasswordEdit')->name('member.password.edit');
 Route::get('/member/social_setting/edit', 'UsersController@membersocialSetting')->name('member.social_setting.edit');
 

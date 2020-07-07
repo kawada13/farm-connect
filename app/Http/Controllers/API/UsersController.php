@@ -79,6 +79,21 @@ class UsersController extends Controller
             'tel' => $request->input('tel'),
         ], 200);
     }
+
+    public function deleteMemberAddress(Request $request)
+    {
+
+        $user = User::select('*')
+            ->where('remember_token', $request->input('token'))
+            ->first();
+
+        $delinfo = Delivery::where('id', $request->input('deliveryId'))
+            ->delete();
+
+        return response()->json([
+        ], 200);
+    }
+
     public function editMemberPassword(Request $request)
     {
         $this->validate($request, Rule::editMemberPasswordRules(), Rule::editMemberPasswordMessages());
@@ -119,7 +134,23 @@ class UsersController extends Controller
         $favorite->member_id = $user->member_id;
         $favorite->product_id = $request->input('product_id');
         $favorite->save();
-        
+
+        return response()->json([
+            'token' => $request->input('token'),
+            'product_id' => $request->input('product_id'),
+        ], 200);
+    }
+    public function unfavorite(Request $request)
+    {
+        $user = User::select('*')
+            ->where('remember_token', $request->input('token'))
+            ->first();
+
+        $favorite = Favorite::select('*')
+            ->where('member_id', $user->member_id)
+            ->where('product_id', $request->input('product_id'))
+            ->delete();
+
         return response()->json([
             'token' => $request->input('token'),
             'product_id' => $request->input('product_id'),

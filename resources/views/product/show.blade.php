@@ -47,7 +47,13 @@
                 <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
                 <p class="card-text">{{$product->price}}</p>
                 <input type="hidden" id="product_id" class="form-control mb-4" value="{{ $product->id }}" name="product_id">
-                <button class="btn btn-light-green btn-block my-4 favorite">お気に入りに追加</button>
+                <div class="favorite_btn">
+                  @if (empty($is_facvoriting))
+                  <button class="btn btn-light-blue btn-block my-4 favorite">お気に入りに追加</button>
+                  @else
+                  <button class="btn btn-deep-orange btn-block my-4 unfavorite">お気に入り済</button>
+                  @endif
+                </div>
               </div>
 
             </div>

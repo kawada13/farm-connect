@@ -124,9 +124,9 @@ $(function () {
     )
       .done(function (data) {
         window.console.log(data);
-        
-        $.cookie("token_"+data.scope, data.token, { path: '/' });
-        window.console.log($.cookie("token_"+data.scope));
+
+        $.cookie("token_" + data.scope, data.token, { path: '/' });
+        window.console.log($.cookie("token_" + data.scope));
         location.href = "http://localhost";
 
       })
@@ -145,6 +145,7 @@ $(function () {
     location.href = "http://localhost";
   });
 
+  // エラー文表示
   const createErrorList = (data) => {
     const errors = data.responseJSON.errors;
 
@@ -154,6 +155,7 @@ $(function () {
         const className = '.error_text_' + key;
         const errorsText = $(className);
         errors[key].forEach((value, index) => {
+          errorsText.html('');
           errorsText.append("<p class='alert-danger'>" + value + '</p>');
         });
       })
@@ -213,7 +215,6 @@ $(function () {
 
   // メンバーお届け先編集
   $('.member_address_edit').click(function () {
-    window.console.log($(this).data('deliveryId'))
     $.ajax('/api/member/address/edit',
       {
         type: 'post',
@@ -237,8 +238,32 @@ $(function () {
         createErrorList(data);
       })
   });
+  // メンバーお届け先削除
+  $('.member_address_delete').click(function () {
+    $.ajax('/api/member/address/delete',
+      {
+        type: 'post',
+        data: {
+          deliveryId: $(this).data('deliveryId'),
+          token: $.cookie("token_members"),
+        },
+        dataType: 'json'
+      }
+    )
+      .done(function (data) {
+        window.console.log(data);
+        $('.address_delete').html('');
+        $('.address_delete').html('<div class="modal-body text-center">削除しました</div>');
+        setTimeout(function () {
+          location.href = "http://localhost/member/address";
+        }, 500);
 
-// モーダル
+      })
+      .fail(function (data) {
+      })
+  });
+
+  // モーダル
   $(function () {
     $('.js-modal-open').on('click', function () {
       $('.js-modal').fadeIn();
@@ -278,6 +303,7 @@ $(function () {
         createErrorList(data);
       })
   });
+
   // お気に入り追加
   $('.favorite').click(function () {
     $.ajax('/api/member/favorite',
@@ -292,6 +318,29 @@ $(function () {
     )
       .done(function (data) {
         window.console.log(data);
+        $('.favorite_btn').html('');
+        $('.favorite_btn').html('<button class="btn btn-deep-orange btn-block my-4 unfavorite">お気に入り済</button>');
+      })
+      .fail(function (data) {
+        window.console.log(data);
+      })
+  });
+  // お気に入り削除
+  $('.unfavorite').click(function () {
+    $.ajax('/api/member/unfavorite',
+      {
+        type: 'post',
+        data: {
+          token: $.cookie("token_members"),
+          product_id: $('#product_id').val(),
+        },
+        dataType: 'json'
+      }
+    )
+      .done(function (data) {
+        window.console.log(data);
+        $('.favorite_btn').html('');
+        $('.favorite_btn').html('<button class="btn btn-light-blue btn-block my-4 favorite">お気に入りに追加</button>');
       })
       .fail(function (data) {
         window.console.log(data);
