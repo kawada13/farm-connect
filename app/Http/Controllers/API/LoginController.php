@@ -29,7 +29,7 @@ class LoginController extends Controller
 
         if (empty($user->id)) {
             return response()->json([
-                'error' => 'ログイン認証に失敗しました。アドレス、パスワードをご確認ください。',
+                'error' => 'メールアドレスもしくはパスワードが間違っています',
             ], 403);
         }
 

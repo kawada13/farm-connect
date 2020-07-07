@@ -142,8 +142,11 @@ $(function () {
       })
       .fail(function (data) {
         window.console.log(data);
-        $('.error_login').html('');
-        $('.error_login').append("<p class='alert-danger'>" + data.responseJSON.error + '</p>');
+        if (Object.keys(data.responseJSON).length) {
+          $('.error_login').html('');
+          // $('.error_login').append("<p class='alert-danger'>" + data.responseJSON.error + '</p>');
+          $('.error_login').append("<p class='alert-danger'>メールアドレスもしくはパスワードが間違っています</p>");
+        }
         createErrorList(data);
       })
 
@@ -165,6 +168,7 @@ $(function () {
       Object.keys(errors).forEach((key) => {
         console.log(errors[key]);
         const className = '.error_text_' + key;
+        const className2 = 'error_text_' + key;
         const errorsText = $(className);
         errors[key].forEach((value, index) => {
           errorsText.html('');

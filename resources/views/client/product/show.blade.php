@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
-@section('title', '商品一覧')
+@section('title', '商品詳細(クライアント用)')
 
 @section('content')
+
 
 <header class="header">
   @include('commons.navbar')
@@ -15,20 +16,17 @@
   </section>
 </header>
 
-
 <div class="container">
-  <section class="main-content">
-    <div class="inner-main-content">
-      <div class="row">
-        <div class="col-md-4 left-nav">
-          @include('commons.sidebar')
-        </div>
 
-        <div class="col-md-8 right-content">
+
+
+    <section class="main-content">
+      <div class="inner-main-content">
+
+        <div class="col-md-12 right-content">
           <!-- Card deck -->
           <div class="card-deck">
 
-            @foreach($products as $product)
             <div class="card mb-4">
 
               <!--Card image-->
@@ -43,24 +41,15 @@
               <div class="card-body">
 
                 <!--Title-->
-                @if (Cookie::get('token_members'))
-                <a href="{{ route('product.show', ['id' => $product->id]) }}">
-                  <h4 class="card-title">{{$product->title}}</h4>
-                </a>
-                @elseif (Cookie::get('token_clients'))
-                <a href="{{ route('client.product.show', ['id' => $product->id]) }}">
-                  <h4 class="card-title">{{$product->title}}</h4>
-                </a>
-                @endif
+                <h4 class="card-title">{{$product->title}}</h4>
                 <!--Text-->
                 <p class="card-text">{{$product->detail}}</p>
                 <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
                 <p class="card-text">{{$product->price}}</p>
+                <input type="hidden" id="product_id" class="form-control mb-4" value="{{ $product->id }}" name="product_id">
               </div>
 
-
             </div>
-            @endforeach
             <!-- Card -->
 
 
@@ -68,8 +57,9 @@
           <!-- Card deck -->
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+    <p>こだわり</p>
+    <p>この生産者について</p>
 </div>
 
 @endsection

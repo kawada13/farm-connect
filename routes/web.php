@@ -33,6 +33,7 @@ Route::get('/products/{id}', 'ProductController@show')->name('product.show');
 // クライアント
 Route::get('/client/profile', 'UsersController@clientShow')->name('client.show');
 Route::get('/client/product/create', 'Client\ProductController@create')->name('product.create');
+Route::get('/client/products/{id}', 'Client\ProductController@show')->name('client.product.show');
 
 // メンバー
 Route::get('/member/profile', 'UsersController@memberShow')->name('member.show');

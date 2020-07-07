@@ -45,9 +45,15 @@
               <div class="card-body">
 
                 <!--Title-->
+                @if (Cookie::get('token_members'))
                 <a href="{{ route('product.show', ['id' => $product->id]) }}">
                   <h4 class="card-title">{{$product->title}}</h4>
                 </a>
+                @elseif (Cookie::get('token_clients'))
+                <a href="{{ route('client.product.show', ['id' => $product->id]) }}">
+                  <h4 class="card-title">{{$product->title}}</h4>
+                </a>
+                @endif
                 <!--Text-->
                 <p class="card-text">{{$product->detail}}</p>
                 <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->

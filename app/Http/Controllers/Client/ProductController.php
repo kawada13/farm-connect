@@ -21,7 +21,7 @@ class ProductController extends Controller
     public function show(Request $request, $id) 
     {
         $product = Product::find($id);
-        return view('product.show', ['product' => $product]);
+        return view('client.product.show', ['product' => $product]);
     }
 
     public function create()
