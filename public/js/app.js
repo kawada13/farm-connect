@@ -10,7 +10,7 @@ $(function () {
           title: $('#title').val(),
           detail: $('#detail').val(),
           price: $('#price').val(),
-          token: $.cookie("token"),
+          token: $.cookie("token_clients"),
         },
         dataType: 'json'
       }
@@ -20,7 +20,30 @@ $(function () {
       })
       .fail(function (data) {
         window.console.log(data);
-        $('.error_text').text(data.responseJSON.error);
+        createErrorList(data);
+      })
+
+  });
+  // こだわり登録
+  $('.commitment_create').click(function () {
+    $.ajax('/api/client/commitment/create',
+      {
+        type: 'post',
+        data: {
+          title: $('#title').val(),
+          contents: $('#contents').val(),
+          client_id: $('#client_id').val(),
+          token: $.cookie("token_clients"),
+        },
+        dataType: 'json'
+      }
+    )
+      .done(function (data) {
+        window.console.log(data);
+      })
+      .fail(function (data) {
+        window.console.log(data);
+        createErrorList(data);
       })
 
   });
@@ -45,11 +68,11 @@ $(function () {
         $.cookie('token_clients', "", { path: "/", expires: -1 });
         $.cookie('token_members', "", { path: "/", expires: -1 });
         $.cookie("token_admins", data.token, { path: '/' });
-        location.href = "http://localhost";
+        location.href = "/";
       })
       .fail(function (data) {
         window.console.log(data);
-        $('.error_text').text(data.responseJSON.error);
+        createErrorList(data)
       })
 
   });
@@ -76,7 +99,7 @@ $(function () {
         $.cookie('token_clients', "", { path: "/", expires: -1 });
         $.cookie('token_members', "", { path: "/", expires: -1 });
         $.cookie("token_clients", data.token, { path: '/' });
-        location.href = "http://localhost";
+        location.href = "/";
       })
       .fail(function (data) {
         window.console.log(data);
@@ -106,7 +129,7 @@ $(function () {
         $.cookie('token_clients', "", { path: "/", expires: -1 });
         $.cookie('token_members', "", { path: "/", expires: -1 });
         $.cookie("token_members", data.token, { path: '/' });
-        location.href = "http://localhost";
+        location.href = "/";
       })
       .fail(function (data) {
         window.console.log(data);
@@ -137,7 +160,7 @@ $(function () {
         $.cookie('token_members', "", { path: "/", expires: -1 });
         $.cookie("token_" + data.scope, data.token, { path: '/' });
         window.console.log($.cookie("token_" + data.scope));
-        location.href = "http://localhost";
+        location.href = "/";
 
       })
       .fail(function (data) {
@@ -157,7 +180,7 @@ $(function () {
     $.cookie('token_admins', "", { path: "/", expires: -1 });
     $.cookie('token_clients', "", { path: "/", expires: -1 });
     $.cookie('token_members', "", { path: "/", expires: -1 });
-    location.href = "http://localhost";
+    location.href = "/";
   });
 
   // エラー文表示
@@ -194,7 +217,7 @@ $(function () {
     )
       .done(function (data) {
         window.console.log(data);
-        location.href = "http://localhost/member/profile";
+        location.href = "/member/profile";
       })
       .fail(function (data) {
         window.console.log(data);
@@ -220,7 +243,7 @@ $(function () {
     )
       .done(function (data) {
         window.console.log(data);
-        location.href = "http://localhost/member/address";
+        location.href = "/member/address";
       })
       .fail(function (data) {
         window.console.log(data);
@@ -247,7 +270,7 @@ $(function () {
     )
       .done(function (data) {
         window.console.log(data);
-        location.href = "http://localhost/member/address";
+        location.href = "/member/address";
       })
       .fail(function (data) {
         window.console.log(data);
@@ -271,7 +294,7 @@ $(function () {
         $('.address_delete').html('');
         $('.address_delete').html('<div class="modal-body text-center">削除しました</div>');
         setTimeout(function () {
-          location.href = "http://localhost/member/address";
+          location.href = "/member/address";
         }, 500);
 
       })
@@ -319,9 +342,8 @@ $(function () {
         createErrorList(data);
       })
   });
-
   // お気に入り追加
-  $('.favorite').click(function () {
+  $(document).on('click', '.favorite', function(){
     $.ajax('/api/member/favorite',
       {
         type: 'post',
@@ -335,14 +357,14 @@ $(function () {
       .done(function (data) {
         window.console.log(data);
         $('.favorite_btn').html('');
-        $('.favorite_btn').html('<button class="btn btn-deep-orange btn-block my-4 unfavorite">お気に入り済</button>');
+        $('.favorite_btn').html('<button class="btn btn-deep-orange btn-block my-4 unfavorite">お気に入り解除</button>');
       })
       .fail(function (data) {
         window.console.log(data);
       })
   });
   // お気に入り削除
-  $('.unfavorite').click(function () {
+  $(document).on('click', '.unfavorite', function(){
     $.ajax('/api/member/unfavorite',
       {
         type: 'post',

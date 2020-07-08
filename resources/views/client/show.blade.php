@@ -39,13 +39,13 @@
             <div class="col-md-4 text-center">
               <a href="#" class="profile-panel btn btn-light">
                 <i class="fas fa-user mb-2"></i>
-                <p class="mb-0">基本情報変更</p>
+                <p class="mb-0">基本情報</p>
               </a>
             </div>
             <div class="col-md-4 text-center">
               <a href="#" class="profile-panel btn btn-light">
                 <i class="fas fa-home mb-2"></i>
-                <p class="mb-0">お届け情報</p>
+                <p class="mb-0">商品情報</p>
               </a>
             </div>
             <div class="col-md-4 text-center">

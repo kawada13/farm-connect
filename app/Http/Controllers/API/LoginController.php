@@ -19,8 +19,6 @@ class LoginController extends Controller
     {
         $this->validate($request, Rule::loginRules(), Rule::loginMessages());
 
-
-
         $user = User::select('*')
             ->where('email', $request->input('email'))
             ->where('password', $request->input('password'))

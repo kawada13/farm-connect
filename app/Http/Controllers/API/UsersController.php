@@ -130,6 +130,24 @@ class UsersController extends Controller
             ->where('remember_token', $request->input('token'))
             ->first();
 
+        if(empty($user->member_id))
+        {
+            return response()->json([
+                'error' => 'ログイン必須です',
+            ], 404);
+        }
+
+        $favorite = Favorite::where('member_id', $user->member_id)
+        ->where('product_id', $request->input('product_id'))
+        ->first();
+
+        if(!empty($favorite->id))
+        {
+            return response()->json([
+                'error' => '登録済です',
+            ], 404);
+        }
+
         $favorite = new Favorite();
         $favorite->member_id = $user->member_id;
         $favorite->product_id = $request->input('product_id');

@@ -23,19 +23,19 @@ Route::get('/login/admin/create', 'LoginController@createAdmin')->name('admin.cr
 Route::get('/login/client/create', 'LoginController@createClient')->name('client.create');
 Route::get('/login/member/create', 'LoginController@createMember')->name('member.create');
 
-// トップページ
+// 各ページ
 Route::get('/', 'ProductController@top')->name('products.top');
 
 // 商品
 Route::get('/products', 'ProductController@index')->name('products.index');
 Route::get('/products/{id}', 'ProductController@show')->name('product.show');
 
-// クライアント
+// クライアントのみ
 Route::get('/client/profile', 'UsersController@clientShow')->name('client.show');
 Route::get('/client/product/create', 'Client\ProductController@create')->name('product.create');
-Route::get('/client/products/{id}', 'Client\ProductController@show')->name('client.product.show');
+Route::get('/client/commitment/create', 'Client\CommitmentController@create')->name('commitment.create');
 
-// メンバー
+// メンバーのみ
 Route::get('/member/profile', 'UsersController@memberShow')->name('member.show');
 Route::get('/member/profile/edit', 'UsersController@memberEdit')->name('member.profile.edit');
 Route::get('/member/address', 'UsersController@memberAdressIndex')->name('member.address');

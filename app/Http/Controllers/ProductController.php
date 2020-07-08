@@ -12,15 +12,19 @@ class ProductController extends Controller
 {
     public function top(Request $request)
     {
-        $products = Product::all();
+
+        $products = Product::with(['client'])
+            ->get();
+
         return view('product.top', ['products' => $products]);
     }
     public function index(Request $request)
     {
-        $products = Product::all();
+        $products = Product::with(['client'])
+            ->get();
         return view('product.index', ['products' => $products]);
     }
-    
+
     public function show(Request $request, $id)
     {
         $user = User::select('*')

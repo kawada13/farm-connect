@@ -67,14 +67,21 @@ class UsersController extends Controller
     public function clientShow(Request $request) 
     {
         $client = $this->clientCheck($request->cookie('token_clients'));
+        
         if(empty($client))
         {
             return redirect('/login/client');
         }
-        
 
         return view('client.show', ['client' => $client]);
     }
+
+    public function clientProfile(Request $request) 
+    {
+
+        return view('clientShow');
+    }
+    
 
 
 }

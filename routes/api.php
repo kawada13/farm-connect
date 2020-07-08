@@ -23,6 +23,7 @@ Route::post('/login/member/create', 'API\LoginController@createMember');
 
 // クライアント
 Route::post('/client/product/create', 'API\Client\ProductController@create');
+Route::post('/client/commitment/create', 'API\Client\CommitmentController@create');
 
 // メンバー
 Route::post('/member/profile/edit', 'API\UsersController@updateMemberProfile');

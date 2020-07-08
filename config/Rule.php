@@ -84,6 +84,7 @@ class Rule {
         ];
     }
 
+    // 商品登録
   public static function createProductRules()
     {
       return [
@@ -102,7 +103,24 @@ class Rule {
         'price.integer' => '価格は数値で入力してください',
         ];
     }
+    // こだわり登録
+  public static function createCommitmentRules()
+    {
+      return [
+        'title' => 'required',
+        'contents' => 'required',
+        ];
+    }
 
+  public static function createCommitmentMessages()
+    {
+      return [
+        'title.required' => 'タイトルは必須です',
+        'contents.required' => '詳細は必須です',
+        ];
+    }
+
+    // メンバー基本情報編集
   public static function editMemberRules()
     {
       return [
