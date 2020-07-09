@@ -24,9 +24,16 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">購入履歴</a>
             </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">生産者の方はこちら</a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{{ route('client.create') }}">登録</a>
+                    <a class="dropdown-item" href="{{ route('client.login') }}">ログイン</a>
+                </div>
+            </li>
             @elseif (Cookie::get('token_clients'))
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('client.show') }}">マイページ</a>
+                <a class="nav-link" href="{{ route('client.mypage') }}">マイページ</a>
             </li>
             @else
             <li class="nav-item">
@@ -34,6 +41,13 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('member.login') }}">ログイン</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">生産者の方はこちら</a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{{ route('client.create') }}">登録</a>
+                    <a class="dropdown-item" href="{{ route('client.login') }}">ログイン</a>
+                </div>
             </li>
             @endif
 

@@ -81,15 +81,21 @@
               </a>
             </div>
             <div class="col-md-4 text-center">
-              <a href="#" class="profile-panel btn btn-light">
-                <i class="far fa-flag mb-2"></i>
-                <p class="mb-0">通知設定</p>
+              <a href="{{ route('member.profile.edit') }}" class="profile-panel btn btn-light">
+                <i class="fas fa-heart mb-2"></i>
+                <p class="mb-0">こだわり</p>
               </a>
             </div>
             <div class="col-md-4 text-center">
               <a href="{{ route('member.profile.edit') }}" class="profile-panel btn btn-light">
                 <i class="fas fa-heart mb-2"></i>
-                <p class="mb-0">ソーシャル連携</p>
+                <p class="mb-0">こだわり</p>
+              </a>
+            </div>
+            <div class="col-md-4 text-center">
+              <a href="{{ route('member.profile.edit') }}" class="profile-panel btn btn-light">
+                <i class="fas fa-heart mb-2"></i>
+                <p class="mb-0">こだわり</p>
               </a>
             </div>
           </div>

@@ -64,7 +64,7 @@ class UsersController extends Controller
         return view('member.social.index');
     }
 
-    public function clientShow(Request $request) 
+    public function clientMypage(Request $request) 
     {
         $client = $this->clientCheck($request->cookie('token_clients'));
         
@@ -73,7 +73,7 @@ class UsersController extends Controller
             return redirect('/login/client');
         }
 
-        return view('client.show', ['client' => $client]);
+        return view('client.mypage', ['client' => $client]);
     }
 
     public function clientProfile(Request $request) 
