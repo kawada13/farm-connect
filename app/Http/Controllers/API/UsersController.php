@@ -18,7 +18,14 @@ class UsersController extends Controller
     {
         $this->validate($request, Rule::editMemberRules(), Rule::editMemberMessages());
 
-        $member = $this->memberCheck($request->cookie('token'));
+        $member = $this->memberCheck($request->input('token'));
+
+        if(empty($member->id))
+        {
+            return response()->json([
+                'error' => 'ログイン必須です',
+            ], 404);
+        }
 
         $member->name = $request->input('name');;
         $member->email = $request->input('email');
@@ -35,16 +42,21 @@ class UsersController extends Controller
     {
         $this->validate($request, Rule::createMemberDeliveryRules(), Rule::createMemberDeliveryMessages());
 
-        $user = User::select('*')
-            ->where('remember_token', $request->input('token'))
-            ->first();
+        $member = $this->memberCheck($request->input('token'));
 
+        if(empty($member->id))
+        {
+            return response()->json([
+                'error' => 'ログイン必須です',
+            ], 404);
+        }
+        
         $delinfo = new Delivery();
         $delinfo->name = $request->input('name');
         $delinfo->zip = $request->input('zip');
         $delinfo->address = $request->input('address');
         $delinfo->tel = $request->input('tel');
-        $delinfo->member_id = $user->member_id;
+        $delinfo->member_id = $member->id;
         $delinfo->save();
 
 
@@ -59,16 +71,21 @@ class UsersController extends Controller
     {
         $this->validate($request, Rule::createMemberDeliveryRules(), Rule::createMemberDeliveryMessages());
 
-        $user = User::select('*')
-            ->where('remember_token', $request->input('token'))
-            ->first();
+        $member = $this->memberCheck($request->input('token'));
+
+        if(empty($member->id))
+        {
+            return response()->json([
+                'error' => 'ログイン必須です',
+            ], 404);
+        }
 
         $delinfo = Delivery::where('id', $request->input('deliveryId'))->first();
         $delinfo->name = $request->input('name');
         $delinfo->zip = $request->input('zip');
         $delinfo->address = $request->input('address');
         $delinfo->tel = $request->input('tel');
-        $delinfo->member_id = $user->member_id;
+        $delinfo->member_id = $member->id;
         $delinfo->save();
 
 
@@ -83,9 +100,14 @@ class UsersController extends Controller
     public function deleteMemberAddress(Request $request)
     {
 
-        $user = User::select('*')
-            ->where('remember_token', $request->input('token'))
-            ->first();
+        $member = $this->memberCheck($request->input('token'));
+
+        if(empty($member->id))
+        {
+            return response()->json([
+                'error' => 'ログイン必須です',
+            ], 404);
+        }
 
         $delinfo = Delivery::where('id', $request->input('deliveryId'))
             ->delete();
@@ -102,6 +124,14 @@ class UsersController extends Controller
             ->where('remember_token', $request->input('token'))
             ->first();
 
+        $member = $this->memberCheck($request->input('token'));
+
+        if(empty($member->id))
+        {
+            return response()->json([
+                'error' => 'ログイン必須です',
+            ], 404);
+        }
 
         $user->email = $request->input('email');
         $user->password = $request->input('password');

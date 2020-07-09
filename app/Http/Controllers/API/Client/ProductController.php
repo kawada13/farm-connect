@@ -15,15 +15,19 @@ class ProductController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, Rule::createProductRules(), Rule::createProductMessages());
-        // クライアントチェック
-        $client_id = User::select('*')
-        ->where('remember_token', $request->input('token'))
-        ->first()
-        ->client_id;
+
+        $client = $this->clientCheck($request->input('token'));
+
+        if(empty($client->id))
+        {
+            return response()->json([
+                'error' => 'ログイン必須です',
+            ], 404);
+        }
         
         $product = new Product();
         
-        $product->client_id = $client_id;
+        $product->client_id = $client->id;
         $product->title = $request->input('title');
         $product->detail = $request->input('detail');
         $product->price = $request->input('price');

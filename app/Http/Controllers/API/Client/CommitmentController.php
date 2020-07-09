@@ -17,22 +17,25 @@ class CommitmentController extends Controller
     {
         $this->validate($request, Rule::createCommitmentRules(), Rule::createCommitmentMessages());
 
-        // クライアントチェック
-        $client_id = User::select('*')
-        ->where('remember_token', $request->input('token'))
-        ->first()
-        ->client_id;
+        $client = $this->clientCheck($request->input('token'));
+
+        if(empty($client->id))
+        {
+            return response()->json([
+                'error' => 'ログイン必須です',
+            ], 404);
+        }
         
         $commitment = new Commitment();
         
-        $commitment->client_id = $client_id;
+        $commitment->client_id = $client->id;
         $commitment->title = $request->input('title');
         $commitment->contents = $request->input('contents');
         $commitment->save();
 
         
         return response()->json([
-          'client_id' => $client_id,
+          'client_id' => $client->id,
           'title' => $request->input('title'),
           'contents' => $request->input('contents'),
           'token' => $request->input('token'),
