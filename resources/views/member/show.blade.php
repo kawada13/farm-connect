@@ -81,7 +81,7 @@
               </a>
             </div>
             <div class="col-md-4 text-center">
-              <a href="#" class="profile-panel btn btn-light">
+              <a href="{{ route('member.follow.index') }}" class="profile-panel btn btn-light">
                 <i class="far fa-flag mb-2"></i>
                 <p class="mb-0">フォロー中の生産者</p>
               </a>

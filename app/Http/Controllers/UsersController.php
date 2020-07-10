@@ -76,8 +76,6 @@ class UsersController extends Controller
         ->where('member_id', $member->id)
         ->get();
 
-
-
         return view('member.favorites', ['member' => $member, 'favorites' => $favorites]);
     }
 
@@ -130,6 +128,18 @@ class UsersController extends Controller
             ->first();
     }
 
-    
+    public function memberFollowIndex(Request $request) 
+    {
+        $member = $this->memberCheck($request->cookie('token_members'));
+
+        
+        $follows = Follow::with(['client'])
+        ->where('member_id', $member->id)
+        ->get();
+
+        return view('member.follows',
+         ['member' => $member, 'follows' => $follows]
+        );
+    }
 
 }
