@@ -72,7 +72,13 @@ class UsersController extends Controller
     {
         $member = $this->memberCheck($request->cookie('token_members'));
 
-        return view('member.edit', ['member' => $member]);
+        $favorites = Favorite::with(['product'])
+        ->where('member_id', $member->id)
+        ->get();
+
+
+
+        return view('member.favorites', ['member' => $member, 'favorites' => $favorites]);
     }
 
 

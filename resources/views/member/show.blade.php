@@ -87,7 +87,7 @@
               </a>
             </div>
             <div class="col-md-4 text-center">
-              <a href="{{ route('member.profile.edit') }}" class="profile-panel btn btn-light">
+              <a href="{{ route('member.favorite.index') }}" class="profile-panel btn btn-light">
                 <i class="fas fa-heart mb-2"></i>
                 <p class="mb-0">お気に入り商品</p>
               </a>

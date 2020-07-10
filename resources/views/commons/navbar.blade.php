@@ -19,7 +19,7 @@
                 <a class="nav-link" href="{{ route('member.show') }}">マイページ</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">お気に入り</a>
+                <a class="nav-link" href="{{ route('member.favorite.index') }}">お気に入り</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">購入履歴</a>

@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Favorite extends Model
 {
-    //
+    public function product()
+  {
+    return $this->belongsTo('App\Model\Product', 'product_id', 'id');
+  }
 }

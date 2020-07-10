@@ -46,5 +46,5 @@ Route::get('/member/address', 'UsersController@memberAdressIndex')->name('member
 Route::get('/member/address/create', 'UsersController@memberAdressCreate')->name('member.address.create');
 Route::get('/member/address/{id}/edit', 'UsersController@memberAdressEdit')->name('member.address.edit');
 Route::get('/member/social_setting/edit', 'UsersController@membersocialSetting')->name('member.social_setting.edit');
-Route::get('/member/fovorites', 'UsersController@memberFavoriteIndex')->name('member.favorite.index');
+Route::get('/member/favorites', 'UsersController@memberFavoriteIndex')->name('member.favorite.index');
 
