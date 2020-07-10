@@ -27,7 +27,6 @@ class CommitmentController extends Controller
         }
         
         $commitment = new Commitment();
-        
         $commitment->client_id = $client->id;
         $commitment->title = $request->input('title');
         $commitment->contents = $request->input('contents');

@@ -11,6 +11,7 @@ use App\Model\Client;
 use App\Model\Delivery;
 use App\Model\Member;
 use App\Model\Favorite;
+use App\Model\Follow;
 
 class UsersController extends Controller
 {
@@ -202,6 +203,59 @@ class UsersController extends Controller
         return response()->json([
             'token' => $request->input('token'),
             'product_id' => $request->input('product_id'),
+        ], 200);
+    }
+
+
+    public function follow(Request $request)
+    {
+        $user = User::select('*')
+            ->where('remember_token', $request->input('token'))
+            ->first();
+
+        if(empty($user->member_id))
+        {
+            return response()->json([
+                'error' => 'ログイン必須です',
+            ], 404);
+        }
+
+        $follow = Follow::where('member_id', $user->member_id)
+        ->where('client_id', $request->input('client_id'))
+        ->first();
+
+        if(!empty($follow->id))
+        {
+            return response()->json([
+                'error' => '登録済です',
+            ], 404);
+        }
+
+        $follow = new Follow();
+        $follow->member_id = $user->member_id;
+        $follow->client_id = $request->input('client_id');
+        $follow->save();
+
+        return response()->json([
+            'token' => $request->input('token'),
+            'client_id' => $request->input('client_id'),
+        ], 200);
+    }
+
+    public function unfollow(Request $request)
+    {
+        $user = User::select('*')
+            ->where('remember_token', $request->input('token'))
+            ->first();
+
+        $follow = Follow::select('*')
+            ->where('member_id', $user->member_id)
+            ->where('client_id', $request->input('client_id'))
+            ->delete();
+
+        return response()->json([
+            'token' => $request->input('token'),
+            'client_id' => $request->input('client_id'),
         ], 200);
     }
 }

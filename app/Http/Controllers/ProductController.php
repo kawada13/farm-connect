@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Model\Product;
 use App\Model\Favorite;
 use App\Model\User;
+use App\Model\Commitment;
 
 class ProductController extends Controller
 {
@@ -35,7 +36,11 @@ class ProductController extends Controller
 
         $is_facvoriting = $this->is_facvoriting($user->member_id, $product->id);
 
-        return view('product.show', ['product' => $product, 'is_facvoriting' => $is_facvoriting]);
+        $commitments = Commitment::select('*')
+        ->where('client_id', $product->client_id)
+        ->get();
+
+        return view('product.show', ['product' => $product, 'is_facvoriting' => $is_facvoriting, 'commitments' => $commitments]);
     }
 
     public function is_facvoriting($memberId, $productId)

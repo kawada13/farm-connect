@@ -33,3 +33,5 @@ Route::post('/member/address/delete', 'API\UsersController@deleteMemberAddress')
 Route::post('/member/password/edit', 'API\UsersController@editMemberPassword');
 Route::post('/member/favorite', 'API\UsersController@favorite');
 Route::post('/member/unfavorite', 'API\UsersController@unfavorite');
+Route::post('/member/follow', 'API\UsersController@follow');
+Route::post('/member/unfollow', 'API\UsersController@unfollow');

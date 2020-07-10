@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\User;
 use App\Model\Member;
+use App\Model\Client;
 use App\Model\Delivery;
 use App\Model\Favorite;
+use App\Model\Commitment;
+use App\Model\Product;
+use App\Model\Follow;
 
 class UsersController extends Controller
 {
@@ -64,6 +68,14 @@ class UsersController extends Controller
         return view('member.social.index');
     }
 
+    public function memberFavoriteIndex(Request $request) 
+    {
+        $member = $this->memberCheck($request->cookie('token_members'));
+
+        return view('member.edit', ['member' => $member]);
+    }
+
+
     public function clientMypage(Request $request) 
     {
         $client = $this->clientCheck($request->cookie('token_clients'));
@@ -75,13 +87,43 @@ class UsersController extends Controller
 
         return view('client.mypage', ['client' => $client]);
     }
-
-    public function clientProfile(Request $request) 
+    public function clientIndex(Request $request) 
     {
+        $clients = Client::all();
 
-        return view('clientShow');
+        return view('client.index', ['clients' => $clients]);
+    }
+
+    public function clientShow(Request $request, $id) 
+    {
+        $user = User::select('*')
+            ->where('remember_token', $request->cookie('token_members'))
+            ->first();
+
+        $client = Client::find($id);
+
+        $commitments = Commitment::select('*')
+        ->where('client_id', $client->id)
+        ->get();
+
+        $products = Product::select('*')
+        ->where('client_id', $client->id)
+        ->get();
+
+        $is_following = $this->is_following($user->member_id, $client->id);
+        
+        return view('client.show', ['client' => $client, 'commitments' => $commitments, 'products' => $products, 'is_following' => $is_following]);
     }
     
+    public function is_following($memberId, $clientId)
+    {
+        return
+            Follow::select('*')
+            ->where('member_id', $memberId)
+            ->where('client_id', $clientId)
+            ->first();
+    }
 
+    
 
 }

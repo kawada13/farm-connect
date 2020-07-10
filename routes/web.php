@@ -25,10 +25,14 @@ Route::get('/login/member/create', 'LoginController@createMember')->name('member
 
 // 各ページ
 Route::get('/', 'ProductController@top')->name('products.top');
+Route::get('/clients', 'UsersController@clientIndex')->name('clients.index');
+Route::get('/clients/{id}', 'UsersController@clientShow')->name('clients.show');
 
 // 商品
 Route::get('/products', 'ProductController@index')->name('products.index');
 Route::get('/products/{id}', 'ProductController@show')->name('product.show');
+
+
 
 // クライアントのみ
 Route::get('/client/mypage', 'UsersController@clientMypage')->name('client.mypage');
@@ -42,4 +46,5 @@ Route::get('/member/address', 'UsersController@memberAdressIndex')->name('member
 Route::get('/member/address/create', 'UsersController@memberAdressCreate')->name('member.address.create');
 Route::get('/member/address/{id}/edit', 'UsersController@memberAdressEdit')->name('member.address.edit');
 Route::get('/member/social_setting/edit', 'UsersController@membersocialSetting')->name('member.social_setting.edit');
+Route::get('/member/fovorites', 'UsersController@memberFavoriteIndex')->name('member.favorite.index');
 

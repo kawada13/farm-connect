@@ -1,8 +1,7 @@
 $(function () {
 
   // 生産者商品登録
-
-  $('.product_create').click(function () {
+  $(document).on('click', '.product_create', function () {
     $.ajax('/api/client/product/create',
       {
         type: 'post',
@@ -25,7 +24,7 @@ $(function () {
 
   });
   // こだわり登録
-  $('.commitment_create').click(function () {
+  $(document).on('click', '.commitment_create', function () {
     $.ajax('/api/client/commitment/create',
       {
         type: 'post',
@@ -50,8 +49,7 @@ $(function () {
 
 
   // 管理者登録
-
-  $('.admin_create').click(function () {
+  $(document).on('click', '.admin_create', function () {
     $.ajax('/api/login/admin/create',
       {
         type: 'post',
@@ -80,8 +78,7 @@ $(function () {
 
 
   // 生産者登録
-
-  $('.client_create').click(function () {
+  $(document).on('click', '.client_create', function () {
     $.ajax('/api/login/client/create',
       {
         type: 'post',
@@ -111,7 +108,7 @@ $(function () {
 
   // ユーザー登録
 
-  $('.member_create').click(function () {
+  $(document).on('click', '.member_create', function () {
     $.ajax('/api/login/member/create',
       {
         type: 'post',
@@ -141,7 +138,7 @@ $(function () {
 
   // ログイン
 
-  $('.login').click(function () {
+  $(document).on('click', '.login', function () {
     $.ajax('/api/login',
       {
         type: 'post',
@@ -176,7 +173,7 @@ $(function () {
   });
 
   // ログアウト
-  $('.logout').click(function () {
+  $(document).on('click', '.logout', function () {
     $.cookie('token_admins', "", { path: "/", expires: -1 });
     $.cookie('token_clients', "", { path: "/", expires: -1 });
     $.cookie('token_members', "", { path: "/", expires: -1 });
@@ -203,7 +200,7 @@ $(function () {
 
 
   // メンバー基本情報編集
-  $('.member_edit').click(function () {
+  $(document).on('click', '.member_edit', function () {
     $.ajax('/api/member/profile/edit',
       {
         type: 'post',
@@ -227,7 +224,7 @@ $(function () {
   });
 
   // メンバーお届け先登録
-  $('.member_address_create').click(function () {
+  $(document).on('click', '.member_address_create', function () {
     $.ajax('/api/member/address/create',
       {
         type: 'post',
@@ -253,7 +250,7 @@ $(function () {
   });
 
   // メンバーお届け先編集
-  $('.member_address_edit').click(function () {
+  $(document).on('click', '.member_address_edit', function () {
     $.ajax('/api/member/address/edit',
       {
         type: 'post',
@@ -277,8 +274,9 @@ $(function () {
         createErrorList(data);
       })
   });
+
   // メンバーお届け先削除
-  $('.member_address_delete').click(function () {
+  $(document).on('click', '.member_address_delete', function () {
     $.ajax('/api/member/address/delete',
       {
         type: 'post',
@@ -316,7 +314,7 @@ $(function () {
 
 
   // メンバーパスワード編集
-  $('.member_password_edit').click(function () {
+  $(document).on('click', '.member_password_edit', function () {
     $.ajax('/api/member/password/edit',
       {
         type: 'post',
@@ -340,48 +338,6 @@ $(function () {
       .fail(function (data) {
         window.console.log(data);
         createErrorList(data);
-      })
-  });
-  // お気に入り追加
-  $(document).on('click', '.favorite', function(){
-    $.ajax('/api/member/favorite',
-      {
-        type: 'post',
-        data: {
-          token: $.cookie("token_members"),
-          product_id: $('#product_id').val(),
-        },
-        dataType: 'json'
-      }
-    )
-      .done(function (data) {
-        window.console.log(data);
-        $('.favorite_btn').html('');
-        $('.favorite_btn').html('<button class="btn btn-deep-orange btn-block my-4 unfavorite">お気に入り解除</button>');
-      })
-      .fail(function (data) {
-        window.console.log(data);
-      })
-  });
-  // お気に入り削除
-  $(document).on('click', '.unfavorite', function(){
-    $.ajax('/api/member/unfavorite',
-      {
-        type: 'post',
-        data: {
-          token: $.cookie("token_members"),
-          product_id: $('#product_id').val(),
-        },
-        dataType: 'json'
-      }
-    )
-      .done(function (data) {
-        window.console.log(data);
-        $('.favorite_btn').html('');
-        $('.favorite_btn').html('<button class="btn btn-light-blue btn-block my-4 favorite">お気に入りに追加</button>');
-      })
-      .fail(function (data) {
-        window.console.log(data);
       })
   });
 
