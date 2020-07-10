@@ -21,7 +21,9 @@ class ProductController extends Controller
     }
     public function index(Request $request)
     {
+        // dd($request->input('keyword'));
         $products = Product::with(['client'])
+            ->where('title', 'like', '%'.$request->input('keyword').'%')
             ->get();
         return view('product.index', ['products' => $products]);
     }

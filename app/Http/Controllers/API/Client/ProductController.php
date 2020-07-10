@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Product;
 use App\Model\User;
+use App\Model\Category;
 use App\config\Rule;
 use Illuminate\Support\Str;
 
@@ -18,23 +19,35 @@ class ProductController extends Controller
 
         $client = $this->clientCheck($request->input('token'));
 
-        if(empty($client->id))
-        {
+        if (empty($client->id)) {
             return response()->json([
                 'error' => 'ログイン必須です',
             ], 404);
         }
-        
+
         $product = new Product();
-        
         $product->client_id = $client->id;
         $product->title = $request->input('title');
         $product->detail = $request->input('detail');
         $product->price = $request->input('price');
         $product->save();
 
-        
+        foreach($request->input('categories') as $category)
+        {
+            $categories = new Category();
+            $categories->product_id = $product->id;
+            $categories->category_name = $category;
+            $categories->save();
+        }
+
+
         return response()->json([
+            'title' => $request->input('title'),
+            'detail' => $request->input('detail'),
+            'price' => $request->input('price'),
+            'token' => $request->input('token'),
+            'categories' => $request->input('categories'),
         ], 200);
     }
+
 }

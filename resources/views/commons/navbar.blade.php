@@ -8,8 +8,8 @@
 
     <div class="collapse navbar-collapse" id="Nav">
 
-        <form class="form-inline my-2 my-lg-0 ml-auto">
-            <input class="form-control" type="search" placeholder="商品/生産者を探す" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0 ml-auto" action="/products" method="GET">
+            <input class="form-control" type="search" placeholder="商品/生産者を探す" aria-label="Search" name="keyword">
             <button class="btn btn-success btn-rounded p-2 m-0" type="submit">検索</button>
         </form>
 

@@ -2,10 +2,15 @@ $(function () {
 
   // 生産者商品登録
   $(document).on('click', '.product_create', function () {
+    var categories = [];
+    $('input[name="categories"]:checked').each(function(){
+      categories.push($(this).val());
+    });
     $.ajax('/api/client/product/create',
       {
         type: 'post',
         data: {
+          categories: categories,
           title: $('#title').val(),
           detail: $('#detail').val(),
           price: $('#price').val(),

@@ -91,6 +91,7 @@ class Rule {
         'title' => 'required',
         'detail' => 'required',
         'price' => 'required|integer',
+        'categories' => 'required|array',
         ];
     }
 
@@ -100,6 +101,7 @@ class Rule {
         'title.required' => 'タイトルは必須です',
         'detail.required' => '詳細は必須です',
         'price.required' => '価格は必須です',
+        'categories.required' => 'カテゴリー選択は必須です',
         'price.integer' => '価格は数値で入力してください',
         ];
     }
