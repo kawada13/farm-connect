@@ -4,19 +4,20 @@
 
 @section('content')
 
-<header class="header">
-  @include('commons.navbar')
-  <section class="bread-crum">
-    <ul class="nav red lighten-5 pt-2">
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('products.top') }}">トップへ</a>
-      </li>
-    </ul>
-  </section>
-</header>
+@include('commons.navbar')
+
 
 <section class="mypage bg-light">
   <div class="container">
+    <header class="header">
+      <section class="bread-crum">
+        <ul class="nav red lighten-5 pt-2">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('products.top') }}">トップへ</a>
+          </li>
+        </ul>
+      </section>
+    </header>
 
     <div class="card mt-3">
 

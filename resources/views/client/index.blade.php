@@ -3,20 +3,21 @@
 @section('title', '生産者一覧')
 
 @section('content')
+@include('commons.navbar')
 
-<header class="header">
-  @include('commons.navbar')
-  <section class="bread-crum">
-    <ul class="nav red lighten-5 pt-2">
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('products.top') }}">トップへ</a>
-      </li>
-    </ul>
-  </section>
-</header>
+
 
 
 <div class="container">
+  <header class="header">
+    <section class="bread-crum">
+      <ul class="nav red lighten-5 pt-2">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('products.top') }}">トップへ</a>
+        </li>
+      </ul>
+    </section>
+  </header>
   <section class="main-content">
     <div class="inner-main-content">
       <div class="row">
@@ -28,7 +29,7 @@
           <div class="group-item-header">
             <ul class="nav grey lighten-4 py-2 font-weight-bold">
               <li class="nav-item">
-                <h3 class="nav-link">すべての生産者</h3>
+                <h3 class="nav-link">{{$title}}</h3>
               </li>
             </ul>
           </div>
@@ -36,7 +37,7 @@
           <div class="tabs">
             <ul class="nav nav-tabs font-weight-bold pt-2 pb-2">
               <li class="nav-item">
-                <a class="nav-link" href="{{ route('products.index') }}">商品一覧</a>
+                <a class="nav-link" href="{{$products_url}}">商品一覧</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" href="{{ route('clients.index') }}">生産者一覧</a>

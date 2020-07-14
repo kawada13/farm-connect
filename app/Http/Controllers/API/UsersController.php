@@ -27,11 +27,11 @@ class UsersController extends Controller
                 'error' => 'ログイン必須です',
             ], 404);
         }
-
-        $member->name = $request->input('name');;
+        $member->profile_url = '/images/member_profile/'.$request->file('profile_image')->getClientOriginalName();
+        $member->name = $request->input('name');
         $member->email = $request->input('email');
         $member->save();
-
+        $request->file('profile_image')->move(base_path().'/public/images/member_profile', $request->file('profile_image')->getClientOriginalName());
 
         return response()->json([
             'name' => $request->input('name'),

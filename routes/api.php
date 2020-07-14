@@ -20,6 +20,7 @@ Route::post('/login', 'API\LoginController@login');
 Route::post('/login/admin/create', 'API\LoginController@createAdmin');
 Route::post('/login/client/create', 'API\LoginController@createClient');
 Route::post('/login/member/create', 'API\LoginController@createMember');
+Route::post('/product/serach', 'API\ProductController@index');
 
 // クライアント
 Route::post('/client/product/create', 'API\Client\ProductController@create');

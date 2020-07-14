@@ -3,20 +3,21 @@
 @section('title', 'クライアントマイページ')
 
 @section('content')
+@include('commons.navbar')
 
-<header class="header">
-  @include('commons.navbar')
-  <section class="bread-crum">
-    <ul class="nav red lighten-5 pt-2">
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('products.top') }}">トップへ</a>
-      </li>
-    </ul>
-  </section>
-</header>
+
 
 <section class="mypage bg-light">
   <div class="container">
+    <header class="header">
+      <section class="bread-crum">
+        <ul class="nav red lighten-5 pt-2">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('products.top') }}">トップへ</a>
+          </li>
+        </ul>
+      </section>
+    </header>
 
     <div class="card mt-3">
 
@@ -37,7 +38,7 @@
         <div class="menu_content">
           <div class="row mb-2">
             <div class="col-md-4 text-center">
-              <a href="#" class="profile-panel btn btn-light">
+              <a href="{{ route('client.profile') }}" class="profile-panel btn btn-light">
                 <i class="fas fa-user mb-2"></i>
                 <p class="mb-0">基本情報</p>
               </a>
@@ -45,7 +46,7 @@
             <div class="col-md-4 text-center">
               <a href="#" class="profile-panel btn btn-light">
                 <i class="fas fa-home mb-2"></i>
-                <p class="mb-0">商品情報</p>
+                <p class="mb-0">商品情報一覧</p>
               </a>
             </div>
             <div class="col-md-4 text-center">

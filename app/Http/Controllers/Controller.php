@@ -36,4 +36,24 @@ class Controller extends BaseController
         }
         return $user->client;
     }
+
+    public function getSearchTitle($request)
+    {
+        if($request->path() === "products")
+        {
+            $title = 'すべての商品';
+            if(!empty($request->input('keyword'))){
+                $title = $request->input('keyword').'の検索結果';
+            }
+        }
+        if($request->path() === "clients")
+        {
+            $title = 'すべての生産者';
+            if(!empty($request->input('keyword'))){
+                $title = $request->input('keyword').'の検索結果';
+            }
+        }
+
+        return $title;
+    }
 }

@@ -6,20 +6,20 @@
 @endsection
 @section('content')
 
+@include('commons.navbar')
 
-<header class="header">
-  @include('commons.navbar')
-  <section class="bread-crum">
-    <ul class="nav red lighten-5 pt-2">
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('products.top') }}">トップへ</a>
-      </li>
-    </ul>
-  </section>
-</header>
+
 
 <div class="container">
-
+  <header class="header">
+    <section class="bread-crum">
+      <ul class="nav red lighten-5 pt-2">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('products.top') }}">トップへ</a>
+        </li>
+      </ul>
+    </section>
+  </header>
 
 
   <section class="main-content">
@@ -76,7 +76,7 @@
   <p>こだわり画像</p>
   <p>{{$commitment->title}}</p>
   <p>{{$commitment->contents}}</p>
-@endforeach
+  @endforeach
   <h4>この生産者について</h4>
 </div>
 

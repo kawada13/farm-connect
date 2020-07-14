@@ -21,11 +21,21 @@ class ProductController extends Controller
     }
     public function index(Request $request)
     {
-        // dd($request->input('keyword'));
+
+
+        $title = $this->getSearchTitle($request);
+
+        $clients_url = str_replace('products', 'clients', $request->fullUrl());
+
         $products = Product::with(['client'])
-            ->where('title', 'like', '%'.$request->input('keyword').'%')
+            ->whereHas('client', function ($query) use ($request) {
+                $query->where('name', 'like', "%{$request->input('keyword')}%");
+            })
+            ->orWhere('title', 'like', "%{$request->input('keyword')}%")
+            ->orWhere('detail', 'like', "%{$request->input('keyword')}%")
             ->get();
-        return view('product.index', ['products' => $products]);
+
+        return view('product.index', ['products' => $products, 'title' => $title, 'clients_url' => $clients_url]);
     }
 
     public function show(Request $request, $id)
@@ -39,8 +49,8 @@ class ProductController extends Controller
         $is_facvoriting = $this->is_facvoriting($user->member_id, $product->id);
 
         $commitments = Commitment::select('*')
-        ->where('client_id', $product->client_id)
-        ->get();
+            ->where('client_id', $product->client_id)
+            ->get();
 
         return view('product.show', ['product' => $product, 'is_facvoriting' => $is_facvoriting, 'commitments' => $commitments]);
     }

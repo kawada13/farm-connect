@@ -3,7 +3,7 @@ $(function () {
   // 生産者商品登録
   $(document).on('click', '.product_create', function () {
     var categories = [];
-    $('input[name="categories"]:checked').each(function(){
+    $('input[name="categories"]:checked').each(function () {
       categories.push($(this).val());
     });
     $.ajax('/api/client/product/create',
@@ -169,7 +169,6 @@ $(function () {
         window.console.log(data);
         if (Object.keys(data.responseJSON).length) {
           $('.error_login').html('');
-          // $('.error_login').append("<p class='alert-danger'>" + data.responseJSON.error + '</p>');
           $('.error_login').append("<p class='alert-danger'>メールアドレスもしくはパスワードが間違っています</p>");
         }
         createErrorList(data);
@@ -206,20 +205,27 @@ $(function () {
 
   // メンバー基本情報編集
   $(document).on('click', '.member_edit', function () {
+
+    let $upfile = $('input[name="image"]');
+    let fd = new FormData();
+    fd.append("profile_image", $upfile.prop('files')[0]);
+    fd.append("name", $('#name').val());
+    fd.append("email", $('#email').val());
+    fd.append("token", $.cookie("token_members"));
+
+    for(item of fd) window.console.log(item);
     $.ajax('/api/member/profile/edit',
       {
         type: 'post',
-        data: {
-          name: $('#name').val(),
-          email: $('#email').val(),
-          token: $.cookie("token_members"),
-        },
-        dataType: 'json'
+        data: fd,
+        dataType: 'json',
+        processData: false,
+        contentType: false,
       }
     )
       .done(function (data) {
         window.console.log(data);
-        location.href = "/member/profile";
+        // location.href = "/member/profile";
       })
       .fail(function (data) {
         window.console.log(data);
@@ -346,5 +352,50 @@ $(function () {
       })
   });
 
+
+  $(document).on('click', '.keyword', function () {
+    $('.search_area').show();
+    $('.window-close').show();
+    $('.container').hide();
+  });
+  $(document).on('click', '.window-close', function () {
+    $('.search_area').hide();
+    $('.window-close').hide();
+    $('.container').show();
+  });
+
+  $(document).on('click', '.organic_search', function () {
+    window.console.log($('.keyword').val());
+    var categories = [];
+    $('input[name="categories"]:checked').each(function () {
+      categories.push($(this).val());
+    });
+    window.console.log(categories);
+
+    var url = '/products';
+    var query = [];
+
+    if ($('.keyword').val()) {
+      query.push('keyword=' + $('.keyword').val());
+    }
+    if (categories.length) {
+      $.each(categories, function (index, value) {
+        query.push('categories[]=' + value);
+      });
+    }
+    if (query.length) {
+      $.each(query, function (index, value) {
+        if (index === 0) {
+          url += '?' + value;
+        } else {
+          url += '&' + value;
+        }
+      });
+    }
+    window.location.href = url;
+  });
+
 });
+
+
 

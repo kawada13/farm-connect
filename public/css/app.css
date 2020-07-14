@@ -122,3 +122,11 @@ a.profile-panel {
   transform: translate(-50%,-50%);
   width: 60%;
 }
+
+.search_area{
+  display: none;
+}
+
+.window-close{
+  display: none;
+}

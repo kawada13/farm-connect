@@ -36,6 +36,7 @@ Route::get('/products/{id}', 'ProductController@show')->name('product.show');
 
 // クライアントのみ
 Route::get('/client/mypage', 'UsersController@clientMypage')->name('client.mypage');
+Route::get('/client/profile', 'UsersController@clientProfile')->name('client.profile');
 Route::get('/client/product/create', 'Client\ProductController@create')->name('product.create');
 Route::get('/client/commitment/create', 'Client\CommitmentController@create')->name('commitment.create');
 
