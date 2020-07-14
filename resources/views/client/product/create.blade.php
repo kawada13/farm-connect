@@ -24,53 +24,15 @@
 
     <div class="checkbox_content" name="categories">
 
+    @foreach($categories as $category)
       <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="veg" name="categories" value="野菜">
-        <label class="custom-control-label" for="veg">野菜</label>
+        <input type="checkbox" class="custom-control-input" id="categories_{{$category->id}}" name="categories" value="{{$category->id}}">
+        <label class="custom-control-label" for="categories_{{$category->id}}">{{$category->name}}</label>
       </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="fruit" name="categories" value="果物">
-        <label class="custom-control-label" for="fruit">果物</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="meat" name="categories" value="肉">
-        <label class="custom-control-label" for="meat">肉</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="fish" name="categories" value="魚介類">
-        <label class="custom-control-label" for="fish">魚介類</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="egg" name="categories" value="卵・乳製品">
-        <label class="custom-control-label" for="egg">卵・乳製品</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="honey" name="categories" value="はちみつ">
-        <label class="custom-control-label" for="honey">はちみつ</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="drink" name="categories" value="お酒">
-        <label class="custom-control-label" for="drink">お酒</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="tea" name="categories" value="お茶">
-        <label class="custom-control-label" for="tea">お茶</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="rice" name="categories" value="米・穀類">
-        <label class="custom-control-label" for="rice">米・穀類</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="manufacturing" name="categories" value="加工品">
-        <label class="custom-control-label" for="manufacturing">加工品</label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="flower" name="categories" value="花・植物">
-        <label class="custom-control-label" for="flower">花・植物</label>
-      </div>
+      @endforeach
 
     </div>
-  </div>
+
 
   <input type="text" id="title" class="form-control mb-4" name="title" placeholder="タイトル">
   <textarea id="detail" class="form-control mb-4" name="detail" placeholder="詳細"></textarea>

@@ -364,6 +364,7 @@ $(function () {
     $('.container').show();
   });
 
+  // 検索url作成
   $(document).on('click', '.organic_search', function () {
     window.console.log($('.keyword').val());
     var categories = [];

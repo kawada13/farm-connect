@@ -21,7 +21,7 @@ class ProductController extends Controller
     }
     public function index(Request $request)
     {
-
+        // dd($request->input('categories'));
 
         $title = $this->getSearchTitle($request);
 

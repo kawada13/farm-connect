@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Model\Product;
 use App\Model\User;
 use App\Model\Category;
+use App\Model\ProductCategory;
 use App\config\Rule;
 use Illuminate\Support\Str;
 
@@ -34,9 +35,9 @@ class ProductController extends Controller
 
         foreach($request->input('categories') as $category)
         {
-            $categories = new Category();
+            $categories = new ProductCategory();
             $categories->product_id = $product->id;
-            $categories->category_name = $category;
+            $categories->category_id = $category;
             $categories->save();
         }
 

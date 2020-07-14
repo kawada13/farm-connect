@@ -15,11 +15,10 @@ class Controller extends BaseController
     public function memberCheck($token)
     {
         $user = User::with(['member'])
-        ->where('remember_token', $token)
-        ->first();
+            ->where('remember_token', $token)
+            ->first();
 
-        if(empty($user) || empty($user->member)) 
-        {
+        if (empty($user) || empty($user->member)) {
             return false;
         }
         return $user->member;
@@ -27,11 +26,10 @@ class Controller extends BaseController
     public function clientCheck($token)
     {
         $user = User::with(['client'])
-        ->where('remember_token', $token)
-        ->first();
+            ->where('remember_token', $token)
+            ->first();
 
-        if(empty($user) || empty($user->client)) 
-        {
+        if (empty($user) || empty($user->client)) {
             return false;
         }
         return $user->client;
@@ -39,18 +37,48 @@ class Controller extends BaseController
 
     public function getSearchTitle($request)
     {
-        if($request->path() === "products")
-        {
+        if ($request->path() === "products") {
             $title = 'すべての商品';
-            if(!empty($request->input('keyword'))){
-                $title = $request->input('keyword').'の検索結果';
+            if (!empty($request->input('keyword'))) {
+                $title = $request->input('keyword') . 'の検索結果';
+            }
+            if (!empty($request->input('categories'))) {
+
+                $title = '';
+                $keyFirst = array_key_first($request->input('categories'));
+                $keyLast = array_key_last($request->input('categories'));
+
+                foreach ($request->input('categories') as $key => $value) {
+                    if ($key === $keyFirst) {
+                        $title .= $value;
+                    } else {
+                        $title .= '/' . $value;
+                    }
+                }
+                $title .= 'の検索結果';
             }
         }
-        if($request->path() === "clients")
-        {
+
+        if ($request->path() === "clients") {
             $title = 'すべての生産者';
-            if(!empty($request->input('keyword'))){
-                $title = $request->input('keyword').'の検索結果';
+            if (!empty($request->input('keyword'))) {
+                $title = $request->input('keyword') . 'の検索結果';
+            }
+
+            if (!empty($request->input('categories'))) {
+
+                $title = '';
+                $keyFirst = array_key_first($request->input('categories'));
+                $keyLast = array_key_last($request->input('categories'));
+
+                foreach ($request->input('categories') as $key => $value) {
+                    if ($key === $keyFirst) {
+                        $title .= $value;
+                    } else {
+                        $title .= '/' . $value;
+                    }
+                }
+                $title .= 'の検索結果';
             }
         }
 

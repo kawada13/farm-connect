@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Model\Product;
 use App\Model\Favorite;
 use App\Model\User;
+use App\Model\Category;
 
 class ProductController extends Controller
 {
@@ -43,6 +44,11 @@ class ProductController extends Controller
     if (empty($client)) {
       return redirect('/login/client');
     }
-    return view('client.product.create', ['client' => $client]);
+
+    $categories = Category::all();
+
+    // dd($categories);
+
+    return view('client.product.create', ['client' => $client, 'categories' => $categories]);
   }
 }
