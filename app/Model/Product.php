@@ -10,5 +10,9 @@ class Product extends Model
   {
     return $this->belongsTo('App\Model\Client', 'client_id', 'id');
   }
+  public function productCategories()
+  {
+    return $this->hasMany('App\Model\ProductCategory', 'product_id', 'id');
+  }
 
 }

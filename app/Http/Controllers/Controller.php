@@ -46,7 +46,6 @@ class Controller extends BaseController
 
                 $title = '';
                 $keyFirst = array_key_first($request->input('categories'));
-                $keyLast = array_key_last($request->input('categories'));
 
                 foreach ($request->input('categories') as $key => $value) {
                     if ($key === $keyFirst) {
@@ -69,7 +68,6 @@ class Controller extends BaseController
 
                 $title = '';
                 $keyFirst = array_key_first($request->input('categories'));
-                $keyLast = array_key_last($request->input('categories'));
 
                 foreach ($request->input('categories') as $key => $value) {
                     if ($key === $keyFirst) {

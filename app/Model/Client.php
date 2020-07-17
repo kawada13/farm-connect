@@ -10,4 +10,9 @@ class Client extends Model
   {
     return $this->hasOne('App\Model\User', 'client_id', 'id');
   }
+
+  public function products()
+  {
+    return $this->hasMany('App\Model\Product', 'client_id', 'id');
+  }
 }

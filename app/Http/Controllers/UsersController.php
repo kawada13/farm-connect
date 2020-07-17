@@ -111,6 +111,12 @@ class UsersController extends Controller
 
         $clients = Client::select('*')
             ->where('name', 'like', '%' . $request->input('keyword') . '%')
+            ->orWhere('address', 'like', '%' . $request->input('keyword') . '%')
+            ->orWhereHas('products', function ($query) use ($request) {
+                $query
+                    ->where('title', 'like', "%{$request->input('keyword')}%")
+                    ->orWhere('detail', 'like', "%{$request->input('keyword')}%");
+            })
             ->get();
 
         return view('client.index', ['clients' => $clients, 'title' => $title, 'products_url' => $products_url]);

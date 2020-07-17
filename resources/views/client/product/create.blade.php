@@ -29,7 +29,7 @@
         <input type="checkbox" class="custom-control-input" id="categories_{{$category->id}}" name="categories" value="{{$category->id}}">
         <label class="custom-control-label" for="categories_{{$category->id}}">{{$category->name}}</label>
       </div>
-      @endforeach
+    @endforeach
 
     </div>
 

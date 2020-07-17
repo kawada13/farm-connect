@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 // 各ログイン,ログアウト
 Route::post('/login', 'API\LoginController@login');
 
+// カテゴリー取得
+Route::post('/categories', 'API\CategoryController@index');
+
 // 各登録
 Route::post('/login/admin/create', 'API\LoginController@createAdmin');
 Route::post('/login/client/create', 'API\LoginController@createClient');

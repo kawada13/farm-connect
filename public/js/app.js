@@ -1,5 +1,31 @@
 $(function () {
 
+  // カテゴリー取得
+  $(document).ready(function () {
+    $.ajax('/api/categories',
+      {
+        type: 'post',
+        dataType: 'json'
+      }
+    )
+      .done(function (data) {
+        window.console.log(data);
+        data.categories.forEach((value,index) => {
+           $('.search_categories').append("<div class='custom-control custom-checkbox'><input type='checkbox' class='custom-control-input' id='categories_"+value.id+"' name='categories' value='"+value.id+"'><label class='custom-control-label' for='categories_"+value.id+"'>"+value.name+"</label></div>");
+           $('.side_categories').append("<li class='nav-item'> <a class='nav-link' href='/products?categories[]="+value.id+"'>"+value.name+" <i class='fas fa-chevron-right'></i></a> </li>");
+          });
+          $.each(data.prefs, function(index, value) {
+            $('.search_prefectures').append("<div class='custom-control custom-checkbox'><input type='checkbox' class='custom-control-input' id='prefectures_"+index+"' name='prefectures' value='"+value+"'><label class='custom-control-label' for='prefectures_"+index+"'>"+value+"</label></div>");
+        })
+
+      })
+
+      .fail(function (data) {
+        window.console.log(data);
+      })
+
+  });
+
   // 生産者商品登録
   $(document).on('click', '.product_create', function () {
     var categories = [];
@@ -213,7 +239,7 @@ $(function () {
     fd.append("email", $('#email').val());
     fd.append("token", $.cookie("token_members"));
 
-    for(item of fd) window.console.log(item);
+    for (item of fd) window.console.log(item);
     $.ajax('/api/member/profile/edit',
       {
         type: 'post',
@@ -225,7 +251,7 @@ $(function () {
     )
       .done(function (data) {
         window.console.log(data);
-        // location.href = "/member/profile";
+        location.href = "/member/profile";
       })
       .fail(function (data) {
         window.console.log(data);
@@ -368,8 +394,12 @@ $(function () {
   $(document).on('click', '.organic_search', function () {
     window.console.log($('.keyword').val());
     var categories = [];
+    var prefectures = [];
     $('input[name="categories"]:checked').each(function () {
       categories.push($(this).val());
+    });
+    $('input[name="prefectures"]:checked').each(function () {
+      prefectures.push($(this).val());
     });
     window.console.log(categories);
 
@@ -382,6 +412,11 @@ $(function () {
     if (categories.length) {
       $.each(categories, function (index, value) {
         query.push('categories[]=' + value);
+      });
+    }
+    if (prefectures.length) {
+      $.each(prefectures, function (index, value) {
+        query.push('prefectures[]=' + value);
       });
     }
     if (query.length) {
