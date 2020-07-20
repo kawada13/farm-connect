@@ -15,4 +15,8 @@ class Client extends Model
   {
     return $this->hasMany('App\Model\Product', 'client_id', 'id');
   }
+  public function commitments()
+  {
+    return $this->hasMany('App\Model\Commitment', 'client_id', 'id');
+  }
 }

@@ -82,15 +82,15 @@
               </a>
             </div>
             <div class="col-md-4 text-center">
-              <a href="{{ route('member.profile.edit') }}" class="profile-panel btn btn-light">
+              <a href="{{ route('product.notordering') }}" class="profile-panel btn btn-light">
                 <i class="fas fa-heart mb-2"></i>
-                <p class="mb-0">こだわり</p>
+                <p class="mb-0">未発注</p>
               </a>
             </div>
             <div class="col-md-4 text-center">
-              <a href="{{ route('member.profile.edit') }}" class="profile-panel btn btn-light">
+              <a href="#" class="profile-panel btn btn-light">
                 <i class="fas fa-heart mb-2"></i>
-                <p class="mb-0">こだわり</p>
+                <p class="mb-0">発送済</p>
               </a>
             </div>
             <div class="col-md-4 text-center">

@@ -28,6 +28,7 @@ Route::post('/product/serach', 'API\ProductController@index');
 // クライアント
 Route::post('/client/product/create', 'API\Client\ProductController@create');
 Route::post('/client/commitment/create', 'API\Client\CommitmentController@create');
+Route::post('/client/shipment', 'API\UsersController@shipment');
 
 // メンバー
 Route::post('/member/profile/edit', 'API\UsersController@updateMemberProfile');
@@ -39,3 +40,4 @@ Route::post('/member/favorite', 'API\UsersController@favorite');
 Route::post('/member/unfavorite', 'API\UsersController@unfavorite');
 Route::post('/member/follow', 'API\UsersController@follow');
 Route::post('/member/unfollow', 'API\UsersController@unfollow');
+Route::post('/member/purcase', 'API\UsersController@purcase');

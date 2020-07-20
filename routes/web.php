@@ -38,7 +38,11 @@ Route::get('/products/{id}', 'ProductController@show')->name('product.show');
 Route::get('/client/mypage', 'UsersController@clientMypage')->name('client.mypage');
 Route::get('/client/profile', 'UsersController@clientProfile')->name('client.profile');
 Route::get('/client/product/create', 'Client\ProductController@create')->name('product.create');
+Route::get('/client/commitment/index', 'Client\CommitmentController@index')->name('commitment.index');
 Route::get('/client/commitment/create', 'Client\CommitmentController@create')->name('commitment.create');
+Route::get('/client/commitment/{id}/edit', 'Client\CommitmentController@edit')->name('commitment.edit');
+Route::get('/client/product/notordering', 'Client\ProductController@notOrder')->name('product.notordering');
+Route::get('/client/product/notordering/{id}', 'Client\ProductController@notOrderShow')->name('notordering.show');
 
 // メンバーのみ
 Route::get('/member/profile', 'UsersController@memberShow')->name('member.show');
@@ -49,4 +53,5 @@ Route::get('/member/address/{id}/edit', 'UsersController@memberAdressEdit')->nam
 Route::get('/member/social_setting/edit', 'UsersController@membersocialSetting')->name('member.social_setting.edit');
 Route::get('/member/favorites', 'UsersController@memberFavoriteIndex')->name('member.favorite.index');
 Route::get('/member/follows', 'UsersController@memberFollowIndex')->name('member.follow.index');
+Route::get('/member/{id}/purchase', 'UsersController@memberPurchase')->name('member.purchase');
 

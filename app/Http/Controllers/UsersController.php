@@ -11,6 +11,7 @@ use App\Model\Favorite;
 use App\Model\Commitment;
 use App\Model\Product;
 use App\Model\Follow;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -110,13 +111,6 @@ class UsersController extends Controller
         $products_url = str_replace('clients', 'products', $request->fullUrl());
 
         $clients = Client::select('*')
-            ->where('name', 'like', '%' . $request->input('keyword') . '%')
-            ->orWhere('address', 'like', '%' . $request->input('keyword') . '%')
-            ->orWhereHas('products', function ($query) use ($request) {
-                $query
-                    ->where('title', 'like', "%{$request->input('keyword')}%")
-                    ->orWhere('detail', 'like', "%{$request->input('keyword')}%");
-            })
             ->get();
 
         return view('client.index', ['clients' => $clients, 'title' => $title, 'products_url' => $products_url]);
@@ -164,6 +158,23 @@ class UsersController extends Controller
         return view(
             'member.follows',
             ['member' => $member, 'follows' => $follows]
+        );
+    }
+
+    public function memberPurchase(Request $request, $id)
+    {
+        $member = $this->memberCheck($request->cookie('token_members')); 
+
+        $deliveries = Delivery::select('*')
+        ->where('member_id', $member->id)
+        ->get();
+
+        $product = Product::find($id);
+
+
+        return view(
+            'member.purchase',
+            ['member' => $member, 'deliveries' => $deliveries, 'product' => $product]
         );
     }
 }

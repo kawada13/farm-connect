@@ -9,13 +9,13 @@ $(function () {
       }
     )
       .done(function (data) {
-        window.console.log(data);
-        data.categories.forEach((value,index) => {
-           $('.search_categories').append("<div class='custom-control custom-checkbox'><input type='checkbox' class='custom-control-input' id='categories_"+value.id+"' name='categories' value='"+value.id+"'><label class='custom-control-label' for='categories_"+value.id+"'>"+value.name+"</label></div>");
-           $('.side_categories').append("<li class='nav-item'> <a class='nav-link' href='/products?categories[]="+value.id+"'>"+value.name+" <i class='fas fa-chevron-right'></i></a> </li>");
-          });
-          $.each(data.prefs, function(index, value) {
-            $('.search_prefectures').append("<div class='custom-control custom-checkbox'><input type='checkbox' class='custom-control-input' id='prefectures_"+index+"' name='prefectures' value='"+value+"'><label class='custom-control-label' for='prefectures_"+index+"'>"+value+"</label></div>");
+        // window.console.log(data);
+        data.categories.forEach((value, index) => {
+          $('.search_categories').append("<div class='custom-control custom-checkbox'><input type='checkbox' class='custom-control-input' id='categories_" + value.id + "' name='categories' value='" + value.id + "'><label class='custom-control-label' for='categories_" + value.id + "'>" + value.name + "</label></div>");
+          $('.side_categories').append("<li class='nav-item'> <a class='nav-link' href='/products?categories[]=" + value.id + "'>" + value.name + " <i class='fas fa-chevron-right'></i></a> </li>");
+        });
+        $.each(data.prefs, function (index, value) {
+          $('.search_prefectures').append("<div class='custom-control custom-checkbox'><input type='checkbox' class='custom-control-input' id='prefectures_" + index + "' name='prefectures' value='" + value + "'><label class='custom-control-label' for='prefectures_" + index + "'>" + value + "</label></div>");
         })
 
       })
@@ -26,23 +26,41 @@ $(function () {
 
   });
 
+
+
   // 生産者商品登録
   $(document).on('click', '.product_create', function () {
+
+    let fd = new FormData();
     var categories = [];
     $('input[name="categories"]:checked').each(function () {
-      categories.push($(this).val());
+      // categories.push($(this).val());
+      fd.append("categories[]", $(this).val());
     });
+
+    let $upfile1 = $('input[name="gallery1"]');
+    let $upfile2 = $('input[name="gallery2"]');
+    let $upfile3 = $('input[name="gallery3"]');
+    let $upfile4 = $('input[name="gallery4"]');
+    let $upfile5 = $('input[name="gallery5"]');
+    fd.append("gallery1", $upfile1.prop('files')[0]);
+    fd.append("gallery2", $upfile2.prop('files')[0]);
+    fd.append("gallery3", $upfile3.prop('files')[0]);
+    fd.append("gallery4", $upfile4.prop('files')[0]);
+    fd.append("gallery5", $upfile5.prop('files')[0]);
+    fd.append("title", $('#title').val());
+    fd.append("detail", $('#detail').val());
+    fd.append("price", $('#price').val());
+    fd.append("token", $.cookie("token_clients"));
+
+
     $.ajax('/api/client/product/create',
       {
         type: 'post',
-        data: {
-          categories: categories,
-          title: $('#title').val(),
-          detail: $('#detail').val(),
-          price: $('#price').val(),
-          token: $.cookie("token_clients"),
-        },
-        dataType: 'json'
+        data: fd,
+        dataType: 'json',
+        processData: false,
+        contentType: false,
       }
     )
       .done(function (data) {
@@ -54,18 +72,25 @@ $(function () {
       })
 
   });
+
   // こだわり登録
   $(document).on('click', '.commitment_create', function () {
+    let $upfile = $('input[name="commitment_image"]');
+    let fd = new FormData();
+    fd.append("commitment_image", $upfile.prop('files')[0]);
+    fd.append("title", $('#title').val());
+    fd.append("contents", $('#contents').val());
+    fd.append("client_id", $('#client_id').val());
+    fd.append("token", $.cookie("token_clients"));
+
+    for (item of fd) window.console.log(item);
     $.ajax('/api/client/commitment/create',
       {
         type: 'post',
-        data: {
-          title: $('#title').val(),
-          contents: $('#contents').val(),
-          client_id: $('#client_id').val(),
-          token: $.cookie("token_clients"),
-        },
-        dataType: 'json'
+        data: fd,
+        dataType: 'json',
+        processData: false,
+        contentType: false,
       }
     )
       .done(function (data) {
@@ -378,7 +403,7 @@ $(function () {
       })
   });
 
-
+  // 検索メニュー表示
   $(document).on('click', '.keyword', function () {
     $('.search_area').show();
     $('.window-close').show();
@@ -430,6 +455,59 @@ $(function () {
     }
     window.location.href = url;
   });
+
+// 購入する
+  $(document).on('click', '.purchase', function () {
+    $.ajax('/api/member/purcase',
+      {
+        type: 'post',
+        data: {
+          token: $.cookie("token_members"),
+          product_id: $('#product_id').val(),
+          product_price: $('#product_price').val(),
+          shipping: $('#shipping').val(),
+          number: $('#number').val(),
+          delivery: $('.delivery').val(),
+        },
+        dataType: 'json'
+      }
+    )
+      .done(function (data) {
+        window.console.log(data);
+      })
+      .fail(function (data) {
+        window.console.log(data);
+      })
+
+  });
+
+  // 出荷する
+  $(document).on('click', '.shipment', function () {
+    $.ajax('/api/client/shipment',
+      {
+        type: 'post',
+        data: {
+          token: $.cookie("token_clients"),
+          purchaseId: $(this).data('purchaseId'),
+        },
+        dataType: 'json'
+      }
+    )
+      .done(function (data) {
+        window.console.log(data);
+        $('.product_shipment').html('');
+        $('.product_shipment').html('<div class="modal-body text-center">出荷登録しました</div>');
+        setTimeout(function () {
+          location.href = "/client/mypage";
+        }, 500);
+
+      })
+      .fail(function (data) {
+        window.console.log(data);
+      })
+
+  });
+
 
 });
 

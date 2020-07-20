@@ -11,11 +11,12 @@
   <div class="error_text_contents"></div>
   <div class="error_text_commitment_url"></div>
 
+  <p>こだわり画像</p>
+  <input name="commitment_image" type="file" id='commitment_image'>
+
   <input type="hidden" id="client_id" class="form-control mb-4" name="client_id" value="{{$client->id}}">
   <input type="text" id="title" class="form-control mb-4" name="title" placeholder="タイトル">
   <textarea id="contents" class="form-control mb-4" name="contents" placeholder="詳細"></textarea>
-
-
 
   <button class="btn btn-light-green btn-block my-4 commitment_create">追加</button>
 

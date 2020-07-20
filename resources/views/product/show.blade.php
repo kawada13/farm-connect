@@ -59,6 +59,9 @@
                 <button class="btn btn-deep-orange btn-block my-4 unfavorite">お気に入り解除</button>
                 @endif
               </div>
+              <div class="purchase_btn">
+                <a class="btn btn-light-blue btn-block my-4" href="{{ route('member.purchase', ['id' => $product->id]) }}">購入する</a>
+              </div>
               @endif
             </div>
 

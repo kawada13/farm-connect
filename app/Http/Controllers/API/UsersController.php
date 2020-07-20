@@ -12,6 +12,7 @@ use App\Model\Delivery;
 use App\Model\Member;
 use App\Model\Favorite;
 use App\Model\Follow;
+use App\Model\Purchase;
 
 class UsersController extends Controller
 {
@@ -21,17 +22,16 @@ class UsersController extends Controller
 
         $member = $this->memberCheck($request->input('token'));
 
-        if(empty($member->id))
-        {
+        if (empty($member->id)) {
             return response()->json([
                 'error' => 'ログイン必須です',
             ], 404);
         }
-        $member->profile_url = '/images/member_profile/'.$request->file('profile_image')->getClientOriginalName();
+        $member->profile_url = '/images/member_profile/' . $request->file('profile_image')->getClientOriginalName();
         $member->name = $request->input('name');
         $member->email = $request->input('email');
         $member->save();
-        $request->file('profile_image')->move(base_path().'/public/images/member_profile', $request->file('profile_image')->getClientOriginalName());
+        $request->file('profile_image')->move(base_path() . '/public/images/member_profile', $request->file('profile_image')->getClientOriginalName());
 
         return response()->json([
             'name' => $request->input('name'),
@@ -45,13 +45,12 @@ class UsersController extends Controller
 
         $member = $this->memberCheck($request->input('token'));
 
-        if(empty($member->id))
-        {
+        if (empty($member->id)) {
             return response()->json([
                 'error' => 'ログイン必須です',
             ], 404);
         }
-        
+
         $delinfo = new Delivery();
         $delinfo->name = $request->input('name');
         $delinfo->zip = $request->input('zip');
@@ -74,8 +73,7 @@ class UsersController extends Controller
 
         $member = $this->memberCheck($request->input('token'));
 
-        if(empty($member->id))
-        {
+        if (empty($member->id)) {
             return response()->json([
                 'error' => 'ログイン必須です',
             ], 404);
@@ -103,8 +101,7 @@ class UsersController extends Controller
 
         $member = $this->memberCheck($request->input('token'));
 
-        if(empty($member->id))
-        {
+        if (empty($member->id)) {
             return response()->json([
                 'error' => 'ログイン必須です',
             ], 404);
@@ -113,8 +110,7 @@ class UsersController extends Controller
         $delinfo = Delivery::where('id', $request->input('deliveryId'))
             ->delete();
 
-        return response()->json([
-        ], 200);
+        return response()->json([], 200);
     }
 
     public function editMemberPassword(Request $request)
@@ -127,8 +123,7 @@ class UsersController extends Controller
 
         $member = $this->memberCheck($request->input('token'));
 
-        if(empty($member->id))
-        {
+        if (empty($member->id)) {
             return response()->json([
                 'error' => 'ログイン必須です',
             ], 404);
@@ -161,19 +156,17 @@ class UsersController extends Controller
             ->where('remember_token', $request->input('token'))
             ->first();
 
-        if(empty($user->member_id))
-        {
+        if (empty($user->member_id)) {
             return response()->json([
                 'error' => 'ログイン必須です',
             ], 404);
         }
 
         $favorite = Favorite::where('member_id', $user->member_id)
-        ->where('product_id', $request->input('product_id'))
-        ->first();
+            ->where('product_id', $request->input('product_id'))
+            ->first();
 
-        if(!empty($favorite->id))
-        {
+        if (!empty($favorite->id)) {
             return response()->json([
                 'error' => '登録済です',
             ], 404);
@@ -213,19 +206,17 @@ class UsersController extends Controller
             ->where('remember_token', $request->input('token'))
             ->first();
 
-        if(empty($user->member_id))
-        {
+        if (empty($user->member_id)) {
             return response()->json([
                 'error' => 'ログイン必須です',
             ], 404);
         }
 
         $follow = Follow::where('member_id', $user->member_id)
-        ->where('client_id', $request->input('client_id'))
-        ->first();
+            ->where('client_id', $request->input('client_id'))
+            ->first();
 
-        if(!empty($follow->id))
-        {
+        if (!empty($follow->id)) {
             return response()->json([
                 'error' => '登録済です',
             ], 404);
@@ -256,6 +247,51 @@ class UsersController extends Controller
         return response()->json([
             'token' => $request->input('token'),
             'client_id' => $request->input('client_id'),
+        ], 200);
+    }
+    public function purcase(Request $request)
+    {
+
+        $user = User::select('*')
+            ->where('remember_token', $request->input('token'))
+            ->first();
+
+        if (empty($user->member_id)) {
+            return response()->json([
+                'error' => 'ログイン必須です',
+            ], 404);
+        }
+
+        return response()->json([
+
+            'member_id' => $user->member_id,
+            'token' => $request->input('token'),
+            'product_id' => $request->input('product_id'),
+            'product_price' => $request->input('product_price'),
+            'shipping' => $request->input('shipping'),
+            'delivery' => $request->input('delivery'),
+        ], 200);
+    }
+
+    public function shipment(Request $request)
+    {
+        $user = User::select('*')
+            ->where('remember_token', $request->input('token'))
+            ->first();
+
+        if (empty($user->client_id)) {
+            return response()->json([
+                'error' => 'ログイン必須です',
+            ], 404);
+        }
+
+        $purchase = Purchase::find($request->input('purchaseId'));
+        $purchase->is_shipping = 1;
+        $purchase->save();
+
+        return response()->json([
+            'token' => $request->input('token'),
+            'purchase_id' => $request->input('purchaseId'),
         ], 200);
     }
 }

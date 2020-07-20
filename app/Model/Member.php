@@ -10,4 +10,9 @@ class Member extends Model
   {
     return $this->hasOne('App\Model\User', 'member_id', 'id');
   }
+
+  public function deliveries()
+  {
+    return $this->hasMany('App\Model\Delivery', 'member_id', 'id');
+  }
 }

@@ -8,6 +8,7 @@ use App\Model\Product;
 use App\Model\Favorite;
 use App\Model\User;
 use App\Model\Commitment;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -22,71 +23,52 @@ class ProductController extends Controller
     public function index(Request $request)
     {
 
-        // $a = Product::select('*')
-        //     ->whereHas('productCategories', function ($query) use ($request) {
-        //         $query
-        //             ->whereIn('category_id', $request->input('categories'));
-        //     })
-        //     ->get();
-        // dd($a);
+        // dd($request->input('prefectures'));
 
+        // $a = Product::select('*')
+        // ->when(!empty($request->input('prefectures')), function ($query) use ($request) {
+        //     return $query->whereExists(function ($query) use ($request) {
+        //         $query->select(DB::raw(1))
+        //             ->from('clients')
+        //             ->whereRaw('clients.id = products.client_id')
+        //             ->whereIn('clients.address', $request->input('prefectures'));
+        //     });
+
+        // })
+        // ->get();
+
+        // dd($a);
 
         $title = $this->getSearchTitle($request);
 
         $clients_url = str_replace('products', 'clients', $request->fullUrl());
 
-        $products = Product::all();
 
-        if (!empty($request->input('keyword')) && !empty($request->input('categories'))) {
-            $products = Product::with(['client'])
-                ->whereHas('productCategories', function ($query) use ($request) {
-                    $query
-                        ->whereIn('category_id', $request->input('categories'));
-                })
-                ->whereHas('client', function ($query) use ($request) {
-                    $query
-                        ->where('name', 'like', "%{$request->input('keyword')}%")
-                        ->orWhere('address', 'like', "%{$request->input('keyword')}%");
-                })
-                ->orWhere('title', 'like', "%{$request->input('keyword')}%")
-                ->orWhere('detail', 'like', "%{$request->input('keyword')}%")
-                ->get();
-                // dd($products);
-        } elseif (!empty($request->input('keyword'))) {
-            $products = Product::with(['client'])
-            ->whereHas('client', function ($query) use ($request) {
-                $query
-                    ->where('name', 'like', "%{$request->input('keyword')}%")
-                    ->orWhere('address', 'like', "%{$request->input('keyword')}%");
+        $products = Product::select('*')
+
+            ->when(!empty($request->input('categories')), function ($query) use ($request) {
+                return $query->whereExists(function ($query) use ($request) {
+                    $query->select(DB::raw(1))
+                        ->from('product_categories')
+                        ->whereRaw('product_categories.product_id = products.id')
+                        ->whereIn('product_categories.category_id', $request->input('categories'));
+                });
             })
-            ->orWhere('title', 'like', "%{$request->input('keyword')}%")
-            ->orWhere('detail', 'like', "%{$request->input('keyword')}%")
+            ->when(!empty($request->input('keyword')), function ($query) use ($request) {
+                    return $query
+                    ->where('title', 'like', "%{$request->input('keyword')}%")
+                    ->orWhere('detail', 'like', "%{$request->input('keyword')}%");
+            })
+            ->when(!empty($request->input('prefectures')), function ($query) use ($request) {
+                return $query->whereExists(function ($query) use ($request) {
+                    $query->select(DB::raw(1))
+                        ->from('clients')
+                        ->whereRaw('clients.id = products.client_id')
+                        ->whereIn('clients.address', $request->input('prefectures'));
+                });
+
+            })
             ->get();
-        } elseif (!empty($request->input('categories'))) {
-            $products = Product::with(['client'])
-                ->whereHas('productCategories', function ($query) use ($request) {
-                    $query
-                        ->whereIn('category_id', $request->input('categories'));
-                })
-                ->get();
-        } 
-
-
-
-
-        // dd($products);
-
-        // $products = Product::with(['client'])
-        //     ->whereHas('client', function ($query) use ($request) {
-        //         $query
-        //             ->where('name', 'like', "%{$request->input('keyword')}%")
-        //             ->orWhere('address', 'like', "%{$request->input('keyword')}%");
-        //     })
-        //     ->orWhere('title', 'like', "%{$request->input('keyword')}%")
-        //     ->orWhere('detail', 'like', "%{$request->input('keyword')}%")
-        //     ->get();
-
-
 
         return view('product.index', ['products' => $products, 'title' => $title, 'clients_url' => $clients_url]);
     }
