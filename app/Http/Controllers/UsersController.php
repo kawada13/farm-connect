@@ -11,6 +11,7 @@ use App\Model\Favorite;
 use App\Model\Commitment;
 use App\Model\Product;
 use App\Model\Follow;
+use App\Model\Purchase;
 use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
@@ -171,10 +172,25 @@ class UsersController extends Controller
 
         $product = Product::find($id);
 
+        $prefs = config('prefectures');
+
 
         return view(
             'member.purchase',
-            ['member' => $member, 'deliveries' => $deliveries, 'product' => $product]
+            ['member' => $member, 'deliveries' => $deliveries, 'product' => $product, 'prefs' => $prefs]
+        );
+    }
+    public function purchaseHistory(Request $request)
+    {
+        $member = $this->memberCheck($request->cookie('token_members')); 
+
+        $purchases = Purchase::select('*')
+        ->where('member_id', $member->id)
+        ->get();
+
+        return view(
+            'member.purchaseHistory',
+            ['member' => $member, 'purchases' => $purchases]
         );
     }
 }

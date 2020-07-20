@@ -10,13 +10,15 @@
 
 <div class="container">
   <header class="header">
+  <header class="header">
     <section class="bread-crum">
       <ul class="nav red lighten-5 pt-2">
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('products.top') }}">トップへ</a>
+          <a class="nav-link" href="{{ route('member.show') }}">マイページへ</a>
         </li>
       </ul>
     </section>
+  </header>
   </header>
   <section class="main-content">
     <div class="inner-main-content">
@@ -57,7 +59,7 @@
                         <h4 class="card-title">{{$follow->client->name}}</h4>
 
                         <!--Text-->
-                        <p class="card-text">{{$follow->client->address}}</p>
+                        <p class="card-text">{{$follow->client->prefecture}}</p>
                         <p class="card-text">紹介文</p>
                       </div>
                     </div>

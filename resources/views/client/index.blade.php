@@ -68,7 +68,7 @@
                         <h4 class="card-title">{{$client->name}}</h4>
 
                         <!--Text-->
-                        <p class="card-text">{{$client->address}}</p>
+                        <p class="card-text">{{$client->prefecture}}</p>
                         <p class="card-text">紹介文</p>
                       </div>
                     </div>

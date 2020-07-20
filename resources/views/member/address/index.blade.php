@@ -27,7 +27,8 @@
 
     <p>{{$delivery->name}}</p>
     <p>{{$delivery->zip}}</p>
-    <p>{{$delivery->address}}</p>
+    <p>{{$delivery->prefecture}}</p>
+    <p>{{$delivery->municipality}}</p>
     <p>{{$delivery->tel}}</p>
     <p><a href="{{ route('member.address.edit', ['id' => $delivery->id]) }}">
         <button type="button" class="btn btn-outline-success btn-rounded waves-effect">変更する</button>
@@ -41,7 +42,7 @@
     <!-- Modal -->
     <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
-        <div class="modal-content address_delete">
+        <div class="modal-content prefecture_delete">
           <div class="modal-body">
             削除しますか？
           </div>

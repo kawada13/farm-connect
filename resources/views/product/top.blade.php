@@ -67,8 +67,8 @@
                       </div>
 
                       <div class="col-md-6 text-center">
-                        <div class="address_client card-text text-center">
-                          <p>{{$product->client->address}}</p>
+                        <div class="prefecture_client card-text text-center">
+                          <p>{{$product->client->prefecture}}</p>
                           <p>{{$product->client->name}}</p>
                         </div>
                       </div>

@@ -96,7 +96,7 @@
           </div>
           <div class="row">
             <div class="col-md-4 text-center">
-              <a href="＃" class="profile-panel btn btn-light">
+              <a href="{{ route('purchase.history') }}" class="profile-panel btn btn-light">
                 <i class="far fa-list-alt mb-2"></i>
                 <p class="mb-0">購入履歴</p>
               </a>

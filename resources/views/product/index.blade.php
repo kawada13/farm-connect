@@ -7,15 +7,15 @@
 @include('commons.navbar')
 
 <div class="container">
-<header class="header">
-  <section class="bread-crum">
-    <ul class="nav red lighten-5 pt-2">
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('products.top') }}">トップへ</a>
-      </li>
-    </ul>
-  </section>
-</header>
+  <header class="header">
+    <section class="bread-crum">
+      <ul class="nav red lighten-5 pt-2">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('products.top') }}">トップへ</a>
+        </li>
+      </ul>
+    </section>
+  </header>
   <section class="main-content">
     <div class="inner-main-content">
       <div class="row">
@@ -46,9 +46,8 @@
 
           <!-- Card deck -->
           <div class="row">
+            @foreach($products as $product)
             <div class="card-deck">
-
-              @foreach($products as $product)
               <div class="col-md-4 left-nav">
                 <div class="card mb-4">
 
@@ -82,10 +81,9 @@
                           <img src="https://illust8.com/wp-content/uploads/2018/06/fruit_apple_illust_150.png" alt="avatar mx-auto white" class="rounded-circle img-fluid" style="width: 60px;">
                         </div>
                       </div>
-
                       <div class="col-md-6 text-center">
-                        <div class="address_client card-text text-center">
-                          <p>{{$product->client->address}}</p>
+                        <div class="prefecture_client card-text text-center">
+                          <p>{{$product->client->prefecture}}</p>
                           <p>{{$product->client->name}}</p>
                         </div>
                       </div>
@@ -95,10 +93,8 @@
               </div>
             </div>
             @endforeach
-            <!-- Card -->
           </div>
         </div>
-        <!-- Card deck -->
       </div>
     </div>
   </section>

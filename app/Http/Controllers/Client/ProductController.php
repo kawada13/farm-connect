@@ -62,14 +62,14 @@ class ProductController extends Controller
       return redirect('/login/client');
     }
 
-
     $purchases = Purchase::with(['product'])
-      ->whereExists(function ($query) use ($request) {
+      ->whereExists(function ($query) use ($request, $client) {
         $query->select(DB::raw(1))
           ->from('products')
           ->whereRaw('purchases.product_id = products.id')
-          ->where('purchases.is_shipping', 0);
+          ->where('products.client_id', $client->id);
       })
+      ->where('purchases.is_shipping', 0)
       ->get();
 
 
@@ -88,5 +88,26 @@ class ProductController extends Controller
 
 
     return view('client.product.notorderShow', ['client' => $client, 'purchase' => $purchase]);
+  }
+
+  public function order(Request $request)
+  {
+    $client = $this->clientCheck($request->cookie('token_clients'));
+
+    if (empty($client)) {
+      return redirect('/login/client');
+    }
+
+    $purchases = Purchase::with(['product'])
+      ->whereExists(function ($query) use ($request, $client) {
+        $query->select(DB::raw(1))
+          ->from('products')
+          ->whereRaw('purchases.product_id = products.id')
+          ->where('products.client_id', $client->id);
+      })
+      ->where('purchases.is_shipping', 1)
+      ->get();
+
+    return view('client.product.order', ['client' => $client, 'purchases' => $purchases]);
   }
 }

@@ -9,7 +9,7 @@ $(function () {
       }
     )
       .done(function (data) {
-        // window.console.log(data);
+        window.console.log(data);
         data.categories.forEach((value, index) => {
           $('.search_categories').append("<div class='custom-control custom-checkbox'><input type='checkbox' class='custom-control-input' id='categories_" + value.id + "' name='categories' value='" + value.id + "'><label class='custom-control-label' for='categories_" + value.id + "'>" + value.name + "</label></div>");
           $('.side_categories').append("<li class='nav-item'> <a class='nav-link' href='/products?categories[]=" + value.id + "'>" + value.name + " <i class='fas fa-chevron-right'></i></a> </li>");
@@ -293,7 +293,8 @@ $(function () {
         data: {
           name: $('#name').val(),
           zip: $('#zip').val(),
-          address: $('#address').val(),
+          prefecture: $('#prefecture').val(),
+          municipality: $('#municipality').val(),
           tel: $('#tel').val(),
           token: $.cookie("token_members"),
         },
@@ -320,7 +321,8 @@ $(function () {
           deliveryId: $(this).data('deliveryId'),
           name: $('#name').val(),
           zip: $('#zip').val(),
-          address: $('#address').val(),
+          prefecture: $('#prefecture').val(),
+          municipality: $('#municipality').val(),
           tel: $('#tel').val(),
           token: $.cookie("token_members"),
         },
@@ -351,8 +353,8 @@ $(function () {
     )
       .done(function (data) {
         window.console.log(data);
-        $('.address_delete').html('');
-        $('.address_delete').html('<div class="modal-body text-center">削除しました</div>');
+        $('.prefecture_delete').html('');
+        $('.prefecture_delete').html('<div class="modal-body text-center">削除しました</div>');
         setTimeout(function () {
           location.href = "/member/address";
         }, 500);
@@ -467,7 +469,8 @@ $(function () {
           product_price: $('#product_price').val(),
           shipping: $('#shipping').val(),
           number: $('#number').val(),
-          delivery: $('.delivery').val(),
+          delivery_id: $('input:radio[name="delivery_id"]:checked').val(),
+          price: $('#product_price').val(),
         },
         dataType: 'json'
       }
@@ -477,6 +480,7 @@ $(function () {
       })
       .fail(function (data) {
         window.console.log(data);
+        createErrorList(data);
       })
 
   });
@@ -498,12 +502,39 @@ $(function () {
         $('.product_shipment').html('');
         $('.product_shipment').html('<div class="modal-body text-center">出荷登録しました</div>');
         setTimeout(function () {
-          location.href = "/client/mypage";
+          location.href = "/client/prefecture";
         }, 500);
 
       })
       .fail(function (data) {
         window.console.log(data);
+      })
+
+  });
+
+// 購入時のお届け先追加
+  $(document).on('click', '.add_purchase_address', function () {
+    $.ajax('/api/member/address/create',
+      {
+        type: 'post',
+        data: {
+          name: $('#name').val(),
+          zip: $('#zip').val(),
+          prefecture: $('#prefecture').val(),
+          municipality: $('#municipality').val(),
+          tel: $('#tel').val(),
+          token: $.cookie("token_members"),
+        },
+        dataType: 'json'
+      }
+    )
+      .done(function (data) {
+        window.console.log(data);
+        location.reload();
+      })
+      .fail(function (data) {
+        window.console.log(data);
+        createErrorList(data);
       })
 
   });

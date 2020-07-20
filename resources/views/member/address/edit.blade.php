@@ -22,12 +22,14 @@
 
     <div class="error_text_name"></div>
     <div class="error_text_zip"></div>
-    <div class="error_text_address"></div>
+    <div class="error_text_prefecture"></div>
+    <div class="error_text_municipality"></div>
     <div class="error_text_tel"></div>
 
     <input type="name" id="name" class="form-control mb-4" value="{{ $delivery->name }}" name="name">
     <input type="zip" id="zip" class="form-control mb-4" value="{{ $delivery->zip }}" name="zip">
-    <input type="address" id="address" class="form-control mb-4" value="{{ $delivery->address }}" name="address">
+    <input type="prefecture" id="prefecture" class="form-control mb-4" value="{{ $delivery->prefecture }}" name="prefecture">
+    <input type="municipality" id="municipality" class="form-control mb-4" value="{{ $delivery->municipality }}" name="municipality">
     <input type="tel" id="tel" class="form-control mb-4" value="{{ $delivery->tel }}" name="tel">
 
     <button class="btn btn-light-green btn-block my-4 member_address_edit" data-delivery-id="{{$delivery->id}}">登録する</button>

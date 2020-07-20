@@ -55,7 +55,7 @@
         <th scope="row">{{$purchase->product->id}}</th>
         <td>{{$purchase->delivery->name}}</td>
         <td>{{$purchase->delivery->tel}}</td>
-        <td>{{$purchase->delivery->address}}</td>
+        <td>{{$purchase->delivery->prefecture}}</td>
         <td>{{$purchase->number}}</td>
         <td>{{$purchase->shipping}}</td>
         <td>{{$purchase->price}}</td>

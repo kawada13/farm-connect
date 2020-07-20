@@ -138,13 +138,14 @@ class Rule {
         'email.required' => 'メールは必須です',
         ];
     }
-
+// お届け先登録
   public static function createMemberDeliveryRules()
     {
       return [
         'name' => 'required',
         'zip' => 'required|integer',
-        'address' => 'required',
+        'prefecture' => 'required',
+        'municipality' => 'required',
         'tel' => 'required|integer',
         ];
     }
@@ -155,7 +156,8 @@ class Rule {
         'name.required' => '名前は必須です',
         'zip.required' => '郵便番号は必須です',
         'zip.integer' => '郵便番号は数値で入力してください',
-        'address.required' => '住所は必須です',
+        'prefecture.required' => '都道府県は必須です',
+        'municipality.required' => '市町村は必須です',
         'tel.required' => '電話番号は必須です',
         'tel.integer' => '電話番号は数値で入力してください',
         ];
@@ -172,6 +174,26 @@ class Rule {
       return [
         'password.required' => 'パスワードは必須です',
         'password.min' => 'パスワードは6文字以上です',
+        ];
+    }
+
+
+// 商品購入
+  public static function purchaseRules()
+    {
+      return [
+        'delivery_id' => 'required',
+        'shipping' => 'required',
+        'number' => 'required',
+        ];
+    }
+
+  public static function purchaseMessages()
+    {
+      return [
+        'delivery_id.required' => 'お届け先選択は必須です',
+        'shipping.required' => '発送日入力は必須です',
+        'number.required' => '購入個数入力は必須です',
         ];
     }
 

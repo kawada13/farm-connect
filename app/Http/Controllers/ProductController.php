@@ -31,7 +31,7 @@ class ProductController extends Controller
         //         $query->select(DB::raw(1))
         //             ->from('clients')
         //             ->whereRaw('clients.id = products.client_id')
-        //             ->whereIn('clients.address', $request->input('prefectures'));
+        //             ->whereIn('clients.prefecture', $request->input('prefectures'));
         //     });
 
         // })
@@ -64,7 +64,7 @@ class ProductController extends Controller
                     $query->select(DB::raw(1))
                         ->from('clients')
                         ->whereRaw('clients.id = products.client_id')
-                        ->whereIn('clients.address', $request->input('prefectures'));
+                        ->whereIn('clients.prefecture', $request->input('prefectures'));
                 });
 
             })

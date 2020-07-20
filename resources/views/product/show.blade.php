@@ -60,7 +60,7 @@
                 @endif
               </div>
               <div class="purchase_btn">
-                <a class="btn btn-light-blue btn-block my-4" href="{{ route('member.purchase', ['id' => $product->id]) }}">購入する</a>
+                <a class="btn btn-light-blue btn-block my-4" href="{{ route('member.purchase', ['id' => $product->id]) }}">この商品を注文する</a>
               </div>
               @endif
             </div>
@@ -81,6 +81,10 @@
   <p>{{$commitment->contents}}</p>
   @endforeach
   <h4>この生産者について</h4>
+
+
+
+
 </div>
 
 @endsection

@@ -54,7 +54,8 @@ class UsersController extends Controller
         $delinfo = new Delivery();
         $delinfo->name = $request->input('name');
         $delinfo->zip = $request->input('zip');
-        $delinfo->address = $request->input('address');
+        $delinfo->prefecture = $request->input('prefecture');
+        $delinfo->municipality = $request->input('municipality');
         $delinfo->tel = $request->input('tel');
         $delinfo->member_id = $member->id;
         $delinfo->save();
@@ -63,7 +64,8 @@ class UsersController extends Controller
         return response()->json([
             'name' => $request->input('name'),
             'zip' => $request->input('zip'),
-            'address' => $request->input('address'),
+            'prefecture' => $request->input('prefecture'),
+            'municipality' => $request->input('municipality'),
             'tel' => $request->input('tel'),
         ], 200);
     }
@@ -82,7 +84,8 @@ class UsersController extends Controller
         $delinfo = Delivery::where('id', $request->input('deliveryId'))->first();
         $delinfo->name = $request->input('name');
         $delinfo->zip = $request->input('zip');
-        $delinfo->address = $request->input('address');
+        $delinfo->prefecture = $request->input('prefecture');
+        $delinfo->municipality = $request->input('municipality');
         $delinfo->tel = $request->input('tel');
         $delinfo->member_id = $member->id;
         $delinfo->save();
@@ -91,7 +94,7 @@ class UsersController extends Controller
         return response()->json([
             'name' => $request->input('name'),
             'zip' => $request->input('zip'),
-            'address' => $request->input('address'),
+            'prefecture' => $request->input('prefecture'),
             'tel' => $request->input('tel'),
         ], 200);
     }
@@ -252,6 +255,8 @@ class UsersController extends Controller
     public function purcase(Request $request)
     {
 
+        $this->validate($request, Rule::purchaseRules(), Rule::purchaseMessages());
+
         $user = User::select('*')
             ->where('remember_token', $request->input('token'))
             ->first();
@@ -262,6 +267,16 @@ class UsersController extends Controller
             ], 404);
         }
 
+        $purchase = new Purchase();
+        $purchase->member_id = $user->member_id;
+        $purchase->product_id = $request->input('product_id');
+        $purchase->delivery_id = $request->input('delivery_id');
+        $purchase->price = $request->input('price');
+        $purchase->number = $request->input('number');
+        $purchase->is_shipping = 0;
+        $purchase->shipping = $request->input('shipping');
+        $purchase->save();
+
         return response()->json([
 
             'member_id' => $user->member_id,
@@ -269,7 +284,7 @@ class UsersController extends Controller
             'product_id' => $request->input('product_id'),
             'product_price' => $request->input('product_price'),
             'shipping' => $request->input('shipping'),
-            'delivery' => $request->input('delivery'),
+            'delivery' => $request->input('delivery_id'),
         ], 200);
     }
 

@@ -24,7 +24,7 @@
       <p>{{$client->name}}</p>
       <p>{{$client->email}}</p>
       <p>{{$client->tel}}</p>
-      <p>{{$client->address}}</p>
+      <p>{{$client->prefecture}}</p>
       <p>{{$client->zip}}</p>
       <p>{{$client->shipping}}</p>
       <p>{{$client->shipping_info}}</p>

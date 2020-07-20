@@ -22,12 +22,14 @@
 
   <div class="error_text_name"></div>
   <div class="error_text_zip"></div>
-  <div class="error_text_address"></div>
+  <div class="error_text_prefecture"></div>
+  <div class="error_text_municipality"></div>
   <div class="error_text_tel"></div>
 
   <input type="name" id="name" class="form-control mb-4" placeholder="名前" name="name">
   <input type="zip" id="zip" class="form-control mb-4" placeholder="郵便番号" name="zip">
-  <input type="address" id="address" class="form-control mb-4" placeholder="住所" name="address">
+  <input type="prefecture" id="prefecture" class="form-control mb-4" placeholder="都道府県" name="prefecture">
+  <input type="municipality" id="municipality" class="form-control mb-4" placeholder="市町村" name="municipality">
   <input type="tel" id="tel" class="form-control mb-4" placeholder="電話番号" name="tel">
 
   <button class="btn btn-light-green btn-block my-4 member_address_create">登録する</button>

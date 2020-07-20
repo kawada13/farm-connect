@@ -22,7 +22,7 @@
   </header>
 
   <p>プロフ画</p>
-  <p>{{$client->address}}</p>
+  <p>{{$client->prefecture}}</p>
   <p>{{$client->name}}</p>
   <p>{{$client->introduce}}</p>
   <input type="hidden" id="client_id" class="form-control mb-4" value="{{ $client->id }}" name="client_id">
