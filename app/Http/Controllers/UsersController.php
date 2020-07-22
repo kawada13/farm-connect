@@ -103,15 +103,21 @@ class UsersController extends Controller
     }
     public function clientIndex(Request $request)
     {
-        $products = Product::with(['client'])
-            ->where('title', 'like', '%' . $request->input('keyword') . '%')
-            ->get();
 
         $title = $this->getSearchTitle($request);
 
         $products_url = str_replace('clients', 'products', $request->fullUrl());
 
         $clients = Client::select('*')
+            ->when(!empty($request->input('keyword')), function ($query) use ($request) {
+                return $query
+                    ->where('name', 'like', "%{$request->input('keyword')}%")
+                    ->orWhere('prefecture', 'like', "%{$request->input('keyword')}%");
+            })
+            ->when(!empty($request->input('prefectures')), function ($query) use ($request) {
+                return $query
+                ->whereIn('prefecture',$request->input('prefectures'));
+            })
             ->get();
 
         return view('client.index', ['clients' => $clients, 'title' => $title, 'products_url' => $products_url]);
@@ -164,11 +170,11 @@ class UsersController extends Controller
 
     public function memberPurchase(Request $request, $id)
     {
-        $member = $this->memberCheck($request->cookie('token_members')); 
+        $member = $this->memberCheck($request->cookie('token_members'));
 
         $deliveries = Delivery::select('*')
-        ->where('member_id', $member->id)
-        ->get();
+            ->where('member_id', $member->id)
+            ->get();
 
         $product = Product::find($id);
 
@@ -182,11 +188,11 @@ class UsersController extends Controller
     }
     public function purchaseHistory(Request $request)
     {
-        $member = $this->memberCheck($request->cookie('token_members')); 
+        $member = $this->memberCheck($request->cookie('token_members'));
 
         $purchases = Purchase::select('*')
-        ->where('member_id', $member->id)
-        ->get();
+            ->where('member_id', $member->id)
+            ->get();
 
         return view(
             'member.purchaseHistory',

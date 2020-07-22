@@ -10,7 +10,7 @@
     <section class="bread-crum">
       <ul class="nav red lighten-5 pt-2">
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('member.show') }}">マイページへ</a>
+          <a class="nav-link" href="{{ route('products.top') }}">トップへ</a>
         </li>
       </ul>
     </section>
@@ -50,7 +50,7 @@
           <div class="error_text_prefecture"></div>
           <div class="error_text_municipality"></div>
           <div class="error_text_tel"></div>
-          
+
           <div class="modal-body mx-3">
             <div class="md-form mb-5">
               <input type="text" id="name" class="form-control validate" name="name">
@@ -73,7 +73,7 @@
               <label data-error="wrong" data-success="right" for="orangeForm-pass">市町村</label>
             </div>
 
-            
+
 
             <div class="md-form mb-4">
               <input type="tel" id="tel" class="form-control validate" name="tel">
@@ -92,8 +92,6 @@
       <a href="" class="btn btn-outline-success btn-rounded waves-effect mb-4" data-toggle="modal" data-target="#modalRegisterForm">お届け先を登録する</a>
     </div>
 
-
-
     <input type="hidden" id="product_id" class="form-control mb-4" value="{{ $product->id }}" name="product_id">
     <input type="hidden" id="product_price" class="form-control mb-4" value="{{ $product->price }}" name="product_price">
     <input type="date" id="shipping" class="form-control mb-4" placeholder="発送希望日" name="shipping">
@@ -101,13 +99,7 @@
 
     <button class="btn btn-light-green btn-block my-4 purchase">購入する</button>
 
-
   </div>
 
-
-  
-  
-
-  
 </div>
 @endsection

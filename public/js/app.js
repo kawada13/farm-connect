@@ -9,7 +9,7 @@ $(function () {
       }
     )
       .done(function (data) {
-        window.console.log(data);
+        // window.console.log(data);
         data.categories.forEach((value, index) => {
           $('.search_categories').append("<div class='custom-control custom-checkbox'><input type='checkbox' class='custom-control-input' id='categories_" + value.id + "' name='categories' value='" + value.id + "'><label class='custom-control-label' for='categories_" + value.id + "'>" + value.name + "</label></div>");
           $('.side_categories').append("<li class='nav-item'> <a class='nav-link' href='/products?categories[]=" + value.id + "'>" + value.name + " <i class='fas fa-chevron-right'></i></a> </li>");
@@ -152,7 +152,7 @@ $(function () {
         $.cookie('token_clients', "", { path: "/", expires: -1 });
         $.cookie('token_members', "", { path: "/", expires: -1 });
         $.cookie("token_clients", data.token, { path: '/' });
-        location.href = "/";
+        location.href = "/client/mypage";
       })
       .fail(function (data) {
         window.console.log(data);
@@ -213,7 +213,16 @@ $(function () {
         $.cookie('token_members', "", { path: "/", expires: -1 });
         $.cookie("token_" + data.scope, data.token, { path: '/' });
         window.console.log($.cookie("token_" + data.scope));
-        location.href = "/";
+
+        if ($.cookie('token_clients')) {
+          location.href = "/client/mypage";
+        }
+        if ($.cookie('token_members')) {
+          location.href = "/";
+        }
+        if ($.cookie('token_admins')) {
+          location.href = "/";
+        }
 
       })
       .fail(function (data) {
@@ -259,7 +268,7 @@ $(function () {
 
     let $upfile = $('input[name="image"]');
     let fd = new FormData();
-    fd.append("profile_image", $upfile.prop('files')[0]);
+    fd.append("image", $upfile.prop('files')[0]);
     fd.append("name", $('#name').val());
     fd.append("email", $('#email').val());
     fd.append("token", $.cookie("token_members"));
@@ -292,7 +301,7 @@ $(function () {
         type: 'post',
         data: {
           name: $('#name').val(),
-          zip: $('#zip').val(),
+          zip: $('#zipcode').val(),
           prefecture: $('#prefecture').val(),
           municipality: $('#municipality').val(),
           tel: $('#tel').val(),
@@ -458,7 +467,7 @@ $(function () {
     window.location.href = url;
   });
 
-// 購入する
+  // 購入する
   $(document).on('click', '.purchase', function () {
     $.ajax('/api/member/purcase',
       {
@@ -502,7 +511,7 @@ $(function () {
         $('.product_shipment').html('');
         $('.product_shipment').html('<div class="modal-body text-center">出荷登録しました</div>');
         setTimeout(function () {
-          location.href = "/client/prefecture";
+          location.href = "/client/product/notordering";
         }, 500);
 
       })
@@ -512,7 +521,7 @@ $(function () {
 
   });
 
-// 購入時のお届け先追加
+  // 購入時のお届け先追加
   $(document).on('click', '.add_purchase_address', function () {
     $.ajax('/api/member/address/create',
       {
@@ -538,6 +547,42 @@ $(function () {
       })
 
   });
+
+  $(document).on('click', '#search_btn', function () {
+    var param = { zipcode: $('#zipcode').val() }
+    var send_url = "http://zipcloud.ibsnet.co.jp/api/search";
+    $.ajax({
+      type: "GET",
+      cache: false,
+      data: param,
+      url: send_url,
+      dataType: "jsonp",
+      success: function (res) {
+        if (res.status == 200) {
+          //処理が成功したとき
+          var prefecture = '';
+          var municipality = '';
+
+          for (var i = 0; i < res.results.length; i++) {
+            var result = res.results[i];
+            prefecture += "<input type='prefecture' id='prefecture' class='form-control mb-4' placeholder='都道府県' name='prefecture' value='" + result.address1 + "'>";
+            municipality += "<input type='municipality' id='municipality' class='form-control mb-4' placeholder='市町村' name='municipality' value='" + result.address2 + "'>";
+          }
+          $('.prefecture').html("");
+          $('.prefecture').html(prefecture);
+          $('.municipality').html('');
+          $('.municipality').html(municipality);
+
+        } else {
+         
+        }
+      },
+      error: function (XMLHttpRequest, textStatus, errorThrown) {
+        console.log(XMLHttpRequest);
+      }
+    });
+  });
+
 
 
 });

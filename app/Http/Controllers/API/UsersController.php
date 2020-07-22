@@ -18,6 +18,7 @@ class UsersController extends Controller
 {
     public function updateMemberProfile(Request $request)
     {
+
         $this->validate($request, Rule::editMemberRules(), Rule::editMemberMessages());
 
         $member = $this->memberCheck($request->input('token'));
@@ -27,11 +28,17 @@ class UsersController extends Controller
                 'error' => 'ログイン必須です',
             ], 404);
         }
-        $member->profile_url = '/images/member_profile/' . $request->file('profile_image')->getClientOriginalName();
+
+        if(!empty($request->file('image')))
+        {
+            $request->file('image')->move(base_path() . '/public/images/member_profile', $request->file('image')->getClientOriginalName());
+            $member->profile_url = '/images/member_profile/' . $request->file('image')->getClientOriginalName();
+        }
+
         $member->name = $request->input('name');
         $member->email = $request->input('email');
         $member->save();
-        $request->file('profile_image')->move(base_path() . '/public/images/member_profile', $request->file('profile_image')->getClientOriginalName());
+
 
         return response()->json([
             'name' => $request->input('name'),

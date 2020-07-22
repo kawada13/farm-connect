@@ -15,7 +15,6 @@
       </ul>
     </section>
   </header>
-  @csrf
 
   <p class="h4 mb-4">基本情報変更</p>
   <div class="error_text_name"></div>
@@ -32,6 +31,10 @@
   <input type="email" id="email" class="form-control mb-4" value="{{ $member->email }}" name="email">
 
   <button class="btn btn-light-green btn-block my-4 member_edit">基本情報を変更する</button>
+
+
+
+
 
 
 </div>

@@ -8,6 +8,8 @@
 
     <div class="collapse navbar-collapse" id="Nav">
 
+        @if (Cookie::get('token_clients'))
+        @else
         <div class="form-inline my-2 my-lg-0 ml-auto">
             <div class="window-close">
                 <p><i class="fas fa-window-close"></i></p>
@@ -15,7 +17,7 @@
             <input class="form-control keyword" type="search" placeholder="商品/生産者を探す" aria-label="Search" name="keyword">
             <button class="btn btn-success btn-rounded p-2 m-0 organic_search" type="submit">検索</button>
         </div>
-
+        @endif
         <ul class="navbar-nav">
             @if (Cookie::get('token_members'))
             <li class="nav-item">

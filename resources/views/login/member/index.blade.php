@@ -22,6 +22,10 @@
 
     <button class="btn btn-light-green btn-block my-4 login">ログイン</button>
 
+    <p>まだ会員ではない方はこちら
+        <a href="{{ route('member.create') }}">登録</a>
+    </p>
+
 
   <!-- </form> -->
 </div>

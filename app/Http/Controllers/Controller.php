@@ -54,7 +54,7 @@ class Controller extends BaseController
                         $title .= '/' . $value;
                     }
                 }
-                $title .= 'の検索結果';
+                $title = '検索結果';
             }
         }
 
@@ -76,7 +76,7 @@ class Controller extends BaseController
                         $title .= '/' . $value;
                     }
                 }
-                $title .= 'の検索結果';
+                $title = '検索結果';
             }
         }
 

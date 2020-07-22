@@ -14,6 +14,11 @@ class ProductController extends Controller
 {
     public function top(Request $request)
     {
+        $client = $this->clientCheck($request->cookie('token_clients'));
+        if (!empty($client)) {
+            return redirect('/login/member');
+        }
+
 
         $products = Product::with(['client'])
             ->get();
@@ -22,22 +27,10 @@ class ProductController extends Controller
     }
     public function index(Request $request)
     {
-
-        // dd($request->input('prefectures'));
-
-        // $a = Product::select('*')
-        // ->when(!empty($request->input('prefectures')), function ($query) use ($request) {
-        //     return $query->whereExists(function ($query) use ($request) {
-        //         $query->select(DB::raw(1))
-        //             ->from('clients')
-        //             ->whereRaw('clients.id = products.client_id')
-        //             ->whereIn('clients.prefecture', $request->input('prefectures'));
-        //     });
-
-        // })
-        // ->get();
-
-        // dd($a);
+        $client = $this->clientCheck($request->cookie('token_clients'));
+        if (!empty($client)) {
+            return redirect('/login/member');
+        }
 
         $title = $this->getSearchTitle($request);
 
@@ -75,6 +68,11 @@ class ProductController extends Controller
 
     public function show(Request $request, $id)
     {
+        $client = $this->clientCheck($request->cookie('token_clients'));
+        if (!empty($client)) {
+            return redirect('/login/member');
+        }
+
         $user = User::select('*')
             ->where('remember_token', $request->cookie('token_members'))
             ->first();

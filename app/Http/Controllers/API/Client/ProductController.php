@@ -17,15 +17,6 @@ class ProductController extends Controller
 
     public function create(Request $request)
     {
-        // return response()->json([
-        //     'title' => $request->input('title'),
-        //     'detail' => $request->input('detail'),
-        //     'price' => $request->input('price'),
-        //     'token' => $request->input('token'),
-        //     'categories' => $request->input('categories'),
-        //     'gallery1' => $request->file('gallery1')->getClientOriginalName(),
-        // ], 200);
-
         $this->validate($request, Rule::createProductRules(), Rule::createProductMessages());
 
         $client = $this->clientCheck($request->input('token'));
@@ -50,15 +41,41 @@ class ProductController extends Controller
             $categories->save();
         }
 
-        if (!empty($request->file('gallery1')->getClientOriginalName())) {
+        if (!empty($request->file('gallery1'))) {
             $gallery = new ProductImage();
             $gallery->product_id = $product->id;
             $gallery->image_url =  '/images/product_images/' . $request->file('gallery1')->getClientOriginalName();
             $gallery->save();
             $request->file('gallery1')->move(base_path() . '/public/images/product_images', $request->file('gallery1')->getClientOriginalName());
         }
-
-
+        if (!empty($request->file('gallery2'))) {
+            $gallery = new ProductImage();
+            $gallery->product_id = $product->id;
+            $gallery->image_url =  '/images/product_images/' . $request->file('gallery2')->getClientOriginalName();
+            $gallery->save();
+            $request->file('gallery2')->move(base_path() . '/public/images/product_images', $request->file('gallery2')->getClientOriginalName());
+        }
+        if (!empty($request->file('gallery3'))) {
+            $gallery = new ProductImage();
+            $gallery->product_id = $product->id;
+            $gallery->image_url =  '/images/product_images/' . $request->file('gallery3')->getClientOriginalName();
+            $gallery->save();
+            $request->file('gallery3')->move(base_path() . '/public/images/product_images', $request->file('gallery3')->getClientOriginalName());
+        }
+        if (!empty($request->file('gallery4'))) {
+            $gallery = new ProductImage();
+            $gallery->product_id = $product->id;
+            $gallery->image_url =  '/images/product_images/' . $request->file('gallery4')->getClientOriginalName();
+            $gallery->save();
+            $request->file('gallery4')->move(base_path() . '/public/images/product_images', $request->file('gallery4')->getClientOriginalName());
+        }
+        if (!empty($request->file('gallery5'))) {
+            $gallery = new ProductImage();
+            $gallery->product_id = $product->id;
+            $gallery->image_url =  '/images/product_images/' . $request->file('gallery5')->getClientOriginalName();
+            $gallery->save();
+            $request->file('gallery5')->move(base_path() . '/public/images/product_images', $request->file('gallery5')->getClientOriginalName());
+        }
 
         return response()->json([
             'title' => $request->input('title'),

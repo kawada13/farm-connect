@@ -32,6 +32,7 @@
     <thead class="grey lighten-2">
       <tr>
         <th scope="col">#</th>
+        <th scope="col">生産者名</th>
         <th scope="col">商品名</th>
         <th scope="col">価格</th>
         <th scope="col">数量</th>
@@ -42,6 +43,7 @@
       @foreach($purchases as $purchase)
       <tr>
         <th scope="row">{{$purchase->id}}</th>
+        <td>{{$purchase->product->client->name}}</td>
         <td>{{$purchase->product->title}}</td>
         <td>{{$purchase->price}}</td>
         <td>{{$purchase->number}}</td>
