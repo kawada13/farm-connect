@@ -197,4 +197,20 @@ class Rule {
         ];
     }
 
+  public static function reviewRules()
+    {
+      return [
+        'score' => 'required',
+        'comment' => 'required',
+        ];
+    }
+
+  public static function reviewMessages()
+    {
+      return [
+        'score.required' => '評価選択は必須です',
+        'comment.required' => 'レビュー入力は必須です',
+        ];
+    }
+
 }

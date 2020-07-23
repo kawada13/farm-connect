@@ -56,4 +56,5 @@ Route::get('/member/favorites', 'UsersController@memberFavoriteIndex')->name('me
 Route::get('/member/follows', 'UsersController@memberFollowIndex')->name('member.follow.index');
 Route::get('/member/{id}/purchase', 'UsersController@memberPurchase')->name('member.purchase');
 Route::get('/member/purchase/history', 'UsersController@purchaseHistory')->name('purchase.history');
+Route::get('/member/product/{id}/review/create', 'UsersController@review')->name('member.review');
 

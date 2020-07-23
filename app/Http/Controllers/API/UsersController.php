@@ -13,6 +13,7 @@ use App\Model\Member;
 use App\Model\Favorite;
 use App\Model\Follow;
 use App\Model\Purchase;
+use App\Model\Review;
 
 class UsersController extends Controller
 {
@@ -314,6 +315,38 @@ class UsersController extends Controller
         return response()->json([
             'token' => $request->input('token'),
             'purchase_id' => $request->input('purchaseId'),
+        ], 200);
+    }
+
+
+    public function review(Request $request)
+    {
+        $this->validate($request, Rule::reviewRules(), Rule::reviewMessages());
+
+        $user = User::select('*')
+            ->where('remember_token', $request->input('token'))
+            ->first();
+
+        if (empty($user->member_id)) {
+            return response()->json([
+                'error' => 'ログイン必須です',
+            ], 404);
+        }
+
+        $review = new Review();
+        $review->member_id = $user->member_id;
+        $review->product_id = $request->input('product_id');
+        $review->comment = $request->input('comment');
+        $review->score = $request->input('score');
+        $review->save();
+
+
+        return response()->json([
+            'token' => $request->input('token'),
+            'product_id' => $request->input('product_id'),
+            'member_id' => $user->member_id,
+            'score' => $request->input('score'),
+            'comment' => $request->input('comment'),
         ], 200);
     }
 }

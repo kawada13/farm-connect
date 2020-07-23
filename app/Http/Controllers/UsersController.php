@@ -199,4 +199,16 @@ class UsersController extends Controller
             ['member' => $member, 'purchases' => $purchases]
         );
     }
+    public function review(Request $request, $id)
+    {
+        $member = $this->memberCheck($request->cookie('token_members'));
+
+        $product = Product::find($id);
+
+        return view(
+            'member.review.create',
+            ['member' => $member, 'product' => $product,]
+        );
+    }
+
 }

@@ -548,6 +548,7 @@ $(function () {
 
   });
 
+  // 住所検索
   $(document).on('click', '#search_btn', function () {
     var param = { zipcode: $('#zipcode').val() }
     var send_url = "http://zipcloud.ibsnet.co.jp/api/search";
@@ -581,6 +582,30 @@ $(function () {
         console.log(XMLHttpRequest);
       }
     });
+  });
+
+  // レビュー作成
+  $(document).on('click', '.review', function () {
+    $.ajax('/api/member/review/create',
+      {
+        type: 'post',
+        data: {
+          comment: $('#comment').val(),
+          product_id: $('#product_id').val(),
+          score: $('#score').val(),
+          token: $.cookie("token_members"),
+        },
+        dataType: 'json'
+      }
+    )
+      .done(function (data) {
+        window.console.log(data);
+      })
+      .fail(function (data) {
+        window.console.log(data);
+        createErrorList(data);
+      })
+
   });
 
 

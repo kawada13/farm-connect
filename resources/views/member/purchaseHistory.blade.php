@@ -48,11 +48,13 @@
         <td>{{$purchase->price}}</td>
         <td>{{$purchase->number}}</td>
         <td>{{$purchase->created_at}}</td>
+        <td> <a href="{{ route('member.review', ['id' => $purchase->product->id]) }}" class="btn btn-light mb-4" >レビューする</a> </td>
       </tr>
       @endforeach
     </tbody>
   </table>
 
 </div>
+
 
 @endsection

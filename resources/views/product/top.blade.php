@@ -27,6 +27,13 @@
         </div>
 
         <div class="col-md-9 right-content">
+          <div class="group-item-header">
+            <ul class="nav grey lighten-4 py-2 font-weight-bold">
+              <li class="nav-item">
+                <h3 class="nav-link">商品一覧</h3>
+              </li>
+            </ul>
+          </div>
           <!-- Card deck -->
           <div class="row">
             <div class="card-deck">
@@ -92,6 +99,7 @@
     </div>
 </div>
 </section>
+
 </div>
 
 @endsection
