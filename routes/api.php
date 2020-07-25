@@ -18,6 +18,7 @@ Route::post('/login', 'API\LoginController@login');
 
 // カテゴリー取得
 Route::post('/categories', 'API\CategoryController@index');
+Route::get('/products/review', 'API\ProductController@review');
 
 // 各登録
 Route::post('/login/admin/create', 'API\LoginController@createAdmin');

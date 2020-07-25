@@ -8,7 +8,7 @@
     <a class="nav-link" href="{{ route('clients.index') }}">全ての生産者を見る <i class="fas fa-chevron-right"></i></a>
   </li>
   <li class="nav-item"> 
-    <a class="nav-link" href="#!">全ての投稿を見る <i class="fas fa-chevron-right"></i></a>
+    <a class="nav-link" href="{{ route('reviews.index') }}">全ての投稿を見る <i class="fas fa-chevron-right"></i></a>
   </li>
 </ul>
 <ul class="nav flex-column  lime lighten-5 py-4 font-weight-bold side_categories">

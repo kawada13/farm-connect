@@ -12,6 +12,7 @@ use App\Model\Commitment;
 use App\Model\Product;
 use App\Model\Follow;
 use App\Model\Purchase;
+use App\Model\Review;
 use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
@@ -199,7 +200,7 @@ class UsersController extends Controller
             ['member' => $member, 'purchases' => $purchases]
         );
     }
-    public function review(Request $request, $id)
+    public function reviewCreate(Request $request, $id)
     {
         $member = $this->memberCheck($request->cookie('token_members'));
 
@@ -210,5 +211,17 @@ class UsersController extends Controller
             ['member' => $member, 'product' => $product,]
         );
     }
+
+    public function reviewIndex(Request $request)
+    {
+        $reviews = Review::all();
+
+        return view(
+            'review.index',
+            ['reviews' => $reviews,]
+        );
+    }
+
+
 
 }

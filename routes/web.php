@@ -27,6 +27,7 @@ Route::get('/login/member/create', 'LoginController@createMember')->name('member
 Route::get('/', 'ProductController@top')->name('products.top');
 Route::get('/clients', 'UsersController@clientIndex')->name('clients.index');
 Route::get('/clients/{id}', 'UsersController@clientShow')->name('clients.show');
+Route::get('/reviews', 'UsersController@reviewIndex')->name('reviews.index');
 
 // 商品
 Route::get('/products', 'ProductController@index')->name('products.index');
@@ -56,5 +57,5 @@ Route::get('/member/favorites', 'UsersController@memberFavoriteIndex')->name('me
 Route::get('/member/follows', 'UsersController@memberFollowIndex')->name('member.follow.index');
 Route::get('/member/{id}/purchase', 'UsersController@memberPurchase')->name('member.purchase');
 Route::get('/member/purchase/history', 'UsersController@purchaseHistory')->name('purchase.history');
-Route::get('/member/product/{id}/review/create', 'UsersController@review')->name('member.review');
+Route::get('/member/product/{id}/review/create', 'UsersController@reviewCreate')->name('member.review');
 

@@ -21,6 +21,12 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ route('purchase.history') }}">購入履歴</a>
         </li>
+        <li class="nav-item">
+          <i class="fas fa-angle-right" style="padding-top: 10px;"></i>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">レビュー作成</a>
+        </li>
       </ul>
     </section>
   </header>

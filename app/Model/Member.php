@@ -15,4 +15,9 @@ class Member extends Model
   {
     return $this->hasMany('App\Model\Delivery', 'member_id', 'id');
   }
+
+  public function follows()
+  {
+    return $this->hasMany('App\Model\Follow', 'member_id', 'id');
+  }
 }

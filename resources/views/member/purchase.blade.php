@@ -56,23 +56,38 @@
               <input type="text" id="name" class="form-control validate" name="name">
               <label data-error="wrong" data-success="right" for="orangeForm-name">お名前</label>
             </div>
-            <div class="md-form mb-5">
-              <input type="text" id="zip" class="form-control validate" name="zip">
-              <label data-error="wrong" data-success="right" for="orangeForm-email">郵便番号</label>
+
+            <div class="form-row mb-4">
+
+              <div class="col-8">
+                <div class="md-form">
+                  <input type="text" id="zipcode" class="form-control validate" name="zip">
+                  <label data-error="wrong" data-success="right" for="orangeForm">郵便番号</label>
+                </div>
+              </div>
+              <div class="col-4">
+                <input type="button" id="search_btn" value="住所検索" class="btn btn-blue-grey">
+              </div>
+              <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                半角数値のみで入力してください。例：1230011
+              </small>
+
             </div>
 
-            <select class="browser-default custom-select">
-              <option selected>都道府県</option>
-              @foreach($prefs as $index => $name)
-              <option value="{{$name}}">{{$name}}</option>
-              @endforeach
-            </select>
 
-            <div class="md-form mb-4">
-              <input type="text" id="municipality" class="form-control validate" name="municipality">
-              <label data-error="wrong" data-success="right" for="orangeForm-pass">市町村</label>
+            <div class="purchase_prefecture">
+              <div class="md-form mb-4">
+                <input type="text" id="prefecture" class="form-control validate" name="prefecture" value="">
+                <label data-error="wrong" data-success="right" for="orangeForm-pass">都道府県</label>
+              </div>
             </div>
 
+            <div class="purchase_municipality">
+              <div class="md-form mb-4">
+                <input type="text" id="municipality" class="form-control validate" name="municipality" value="">
+                <label data-error="wrong" data-success="right" for="orangeForm-pass">市町村</label>
+              </div>
+            </div>
 
 
             <div class="md-form mb-4">
@@ -82,7 +97,7 @@
 
           </div>
           <div class="modal-footer d-flex justify-content-center">
-            <button class="btn btn-deep-orange add_purchase_address">登録する</button>
+            <button class="btn btn-deep-orange purchase_address_create">登録する</button>
           </div>
         </div>
       </div>

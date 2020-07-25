@@ -329,7 +329,7 @@ $(function () {
         data: {
           deliveryId: $(this).data('deliveryId'),
           name: $('#name').val(),
-          zip: $('#zip').val(),
+          zip: $('#zipcode').val(),
           prefecture: $('#prefecture').val(),
           municipality: $('#municipality').val(),
           tel: $('#tel').val(),
@@ -521,33 +521,6 @@ $(function () {
 
   });
 
-  // 購入時のお届け先追加
-  $(document).on('click', '.add_purchase_address', function () {
-    $.ajax('/api/member/address/create',
-      {
-        type: 'post',
-        data: {
-          name: $('#name').val(),
-          zip: $('#zip').val(),
-          prefecture: $('#prefecture').val(),
-          municipality: $('#municipality').val(),
-          tel: $('#tel').val(),
-          token: $.cookie("token_members"),
-        },
-        dataType: 'json'
-      }
-    )
-      .done(function (data) {
-        window.console.log(data);
-        location.reload();
-      })
-      .fail(function (data) {
-        window.console.log(data);
-        createErrorList(data);
-      })
-
-  });
-
   // 住所検索
   $(document).on('click', '#search_btn', function () {
     var param = { zipcode: $('#zipcode').val() }
@@ -562,20 +535,31 @@ $(function () {
         if (res.status == 200) {
           //処理が成功したとき
           var prefecture = '';
+          var purchase_prefecture = '';
+          var purchase_municipality = '';
           var municipality = '';
 
           for (var i = 0; i < res.results.length; i++) {
             var result = res.results[i];
             prefecture += "<input type='prefecture' id='prefecture' class='form-control mb-4' placeholder='都道府県' name='prefecture' value='" + result.address1 + "'>";
+            purchase_prefecture += "<div class='md-form mb-4'> <input type='text' id='prefecture' class='form-control validate' name='prefecture' value='" + result.address1 + "'> <label data-error='wrong' data-success='right' for='orangeForm-pass'>都道府県</label> </div>"
             municipality += "<input type='municipality' id='municipality' class='form-control mb-4' placeholder='市町村' name='municipality' value='" + result.address2 + "'>";
+            purchase_municipality += "<div class='md-form mb-4'> <input type='text' id='municipality' class='form-control validate' name='municipality' value='" + result.address2 + "'> <label data-error='wrong' data-success='right' for='orangeForm-pass'>市町村</label> </div>"
           }
           $('.prefecture').html("");
           $('.prefecture').html(prefecture);
+
+          $('.purchase_prefecture').html("");
+          $('.purchase_prefecture').html(purchase_prefecture);
+
           $('.municipality').html('');
           $('.municipality').html(municipality);
 
+          $('.purchase_municipality').html('');
+          $('.purchase_municipality').html(purchase_municipality);
+
         } else {
-         
+
         }
       },
       error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -600,10 +584,97 @@ $(function () {
     )
       .done(function (data) {
         window.console.log(data);
+        location.href = "/member/purchase/history";
       })
       .fail(function (data) {
         window.console.log(data);
         createErrorList(data);
+      })
+
+  });
+
+
+  // 購入時お届け先登録
+  $(document).on('click', '.purchase_address_create', function () {
+    $.ajax('/api/member/address/create',
+      {
+        type: 'post',
+        data: {
+          name: $('#name').val(),
+          zip: $('#zipcode').val(),
+          prefecture: $('#prefecture').val(),
+          municipality: $('#municipality').val(),
+          tel: $('#tel').val(),
+          token: $.cookie("token_members"),
+        },
+        dataType: 'json'
+      }
+    )
+      .done(function (data) {
+        window.console.log(data);
+        location.reload();
+      })
+      .fail(function (data) {
+        window.console.log(data);
+        createErrorList(data);
+      })
+
+  });
+
+  // レビュー一覧
+  $(document).on('click', '.review_index', function () {
+    window.console.log($(this).data('type'));
+    $.ajax('/api/products/review',
+      {
+        type: 'get',
+        data: {
+          type: $(this).data('type'),
+          token: $.cookie("token_members"),
+        },
+        dataType: 'json'
+      }
+    )
+      .done(function (data) {
+        window.console.log(data);
+        let html = "";
+        $.each(data.reviews, function (index, value) {
+          window.console.log(value);
+          html += 
+          `
+           <div class="card">
+            <div class="card-body">   
+              <h4 class="card-title"><a>商品タイトル</a></h4>
+              <p class="card-text">評価(3段階)::${value.score}</p>
+              <p class="card-text">${value.comment}</p>
+            </div>
+          </div>
+          `
+        })
+        $('.review_list').html("");
+        $('.review_list').append(html);
+
+        if(data.type === null)
+        {
+          $(".xfollows").removeClass("active");
+          $(".xmine").removeClass("active");
+          $(".xall").addClass("active");
+        }
+        if(data.type === 'follows')
+        {
+          $(".xall").removeClass("active");
+          $(".xmine").removeClass("active");
+          $(".xfollows").addClass("active");
+        }
+        if(data.type === 'mine')
+        {
+          $(".xall").removeClass("active");
+          $(".xfollows").removeClass("active");
+          $(".xmine").addClass("active");
+        }
+      })
+      
+      .fail(function (data) {
+        window.console.log(data);
       })
 
   });

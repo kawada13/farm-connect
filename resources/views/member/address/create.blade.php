@@ -8,11 +8,23 @@
 <div class="container">
 
 
-  <header class="header">
+<header class="header">
     <section class="bread-crum">
       <ul class="nav red lighten-5 pt-2">
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('member.show') }}">マイページへ</a>
+          <a class="nav-link" href="{{ route('member.show') }}">マイページ</a>
+        </li>
+        <li class="nav-item">
+          <i class="fas fa-angle-right" style="padding-top: 10px;"></i>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('member.address') }}">お届け先一覧</a>
+        </li>
+        <li class="nav-item">
+          <i class="fas fa-angle-right" style="padding-top: 10px;"></i>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">お届け先情報登録</a>
         </li>
       </ul>
     </section>
@@ -30,7 +42,7 @@
     <div class="error_text_municipality"></div>
     <div class="error_text_tel"></div>
 
-    <input type="name" id="name" class="form-control mb-4" placeholder="名前" name="name">
+    <input type="name" id="name" class="form-control mb-4" placeholder="お名前" name="name">
 
     <div class="form-row">
       <div class="col-8">
@@ -42,7 +54,7 @@
     </div>
 
     <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-      番号のみで入力してください。例：1230011
+      半角数値のみで入力してください。例：1230011
     </small>
 
     <div class="prefecture">

@@ -9,17 +9,23 @@
 
 
 <div class="container">
-  <header class="header">
-  <header class="header">
+
+ <header class="header">
     <section class="bread-crum">
       <ul class="nav red lighten-5 pt-2">
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('member.show') }}">マイページへ</a>
+          <a class="nav-link" href="{{ route('member.show') }}">マイページ</a>
+        </li>
+        <li class="nav-item">
+          <i class="fas fa-angle-right" style="padding-top: 10px;"></i>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">お気に入り商品</a>
         </li>
       </ul>
     </section>
   </header>
-  </header>
+
   <section class="main-content">
     <div class="inner-main-content">
       <div class="row">
@@ -38,7 +44,6 @@
           </div>
 
 
-          <!-- Card deck -->
           <div class="row">
             <div class="card-deck">
 
@@ -47,21 +52,16 @@
                 <div class="card mb-4">
 
                   <a href="{{ route('product.show', ['id' => $favorite->product->id]) }}">
-                    <!--Card image-->
                     <div class="view overlay">
                       <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
                       <div class="mask rgba-white-slight"></div>
                     </div>
 
-                    <!--Card content-->
                     <div class="card-body">
 
                       <div class="card-body-top" style="height: 133px;">
-                        <!--Title-->
                         <h4>{{$favorite->product->title}}</h4>
-                        <!--Text-->
                         <p class="card-text">{{$favorite->product->detail}}</p>
-                        <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
                         <p class="card-text">{{$favorite->product->price}}</p>
                       </div>
                   </a>
@@ -83,22 +83,14 @@
                           <p>{{$favorite->product->client->name}}</p>
                         </div>
                       </div>
-
                     </a>
                   </div>
-
                 </div>
-
-
               </div>
             </div>
             @endforeach
-            <!-- Card -->
-
-
           </div>
         </div>
-        <!-- Card deck -->
       </div>
     </div>
 </div>
