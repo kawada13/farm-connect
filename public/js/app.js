@@ -27,7 +27,6 @@ $(function () {
   });
 
 
-
   // 生産者商品登録
   $(document).on('click', '.product_create', function () {
 
@@ -672,7 +671,7 @@ $(function () {
           $(".xmine").addClass("active");
         }
       })
-      
+
       .fail(function (data) {
         window.console.log(data);
       })
