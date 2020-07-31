@@ -11,6 +11,12 @@
     <section class="bread-crum">
       <ul class="nav red lighten-5 pt-2">
         <li class="nav-item">
+          <a class="nav-link" href="{{ route('products.top') }}">トップ</a>
+        </li>
+        <li class="nav-item">
+          <i class="fas fa-angle-right" style="padding-top: 10px;"></i>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="{{ route('member.show') }}">マイページ</a>
         </li>
         <li class="nav-item">
@@ -54,7 +60,7 @@
                   <td>{{$delivery->name}}</td>
                   <td>{{$delivery->zip}}</td>
                   <td>{{$delivery->prefecture}}{{$delivery->municipality}}{{$delivery->ward}}</td>
-                  <td>{{$delivery->zip}}</td>
+                  <td>{{$delivery->tel}}</td>
                 </tr>
               </tbody>
             </table>
@@ -93,7 +99,7 @@
 
   </div>
 
-  <div class="alert alert-success fade in alert-dismissible" role="alert" >
+  <div class="alert alert-success fade in alert-dismissible" role="alert">
     A simple success alert—check it out!
   </div>
 

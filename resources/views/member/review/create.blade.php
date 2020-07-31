@@ -13,6 +13,12 @@
     <section class="bread-crum">
       <ul class="nav red lighten-5 pt-2">
         <li class="nav-item">
+          <a class="nav-link" href="{{ route('products.top') }}">トップ</a>
+        </li>
+        <li class="nav-item">
+          <i class="fas fa-angle-right" style="padding-top: 10px;"></i>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="{{ route('member.show') }}">マイページ</a>
         </li>
         <li class="nav-item">
@@ -38,20 +44,20 @@
 
   <div class="mb-4">
 
-  <div class="row">
-    <div class="col-md-3">
-    @if(count($product->productImages))
+    <div class="row">
+      <div class="col-md-3">
+        @if(count($product->productImages))
         <img src="{{$product->productImages[0]->image_url}}" class="img-fluid" alt="Responsive image">
         @else
         <img src="https://mdbootstrap.com/img/Others/documentation/img%20(75)-mini.jpg" class="img-fluid" alt="Responsive image">
         @endif
-    </div>
-    <div class="col-md-9">
+      </div>
+      <div class="col-md-9">
 
-      <p>商品名:{{$product->title}}</p>
+        <p>商品名:{{$product->title}}</p>
 
+      </div>
     </div>
-  </div>
 
   </div>
 

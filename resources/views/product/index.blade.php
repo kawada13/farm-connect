@@ -11,7 +11,7 @@
     <section class="bread-crum">
       <ul class="nav red lighten-5 pt-2">
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('products.top') }}">トップへ</a>
+          <a class="nav-link" href="{{ route('products.top') }}">トップ</a>
         </li>
       </ul>
     </section>

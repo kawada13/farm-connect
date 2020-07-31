@@ -9,9 +9,15 @@
 
 
 <div class="container">
-<header class="header">
+  <header class="header">
     <section class="bread-crum">
       <ul class="nav red lighten-5 pt-2">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('products.top') }}">トップ</a>
+        </li>
+        <li class="nav-item">
+          <i class="fas fa-angle-right" style="padding-top: 10px;"></i>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ route('member.show') }}">マイページ</a>
         </li>
