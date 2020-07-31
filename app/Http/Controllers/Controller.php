@@ -56,6 +56,20 @@ class Controller extends BaseController
                 }
                 $title = '検索結果';
             }
+            if (!empty($request->input('prefectures'))) {
+
+                $title = '';
+                $keyFirst = array_key_first($request->input('prefectures'));
+
+                foreach ($request->input('prefectures') as $key => $value) {
+                    if ($key === $keyFirst) {
+                        $title .= $value;
+                    } else {
+                        $title .= '/' . $value;
+                    }
+                }
+                $title .= '検索結果';
+            }
         }
 
         if ($request->path() === "clients") {
@@ -77,6 +91,20 @@ class Controller extends BaseController
                     }
                 }
                 $title = '検索結果';
+            }
+            if (!empty($request->input('prefectures'))) {
+
+                $title = '';
+                $keyFirst = array_key_first($request->input('prefectures'));
+
+                foreach ($request->input('prefectures') as $key => $value) {
+                    if ($key === $keyFirst) {
+                        $title .= $value;
+                    } else {
+                        $title .= '/' . $value;
+                    }
+                }
+                $title .= '検索結果';
             }
         }
 

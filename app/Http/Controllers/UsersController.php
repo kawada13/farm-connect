@@ -11,6 +11,7 @@ use App\Model\Favorite;
 use App\Model\Commitment;
 use App\Model\Product;
 use App\Model\Follow;
+use App\Model\ProductImage;
 use App\Model\Purchase;
 use App\Model\Review;
 use Illuminate\Support\Facades\DB;
@@ -117,7 +118,7 @@ class UsersController extends Controller
             })
             ->when(!empty($request->input('prefectures')), function ($query) use ($request) {
                 return $query
-                ->whereIn('prefecture',$request->input('prefectures'));
+                    ->whereIn('prefecture', $request->input('prefectures'));
             })
             ->get();
 
@@ -140,9 +141,15 @@ class UsersController extends Controller
             ->where('client_id', $client->id)
             ->get();
 
+        $reviews = Review::with(['product'])
+            ->where('client_id', $client->id)
+            ->get();
+
+
+
         $is_following = $this->is_following($user->member_id, $client->id);
 
-        return view('client.show', ['client' => $client, 'commitments' => $commitments, 'products' => $products, 'is_following' => $is_following]);
+        return view('client.show', ['client' => $client, 'commitments' => $commitments, 'products' => $products, 'is_following' => $is_following, 'reviews' => $reviews]);
     }
 
     public function is_following($memberId, $clientId)
@@ -214,14 +221,12 @@ class UsersController extends Controller
 
     public function reviewIndex(Request $request)
     {
-        $reviews = Review::all();
+        $reviews = Review::with(['product'])
+            ->get();
 
         return view(
             'review.index',
             ['reviews' => $reviews,]
         );
     }
-
-
-
 }

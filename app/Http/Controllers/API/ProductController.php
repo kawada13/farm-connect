@@ -27,18 +27,12 @@ class ProductController extends Controller
       ->where('remember_token', $request->input('token'))
       ->first();
 
-    $follows = Member::select('*')
-      ->where('id', $user->member_id)
-      ->first()
-      ->follows;
+    $followIds = Follow::select('*')
+      ->where('member_id', $user->member_id)
+      ->pluck('client_id')
+      ->toArray();
 
-    $follows_ids = array();
-
-    foreach ($follows as $follow) {
-      array_push($follows_ids, $follow->client_id);
-    }
-
-    $reviews = Review::select('*');
+    $reviews = Review::with(['product']);
 
     if (!empty($request->input('type'))) {
       if ($request->input('type') === "mine") {
@@ -46,7 +40,7 @@ class ProductController extends Controller
       }
 
       if ($request->input('type') === "follows") {
-        $reviews->whereIn('client_id', $follows_ids);
+        $reviews->whereIn('client_id', $followIds);
       }
     }
 

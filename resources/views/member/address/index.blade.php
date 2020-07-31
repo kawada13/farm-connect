@@ -53,7 +53,7 @@
                 <tr>
                   <td>{{$delivery->name}}</td>
                   <td>{{$delivery->zip}}</td>
-                  <td>{{$delivery->prefecture}}{{$delivery->municipality}}</td>
+                  <td>{{$delivery->prefecture}}{{$delivery->municipality}}{{$delivery->ward}}</td>
                   <td>{{$delivery->zip}}</td>
                 </tr>
               </tbody>
@@ -91,6 +91,10 @@
 
     </div>
 
+  </div>
+
+  <div class="alert alert-success fade in alert-dismissible" role="alert" >
+    A simple success alert—check it out!
   </div>
 
 

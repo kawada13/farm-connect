@@ -7,15 +7,15 @@
 @include('commons.navbar')
 
 <div class="container">
-<header class="header">
-  <section class="bread-crum">
-    <ul class="nav red lighten-5 pt-2">
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('products.top') }}">トップへ</a>
-      </li>
-    </ul>
-  </section>
-</header>
+  <header class="header">
+    <section class="bread-crum">
+      <ul class="nav red lighten-5 pt-2">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('products.top') }}">トップへ</a>
+        </li>
+      </ul>
+    </section>
+  </header>
   <section class="main-content">
     <div class="inner-main-content">
       <div class="row">
@@ -55,8 +55,13 @@
                   <a href="{{ route('product.show', ['id' => $product->id]) }}">
                     <!--Card image-->
                     <div class="view overlay">
-                      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
+                      @if(count($product->productImages))
+                      <img class="card-img-top" src="{{$product->productImages[0]->image_url}}" alt="Card image cap" style="height: 133px;">
                       <div class="mask rgba-white-slight"></div>
+                      @else
+                      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap" style="height: 133px;">
+                      <div class="mask rgba-white-slight"></div>
+                      @endif
                     </div>
 
                     <!--Card content-->
@@ -68,7 +73,7 @@
                         <!--Text-->
                         <p class="card-text">{{$product->detail}}</p>
                         <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                        <p class="card-text">{{$product->price}}</p>
+                        <p class="card-text">{{$product->price}}円</p>
                       </div>
                   </a>
 
@@ -79,7 +84,7 @@
 
                       <div class="col-md-6 text-center">
                         <div class="img_client">
-                          <img src="https://illust8.com/wp-content/uploads/2018/06/fruit_apple_illust_150.png" alt="avatar mx-auto white" class="rounded-circle img-fluid" style="width: 60px;">
+                          <img src="{{$product->client->client_url}}" alt="avatar mx-auto white" class="rounded-circle img-fluid" style="width: 60px;">
                         </div>
                       </div>
 

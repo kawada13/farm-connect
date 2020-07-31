@@ -24,7 +24,8 @@
         <th scope="col">#</th>
         <th scope="col">タイトル</th>
         <th scope="col">詳細</th>
-        <th scope="col">価格</th>
+        <th scope="col">単価</th>
+        <th scope="col">数量</th>
         <th scope="col">発送日時</th>
       </tr>
     </thead>
@@ -34,7 +35,8 @@
         <th scope="row">{{$purchase->product->id}}</th>
         <td>{{$purchase->product->title}}</td>
         <td>{{$purchase->product->detail}}</td>
-        <td>{{$purchase->product->price}}</td>
+        <td>{{$purchase->product->price}}円</td>
+        <td>{{$purchase->number}}</td>
         <td>{{$purchase->updated_at}}</td>
       </tr>
       @endforeach

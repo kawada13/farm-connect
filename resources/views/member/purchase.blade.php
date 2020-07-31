@@ -17,22 +17,57 @@
   </header>
   @csrf
 
-  <h2>商品購入ページ</h2>
+  <h2 class="mt-3">商品購入ページ</h2>
+
+  <table class="table mt-2">
+    <tbody>
+      <tr>
+        <th scope="row">生産者名</th>
+        <td>{{$product->client->name}}</td>
+      </tr>
+      <tr>
+        <th scope="row">商品名</th>
+        <td>{{$product->title}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div class="group-item-header mt-5">
+    <ul class="nav grey lighten-4 py-2 font-weight-bold">
+      <li class="nav-item">
+        <h3 class="nav-link">連絡先情報</h3>
+      </li>
+    </ul>
+  </div>
+
+  <p class="font-weight-bold my-3">連絡先メールアドレス</p>
+  <p>{{$member->email}}</p>
+
+
+
+
+  <div class="group-item-header mt-5">
+    <ul class="nav grey lighten-4 py-2 font-weight-bold">
+      <li class="nav-item">
+        <h3 class="nav-link">発送先</h3>
+      </li>
+    </ul>
+  </div>
 
   <div class="error_text_delivery_id"></div>
   <div class="error_text_shipping"></div>
   <div class="error_text_number"></div>
 
+  
+  <div class="purchase_form">
 
-  <div class="mt-4">
-    <p>発送先</p>
     @foreach($deliveries as $delivery)
     <div class="custom-control custom-radio mb-4">
       <input type="radio" class="custom-control-input delivery" id="{{$delivery->id}}" name="delivery_id" value="{{$delivery->id}}">
-      <label class="custom-control-label" for="{{$delivery->id}}">名前:{{$delivery->name}}郵便番号:{{$delivery->zip}}住所：{{$delivery->prefecture}}{{$delivery->municipality}}</label>
+      <label class="custom-control-label" for="{{$delivery->id}}">名前:{{$delivery->name}}<br>郵便番号:{{$delivery->zip}}<br>住所：{{$delivery->prefecture}}{{$delivery->municipality}}{{$delivery->ward}}</label>
     </div>
     @endforeach
-
 
 
     <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -49,6 +84,7 @@
           <div class="error_text_zip"></div>
           <div class="error_text_prefecture"></div>
           <div class="error_text_municipality"></div>
+          <div class="error_text_ward"></div>
           <div class="error_text_tel"></div>
 
           <div class="modal-body mx-3">
@@ -85,7 +121,14 @@
             <div class="purchase_municipality">
               <div class="md-form mb-4">
                 <input type="text" id="municipality" class="form-control validate" name="municipality" value="">
-                <label data-error="wrong" data-success="right" for="orangeForm-pass">市町村</label>
+                <label data-error="wrong" data-success="right" for="orangeForm-pass">市</label>
+              </div>
+            </div>
+
+            <div class="purchase_ward">
+              <div class="md-form mb-4">
+                <input type="text" id="ward" class="form-control validate" name="ward" value="">
+                <label data-error="wrong" data-success="right" for="orangeForm-pass">区長村</label>
               </div>
             </div>
 

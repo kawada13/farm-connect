@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Model\Product;
 use App\Model\Favorite;
 use App\Model\User;
+use App\Model\Client;
 use App\Model\Commitment;
+use App\Model\Review;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
@@ -19,9 +21,10 @@ class ProductController extends Controller
             return redirect('/login/member');
         }
 
-
-        $products = Product::with(['client'])
+        $products = Product::with(['productImages'])
             ->get();
+
+
 
         return view('product.top', ['products' => $products]);
     }
@@ -48,7 +51,7 @@ class ProductController extends Controller
                 });
             })
             ->when(!empty($request->input('keyword')), function ($query) use ($request) {
-                    return $query
+                return $query
                     ->where('title', 'like', "%{$request->input('keyword')}%")
                     ->orWhere('detail', 'like', "%{$request->input('keyword')}%");
             })
@@ -59,7 +62,6 @@ class ProductController extends Controller
                         ->whereRaw('clients.id = products.client_id')
                         ->whereIn('clients.prefecture', $request->input('prefectures'));
                 });
-
             })
             ->get();
 
@@ -73,11 +75,24 @@ class ProductController extends Controller
             return redirect('/login/member');
         }
 
+
         $user = User::select('*')
             ->where('remember_token', $request->cookie('token_members'))
             ->first();
 
+
         $product = Product::find($id);
+
+        $products = Product::select('*')
+            ->where('client_id', $product->client->id)
+            ->get();
+
+
+        $reviews = Review::with(['product'])
+            ->where('product_id', $id)
+            ->get();
+
+
 
         $is_facvoriting = $this->is_facvoriting($user->member_id, $product->id);
 
@@ -85,7 +100,7 @@ class ProductController extends Controller
             ->where('client_id', $product->client_id)
             ->get();
 
-        return view('product.show', ['product' => $product, 'is_facvoriting' => $is_facvoriting, 'commitments' => $commitments]);
+        return view('product.show', ['product' => $product, 'is_facvoriting' => $is_facvoriting, 'commitments' => $commitments, 'products' => $products, 'reviews' => $reviews]);
     }
 
     public function is_facvoriting($memberId, $productId)

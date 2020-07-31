@@ -10,7 +10,7 @@
 
 <div class="container">
 
- <header class="header">
+  <header class="header">
     <section class="bread-crum">
       <ul class="nav red lighten-5 pt-2">
         <li class="nav-item">
@@ -62,7 +62,7 @@
                       <div class="card-body-top" style="height: 133px;">
                         <h4>{{$favorite->product->title}}</h4>
                         <p class="card-text">{{$favorite->product->detail}}</p>
-                        <p class="card-text">{{$favorite->product->price}}</p>
+                        <p class="card-text">{{$favorite->product->price}}円</p>
                       </div>
                   </a>
 
@@ -93,8 +93,8 @@
         </div>
       </div>
     </div>
+  </section>
 </div>
-</section>
 </div>
 
 @endsection

@@ -30,6 +30,7 @@ Route::post('/product/serach', 'API\ProductController@index');
 Route::post('/client/product/create', 'API\Client\ProductController@create');
 Route::post('/client/commitment/create', 'API\Client\CommitmentController@create');
 Route::post('/client/shipment', 'API\UsersController@shipment');
+Route::post('/client/profile/edit', 'API\UsersController@updateClientProfile');
 
 // メンバー
 Route::post('/member/profile/edit', 'API\UsersController@updateMemberProfile');

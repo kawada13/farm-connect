@@ -45,6 +45,7 @@ Route::get('/client/commitment/{id}/edit', 'Client\CommitmentController@edit')->
 Route::get('/client/product/notordering', 'Client\ProductController@notOrder')->name('product.notordering');
 Route::get('/client/product/ordering', 'Client\ProductController@order')->name('product.ordering');
 Route::get('/client/product/notordering/{id}', 'Client\ProductController@notOrderShow')->name('notordering.show');
+Route::get('/client/product_area', 'Client\ProductAreaController@index')->name('product_area.index');
 
 // メンバーのみ
 Route::get('/member/profile', 'UsersController@memberShow')->name('member.show');
@@ -55,7 +56,7 @@ Route::get('/member/address/{id}/edit', 'UsersController@memberAdressEdit')->nam
 Route::get('/member/social_setting/edit', 'UsersController@membersocialSetting')->name('member.social_setting.edit');
 Route::get('/member/favorites', 'UsersController@memberFavoriteIndex')->name('member.favorite.index');
 Route::get('/member/follows', 'UsersController@memberFollowIndex')->name('member.follow.index');
-Route::get('/member/{id}/purchase', 'UsersController@memberPurchase')->name('member.purchase');
+Route::get('/products/{id}/purchase', 'UsersController@memberPurchase')->name('member.purchase');
 Route::get('/member/purchase/history', 'UsersController@purchaseHistory')->name('purchase.history');
 Route::get('/member/product/{id}/review/create', 'UsersController@reviewCreate')->name('member.review');
 

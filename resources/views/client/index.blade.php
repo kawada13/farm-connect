@@ -55,7 +55,7 @@
                   <a href="{{ route('clients.show', ['id' => $client->id]) }}">
                     <!--Card image-->
                     <div class="view overlay">
-                      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
+                      <img class="card-img-top" src="{{$client->client_url}}" style="height: 133px;">
                       <div class="mask rgba-white-slight"></div>
                     </div>
 

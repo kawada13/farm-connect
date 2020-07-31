@@ -293,6 +293,37 @@ $(function () {
 
   });
 
+  // クライアント基本情報編集
+  $(document).on('click', '.client_edit', function () {
+
+    let $upfile = $('input[name="image"]');
+    let fd = new FormData();
+    fd.append("image", $upfile.prop('files')[0]);
+    fd.append("name", $('#name').val());
+    fd.append("email", $('#email').val());
+    fd.append("token", $.cookie("token_clients"));
+
+    for (item of fd) window.console.log(item);
+    $.ajax('/api/client/profile/edit',
+      {
+        type: 'post',
+        data: fd,
+        dataType: 'json',
+        processData: false,
+        contentType: false,
+      }
+    )
+      .done(function (data) {
+        window.console.log(data);
+        location.href = "/client/mypage";
+      })
+      .fail(function (data) {
+        window.console.log(data);
+        createErrorList(data);
+      })
+
+  });
+
   // メンバーお届け先登録
   $(document).on('click', '.member_address_create', function () {
     $.ajax('/api/member/address/create',
@@ -303,6 +334,7 @@ $(function () {
           zip: $('#zipcode').val(),
           prefecture: $('#prefecture').val(),
           municipality: $('#municipality').val(),
+          ward: $('#ward').val(),
           tel: $('#tel').val(),
           token: $.cookie("token_members"),
         },
@@ -331,6 +363,7 @@ $(function () {
           zip: $('#zipcode').val(),
           prefecture: $('#prefecture').val(),
           municipality: $('#municipality').val(),
+          ward: $('#ward').val(),
           tel: $('#tel').val(),
           token: $.cookie("token_members"),
         },
@@ -537,13 +570,19 @@ $(function () {
           var purchase_prefecture = '';
           var purchase_municipality = '';
           var municipality = '';
+          var purchase_ward = '';
+          var ward = '';
 
           for (var i = 0; i < res.results.length; i++) {
             var result = res.results[i];
             prefecture += "<input type='prefecture' id='prefecture' class='form-control mb-4' placeholder='都道府県' name='prefecture' value='" + result.address1 + "'>";
             purchase_prefecture += "<div class='md-form mb-4'> <input type='text' id='prefecture' class='form-control validate' name='prefecture' value='" + result.address1 + "'> <label data-error='wrong' data-success='right' for='orangeForm-pass'>都道府県</label> </div>"
-            municipality += "<input type='municipality' id='municipality' class='form-control mb-4' placeholder='市町村' name='municipality' value='" + result.address2 + "'>";
-            purchase_municipality += "<div class='md-form mb-4'> <input type='text' id='municipality' class='form-control validate' name='municipality' value='" + result.address2 + "'> <label data-error='wrong' data-success='right' for='orangeForm-pass'>市町村</label> </div>"
+
+            municipality += "<input type='municipality' id='municipality' class='form-control mb-4' placeholder='市' name='municipality' value='" + result.address2 + "'>";
+            purchase_municipality += "<div class='md-form mb-4'> <input type='text' id='municipality' class='form-control validate' name='municipality' value='" + result.address2 + "'> <label data-error='wrong' data-success='right' for='orangeForm-pass'>市</label> </div>"
+
+            ward += "<input type='ward' id='ward' class='form-control mb-4' placeholder='区長村' name='ward' value='" + result.address3 + "'>";
+            purchase_ward += "<div class='md-form mb-4'> <input type='text' id='ward' class='form-control validate' name='ward' value='" + result.address3 + "'> <label data-error='wrong' data-success='right' for='orangeForm-pass'>区町村</label> </div>"
           }
           $('.prefecture').html("");
           $('.prefecture').html(prefecture);
@@ -556,6 +595,12 @@ $(function () {
 
           $('.purchase_municipality').html('');
           $('.purchase_municipality').html(purchase_municipality);
+
+          $('.ward').html('');
+          $('.ward').html(ward);
+
+          $('.purchase_ward').html('');
+          $('.purchase_ward').html(purchase_ward);
 
         } else {
 
@@ -575,6 +620,7 @@ $(function () {
         data: {
           comment: $('#comment').val(),
           product_id: $('#product_id').val(),
+          client_id: $('#client_id').val(),
           score: $('#score').val(),
           token: $.cookie("token_members"),
         },
@@ -603,6 +649,7 @@ $(function () {
           zip: $('#zipcode').val(),
           prefecture: $('#prefecture').val(),
           municipality: $('#municipality').val(),
+          ward: $('#ward').val(),
           tel: $('#tel').val(),
           token: $.cookie("token_members"),
         },
@@ -642,7 +689,8 @@ $(function () {
           `
            <div class="card">
             <div class="card-body">   
-              <h4 class="card-title"><a>商品タイトル</a></h4>
+              <h4 class="card-title"><a href="/products/${value.product_id}">${value.product_name}</a></h4>
+              <hr>
               <p class="card-text">評価(3段階)::${value.score}</p>
               <p class="card-text">${value.comment}</p>
             </div>

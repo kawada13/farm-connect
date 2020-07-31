@@ -40,6 +40,7 @@
     <div class="error_text_zip"></div>
     <div class="error_text_prefecture"></div>
     <div class="error_text_municipality"></div>
+    <div class="error_text_ward"></div>
     <div class="error_text_tel"></div>
 
     <input type="name" id="name" class="form-control mb-4" placeholder="お名前" name="name">
@@ -62,7 +63,11 @@
     </div>
 
     <div class="municipality">
-      <input type="municipality" id="municipality" class="form-control mb-4" placeholder="市町村" name="municipality" value="">
+      <input type="municipality" id="municipality" class="form-control mb-4" placeholder="市" name="municipality" value="">
+    </div>
+
+    <div class="ward">
+      <input type="ward" id="ward" class="form-control mb-4" placeholder="区町村" name="ward" value="">
     </div>
 
     <input type="tel" id="tel" class="form-control mb-4" placeholder="電話番号" name="tel">

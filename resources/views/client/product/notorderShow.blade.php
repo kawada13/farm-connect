@@ -22,9 +22,14 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">タイトル</th>
+        <th scope="col">商品名</th>
         <th scope="col">詳細</th>
-        <th scope="col">価格</th>
+        <th scope="col">単価</th>
+        <th scope="col">購入者</th>
+        <th scope="col">電話番号</th>
+        <th scope="col">住所</th>
+        <th scope="col">注文数</th>
+        <th scope="col">希望日</th>
       </tr>
     </thead>
     <tbody>
@@ -33,32 +38,12 @@
         <th scope="row">{{$purchase->product->id}}</th>
         <td>{{$purchase->product->title}}</td>
         <td>{{$purchase->product->detail}}</td>
-        <td>{{$purchase->product->price}}</td>
-      </tr>
-    </tbody>
-  </table>
-  <table class="table mt-4">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">名前</th>
-        <th scope="col">電話番号</th>
-        <th scope="col">住所</th>
-        <th scope="col">注文数</th>
-        <th scope="col">発送希望日</th>
-        <th scope="col">価格</th>
-      </tr>
-    </thead>
-    <tbody>
-
-      <tr>
-        <th scope="row">{{$purchase->product->id}}</th>
+        <td>{{$purchase->product->price}}円</td>
         <td>{{$purchase->delivery->name}}</td>
         <td>{{$purchase->delivery->tel}}</td>
-        <td>{{$purchase->delivery->prefecture}}</td>
+        <td>{{$purchase->delivery->prefecture}}{{$purchase->delivery->municipality}}{{$purchase->delivery->ward}}</td>
         <td>{{$purchase->number}}</td>
         <td>{{$purchase->shipping}}</td>
-        <td>{{$purchase->price}}</td>
       </tr>
     </tbody>
   </table>

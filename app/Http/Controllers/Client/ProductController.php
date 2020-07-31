@@ -8,6 +8,7 @@ use App\Model\Product;
 use App\Model\Favorite;
 use App\Model\User;
 use App\Model\Category;
+use App\Model\Delivery;
 use App\Model\Purchase;
 use Illuminate\Support\Facades\DB;
 
@@ -72,6 +73,13 @@ class ProductController extends Controller
       ->where('purchases.is_shipping', 0)
       ->get();
 
+    foreach ($purchases as &$purchase) {
+      if (empty($purchase->delivery)) {
+        $purchase->delivery = Delivery::where('member_id', $purchase->member_id)
+          ->orderBy('updated_at', 'desc')
+          ->first();
+      }
+    }
 
     return view('client.product.notorder', ['client' => $client, 'purchases' => $purchases]);
   }
@@ -85,7 +93,6 @@ class ProductController extends Controller
     }
 
     $purchase = Purchase::find($id);
-
 
     return view('client.product.notorderShow', ['client' => $client, 'purchase' => $purchase]);
   }

@@ -24,16 +24,18 @@
         <th scope="col">#</th>
         <th scope="col">タイトル</th>
         <th scope="col">詳細</th>
-        <th scope="col">価格</th>
+        <th scope="col">単価</th>
+        <th scope="col">数量</th>
       </tr>
     </thead>
     <tbody>
       @foreach($purchases as $purchase)
       <tr>
-        <th scope="row">{{$purchase->product->id}}</th>
+        <th scope="row">{{$purchase->id}}</th>
         <td>{{$purchase->product->title}}</td>
         <td>{{$purchase->product->detail}}</td>
         <td>{{$purchase->product->price}}</td>
+        <td>{{$purchase->number}}</td>
         <td><a href="{{ route('notordering.show', ['id' => $purchase->id]) }}" class="btn btn-light">詳細</a></td>
       </tr>
       @endforeach

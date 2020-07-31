@@ -46,6 +46,35 @@ class UsersController extends Controller
             'email' => $request->input('email'),
         ], 200);
     }
+    public function updateClientProfile(Request $request)
+    {
+
+        $this->validate($request, Rule::editMemberRules(), Rule::editMemberMessages());
+
+        $client = $this->clientCheck($request->input('token'));
+
+        if (empty($client->id)) {
+            return response()->json([
+                'error' => 'ログイン必須です',
+            ], 404);
+        }
+
+        if(!empty($request->file('image')))
+        {
+            $request->file('image')->move(base_path() . '/public/images/client_profile', $request->file('image')->getClientOriginalName());
+            $client->client_url = '/images/client_profile/' . $request->file('image')->getClientOriginalName();
+        }
+
+        $client->name = $request->input('name');
+        $client->email = $request->input('email');
+        $client->save();
+
+
+        return response()->json([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+        ], 200);
+    }
 
     public function createMemberAddress(Request $request)
     {
@@ -64,6 +93,7 @@ class UsersController extends Controller
         $delinfo->zip = $request->input('zip');
         $delinfo->prefecture = $request->input('prefecture');
         $delinfo->municipality = $request->input('municipality');
+        $delinfo->ward = $request->input('ward');
         $delinfo->tel = $request->input('tel');
         $delinfo->member_id = $member->id;
         $delinfo->save();
@@ -94,6 +124,7 @@ class UsersController extends Controller
         $delinfo->zip = $request->input('zip');
         $delinfo->prefecture = $request->input('prefecture');
         $delinfo->municipality = $request->input('municipality');
+        $delinfo->ward = $request->input('ward');
         $delinfo->tel = $request->input('tel');
         $delinfo->member_id = $member->id;
         $delinfo->save();
@@ -321,11 +352,14 @@ class UsersController extends Controller
 
     public function review(Request $request)
     {
+
+        
         $this->validate($request, Rule::reviewRules(), Rule::reviewMessages());
 
         $user = User::select('*')
             ->where('remember_token', $request->input('token'))
             ->first();
+
 
         if (empty($user->member_id)) {
             return response()->json([
@@ -336,6 +370,7 @@ class UsersController extends Controller
         $review = new Review();
         $review->member_id = $user->member_id;
         $review->product_id = $request->input('product_id');
+        $review->client_id = $request->input('client_id');
         $review->comment = $request->input('comment');
         $review->score = $request->input('score');
         $review->save();

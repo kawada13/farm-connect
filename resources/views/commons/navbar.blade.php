@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light">
 
-    <a class="navbar-brand" href="{{ route('products.top') }}">食べチョク</a>
+    <a class="navbar-brand">食べチョク</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Nav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

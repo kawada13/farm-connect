@@ -35,9 +35,24 @@
 
   <p class="h4 mb-4 mt-3">この商品をレビュー</p>
 
+
   <div class="mb-4">
-    <span>商品名::{{$product->title}}</span>
-    <span>商品画像</span>
+
+  <div class="row">
+    <div class="col-md-3">
+    @if(count($product->productImages))
+        <img src="{{$product->productImages[0]->image_url}}" class="img-fluid" alt="Responsive image">
+        @else
+        <img src="https://mdbootstrap.com/img/Others/documentation/img%20(75)-mini.jpg" class="img-fluid" alt="Responsive image">
+        @endif
+    </div>
+    <div class="col-md-9">
+
+      <p>商品名:{{$product->title}}</p>
+
+    </div>
+  </div>
+
   </div>
 
   <div class="error_text_score"></div>
@@ -59,6 +74,7 @@
   </div>
 
   <input type="hidden" id="product_id" class="form-control mb-4" name="product_id" value="{{$product->id}}">
+  <input type="hidden" id="client_id" class="form-control mb-4" name="client_id" value="{{$product->client_id}}">
 
   <button class="btn btn-info btn-block my-4 review" type="button">投稿する</button>
 

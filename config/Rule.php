@@ -102,7 +102,7 @@ class Rule {
         'detail.required' => '詳細は必須です',
         'price.required' => '価格は必須です',
         'categories.required' => 'カテゴリー選択は必須です',
-        'price.integer' => '価格は数値で入力してください',
+        'price.integer' => '価格は半角数値で入力してください',
         ];
     }
     // こだわり登録
@@ -146,6 +146,7 @@ class Rule {
         'zip' => 'required|integer',
         'prefecture' => 'required',
         'municipality' => 'required',
+        'ward' => 'required',
         'tel' => 'required|integer',
         ];
     }
@@ -157,9 +158,10 @@ class Rule {
         'zip.required' => '郵便番号は必須です',
         'zip.integer' => '郵便番号は数値で入力してください',
         'prefecture.required' => '都道府県は必須です',
-        'municipality.required' => '市町村は必須です',
+        'municipality.required' => '市入力は必須です',
+        'ward.required' => '区長村入力は必須です',
         'tel.required' => '電話番号は必須です',
-        'tel.integer' => '電話番号は数値で入力してください',
+        'tel.integer' => '電話番号は半角数値で入力してください',
         ];
     }
   public static function editMemberPasswordRules()
