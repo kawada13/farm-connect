@@ -17,4 +17,15 @@ class ProductAreaController extends Controller
 
         return view('client.productArea.index', ['client' => $client]);
     }
+
+    public function edit(Request $request)
+    {
+        $client = $this->clientCheck($request->cookie('token_clients'));
+
+        if (empty($client)) {
+            return redirect('/login/client');
+        }
+
+        return view('client.productArea.edit', ['client' => $client]);
+    }
 }

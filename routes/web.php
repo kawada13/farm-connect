@@ -46,6 +46,7 @@ Route::get('/client/product/notordering', 'Client\ProductController@notOrder')->
 Route::get('/client/product/ordering', 'Client\ProductController@order')->name('product.ordering');
 Route::get('/client/product/notordering/{id}', 'Client\ProductController@notOrderShow')->name('notordering.show');
 Route::get('/client/product_area', 'Client\ProductAreaController@index')->name('product_area.index');
+Route::get('/client/product_area/edit', 'Client\ProductAreaController@edit')->name('product_area.edit');
 
 // メンバーのみ
 Route::get('/member/profile', 'UsersController@memberShow')->name('member.show');

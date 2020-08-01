@@ -9,6 +9,7 @@
   @csrf
 
   <p class="h4 mb-4">生産者新規追加</p>
+  <div class="error_create"></div>
   <div class="error_text_name"></div>
   <div class="error_text_email"></div>
   <div class="error_text_password"></div>

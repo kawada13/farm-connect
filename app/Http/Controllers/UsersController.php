@@ -47,8 +47,10 @@ class UsersController extends Controller
             ->where('member_id', $user->member_id)
             ->get();
 
+        $count = count($deliveries);
 
-        return view('member.address.index', ['deliveries' => $deliveries]);
+
+        return view('member.address.index', ['deliveries' => $deliveries, 'count' => $count]);
     }
     public function memberAdressCreate(Request $request)
     {

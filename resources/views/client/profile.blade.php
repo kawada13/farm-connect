@@ -45,10 +45,15 @@
         <input name="image" type="file" id='image'>
       </div>
 
+      <div class="md-form mb-4">
+        <input type="text" id="name" class="form-control" name="name" value="{{ $client->name }}">
+        <label for="name">名前</label>
+      </div>
 
-      <input type="text" id="name" class="form-control mb-4" value="{{ $client->name }}" name="name">
-
-      <input type="email" id="email" class="form-control mb-4" value="{{ $client->email }}" name="email">
+      <div class="md-form mb-4">
+        <input type="email" id="email" class="form-control" name="email" value="{{ $client->email }}">
+        <label for="email">メールアドレス</label>
+      </div>
 
       <button class="btn btn-light-green btn-block my-4 client_edit">基本情報を変更する</button>
     </div>

@@ -215,4 +215,36 @@ class Rule {
         ];
     }
 
+  public static function createProductAreaRules()
+    {
+      return [
+        'area_name' => 'required',
+        'tel' => 'required|integer',
+        'zip' => 'required|integer',
+        'prefecture' => 'required',
+        'municipality' => 'required',
+        'ward' => 'required',
+        'introduce' => 'required',
+        'shipping' => 'required',
+        'shipping_info' => 'required',
+        ];
+    }
+
+  public static function createProductAreaMessages()
+    {
+      return [
+        'area_name.required' => '生産地名入力は必須です',
+        'tel.required' => '電話番号は必須です',
+        'tel.integer' => '電話番号は半角数値で入力してください',
+        'zip.required' => '郵便番号は必須です',
+        'zip.integer' => '郵便番号は数値で入力してください',
+        'prefecture.required' => '都道府県は必須です',
+        'municipality.required' => '市入力は必須です',
+        'ward.required' => '区長村入力は必須です',
+        'introduce.required' => '紹介文入力は必須です',
+        'shipping.required' => '発送曜日入力は必須です',
+        'shipping_info.required' => '発送に関するお知らせの入力は必須です',
+        ];
+    }
+
 }

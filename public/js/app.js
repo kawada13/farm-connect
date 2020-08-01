@@ -125,6 +125,10 @@ $(function () {
       })
       .fail(function (data) {
         window.console.log(data);
+        if (Object.keys(data.responseJSON).length) {
+          $('.error_create').html('');
+          $('.error_create').append("<p class='alert-danger'>すでに登録されているメールアドレスもしくはパスワードです</p>");
+        }
         createErrorList(data)
       })
 
@@ -155,6 +159,10 @@ $(function () {
       })
       .fail(function (data) {
         window.console.log(data);
+        if (Object.keys(data.responseJSON).length) {
+          $('.error_create').html('');
+          $('.error_create').append("<p class='alert-danger'>すでに登録されているメールアドレスもしくはパスワードです</p>");
+        }
         createErrorList(data);
       })
 
@@ -185,6 +193,10 @@ $(function () {
       })
       .fail(function (data) {
         window.console.log(data);
+        if (Object.keys(data.responseJSON).length) {
+          $('.error_create').html('');
+          $('.error_create').append("<p class='alert-danger'>すでに登録されているメールアドレスもしくはパスワードです</p>");
+        }
         createErrorList(data);
       })
 
@@ -402,6 +414,78 @@ $(function () {
 
       })
       .fail(function (data) {
+      })
+  });
+
+  // 生産地情報登録
+  $(document).on('click', '.prduct_area_create', function () {
+    $.ajax('/api/client/product_area/create',
+      {
+        type: 'post',
+        data: {
+          area_name: $('#area_name').val(),
+          tel: $('#tel').val(),
+          zip: $('#zipcode').val(),
+          prefecture: $('#prefecture').val(),
+          municipality: $('#municipality').val(),
+          ward: $('#ward').val(),
+          introduce: $('#introduce').val(),
+          shipping: $('#shipping').val(),
+          shipping_info: $('#shipping_info').val(),
+          token: $.cookie("token_clients"),
+        },
+        dataType: 'json'
+      }
+    )
+      .done(function (data) {
+        window.console.log(data);
+        $('.product_area').html('');
+        $('.product_area').html(`
+        <div class="modal-content">
+        <div class="modal-header text-center">
+          <h4 class="modal-title w-100 font-weight-bold">登録しました</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        `);
+        setTimeout(function () {
+          location.reload();
+        }, 500);
+
+      })
+      .fail(function (data) {
+        createErrorList(data);
+      })
+  });
+
+  // 生産地情報編集
+  $(document).on('click', '.prduct_area_edit', function () {
+    $.ajax('/api/client/product_area/edit',
+      {
+        type: 'post',
+        data: {
+          area_name: $('#area_name').val(),
+          tel: $('#tel').val(),
+          zip: $('#zipcode').val(),
+          prefecture: $('#prefecture').val(),
+          municipality: $('#municipality').val(),
+          ward: $('#ward').val(),
+          introduce: $('#introduce').val(),
+          shipping: $('#shipping').val(),
+          shipping_info: $('#shipping_info').val(),
+          token: $.cookie("token_clients"),
+        },
+        dataType: 'json'
+      }
+    )
+      .done(function (data) {
+        window.console.log(data);
+        location.href = "/client/product_area";
+
+      })
+      .fail(function (data) {
+        createErrorList(data);
       })
   });
 
@@ -685,8 +769,8 @@ $(function () {
         let html = "";
         $.each(data.reviews, function (index, value) {
           window.console.log(value);
-          html += 
-          `
+          html +=
+            `
            <div class="card">
             <div class="card-body">   
               <h4 class="card-title"><a href="/products/${value.product_id}">${value.product_name}</a></h4>
@@ -700,20 +784,17 @@ $(function () {
         $('.review_list').html("");
         $('.review_list').append(html);
 
-        if(data.type === null)
-        {
+        if (data.type === null) {
           $(".xfollows").removeClass("active");
           $(".xmine").removeClass("active");
           $(".xall").addClass("active");
         }
-        if(data.type === 'follows')
-        {
+        if (data.type === 'follows') {
           $(".xall").removeClass("active");
           $(".xmine").removeClass("active");
           $(".xfollows").addClass("active");
         }
-        if(data.type === 'mine')
-        {
+        if (data.type === 'mine') {
           $(".xall").removeClass("active");
           $(".xfollows").removeClass("active");
           $(".xmine").addClass("active");

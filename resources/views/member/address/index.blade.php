@@ -69,9 +69,13 @@
               <button type="button" class="btn btn-outline-success btn-rounded waves-effect">変更する</button>
             </a>
 
+            
+
+            @if($count > 1)
             <button type="button" class="btn btn-outline-success btn-rounded waves-effect" data-toggle="modal" data-target="#basicExampleModal">
               削除
             </button>
+
 
             <!-- Modal -->
             <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -88,9 +92,11 @@
               </div>
             </div>
 
-          </div>
-          @endforeach
+            @endif
 
+          </div>
+
+          @endforeach
         </div>
 
       </div>
@@ -98,11 +104,6 @@
     </div>
 
   </div>
-
-  <div class="alert alert-success fade in alert-dismissible" role="alert">
-    A simple success alert—check it out!
-  </div>
-
 
 </div>
 
