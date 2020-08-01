@@ -33,6 +33,7 @@ Route::post('/client/shipment', 'API\UsersController@shipment');
 Route::post('/client/profile/edit', 'API\UsersController@updateClientProfile');
 Route::post('/client/product_area/create', 'API\Client\ProductAreaController@create');
 Route::post('/client/product_area/edit', 'API\Client\ProductAreaController@edit');
+Route::post('/client/password/edit', 'API\UsersController@editClientPassword');
 
 // メンバー
 Route::post('/member/profile/edit', 'API\UsersController@updateMemberProfile');

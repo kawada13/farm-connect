@@ -508,13 +508,30 @@ $(function () {
       {
         type: 'post',
         data: {
-          email: $('#email').val(),
           password: $('#password').val(),
-          admin_id: $('#admin_id').val(),
-          client_id: $('#client_id').val(),
-          member_id: $('#member_id').val(),
-          scope: $('#scope').val(),
           token: $.cookie("token_members"),
+        },
+        dataType: 'json'
+      }
+    )
+      .done(function (data) {
+        window.console.log(data);
+        $('.password_edit').html('');
+        $('.password_edit').html('<p>更新しました</p>');
+      })
+      .fail(function (data) {
+        window.console.log(data);
+        createErrorList(data);
+      })
+  });
+  // クライアントパスワード編集
+  $(document).on('click', '.client_password_edit', function () {
+    $.ajax('/api/client/password/edit',
+      {
+        type: 'post',
+        data: {
+          password: $('#password').val(),
+          token: $.cookie("token_clients"),
         },
         dataType: 'json'
       }

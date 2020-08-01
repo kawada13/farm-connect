@@ -171,24 +171,37 @@ class UsersController extends Controller
             ], 404);
         }
 
-        $user->email = $request->input('email');
         $user->password = $request->input('password');
-        $user->remember_token = $request->input('token');
-        $user->admin_id = $request->input('admin_id');
-        $user->client_id = $request->input('client_id');
-        $user->member_id = $request->input('member_id');
-        $user->scope = $request->input('scope');
         $user->save();
 
-
         return response()->json([
-            'email' => $request->input('email'),
             'password' => $request->input('password'),
             'remember_token' => $request->input('token'),
-            'admin_id' => $request->input('admin_id'),
-            'client_id' => $request->input('client_id'),
-            'member_id' => $request->input('member_id'),
-            'scope' => $request->input('scope'),
+        ], 200);
+    }
+
+    public function editClientPassword(Request $request)
+    {
+        $this->validate($request, Rule::editMemberPasswordRules(), Rule::editMemberPasswordMessages());
+
+        $user = User::select('*')
+            ->where('remember_token', $request->input('token'))
+            ->first();
+
+        $client = $this->clientCheck($request->input('token'));
+
+        if (empty($client->id)) {
+            return response()->json([
+                'error' => 'ログイン必須です',
+            ], 404);
+        }
+
+        $user->password = $request->input('password');
+        $user->save();
+
+        return response()->json([
+            'password' => $request->input('password'),
+            'remember_token' => $request->input('token'),
         ], 200);
     }
 

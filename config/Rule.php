@@ -164,6 +164,7 @@ class Rule {
         'tel.integer' => '電話番号は半角数値で入力してください',
         ];
     }
+    // メンバーパスワード変更
   public static function editMemberPasswordRules()
     {
       return [
@@ -199,6 +200,7 @@ class Rule {
         ];
     }
 
+    // レビュー作成
   public static function reviewRules()
     {
       return [
@@ -214,6 +216,9 @@ class Rule {
         'comment.required' => 'レビュー入力は必須です',
         ];
     }
+
+
+    // 生産地情報登録、編集
 
   public static function createProductAreaRules()
     {
