@@ -65,11 +65,11 @@
                       <div class="card-body-top" style="height: 133px;">
                         <!--Title-->
 
-                        <h4 class="card-title">{{$client->name}}</h4>
+                        <h4 class="card-title">{{$client->area_name}}</h4>
 
                         <!--Text-->
-                        <p class="card-text">{{$client->prefecture}}</p>
-                        <p class="card-text">紹介文</p>
+                        <p class="card-text">{{$client->prefecture}}{{$client->municipality}}</p>
+                        <p class="card-text">{{$client->introduce}}</p>
                       </div>
                     </div>
                   </a>

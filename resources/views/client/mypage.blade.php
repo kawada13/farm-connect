@@ -61,7 +61,7 @@
             </div>
 
             <div class="col-md-4 text-center">
-              <a href="#" class="profile-panel btn btn-light">
+              <a href="{{ route('client_product.index') }}" class="profile-panel btn btn-light">
                 <i class="fas fa-carrot"></i>
                 <p class="mb-0">商品情報</p>
               </a>

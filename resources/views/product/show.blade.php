@@ -24,7 +24,23 @@
 
   <div class="row my-4">
     <div class="col-md-6">
-      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
+      @if(!count($images))
+      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" style="height: 300px">
+      @endif
+      @if(count($images))
+      <img class="card-img-top" src="{{$images[0]->image_url}}" style="width: 300px; height: 300px">
+      <div class="row mt-2">
+        @foreach($images as $key => $image)
+        @if ($key == 0)
+        @continue
+        @endif
+        <div class="col-md-3">
+          <img src="{{$image->image_url}}" alt="thumbnail" class="img-thumbnail" style="width: 200px">
+        </div>
+        @endforeach
+      </div>
+      @endif
+
     </div>
     <div class="col-md-6">
       <h4 class="font-weight-bold">{{$product->title}}</h4>
@@ -47,7 +63,7 @@
 
       <hr>
 
-      <p>商品解説商品解説商品解説商品解説商品解説商品解説商品解説商品解説商品解説商品解説商品解説商品解説商品解説商品解説商品解説商品解説</p>
+      <p>{{$product->explanation}}</p>
 
     </div>
   </div>
@@ -112,7 +128,7 @@
 
       <p>{{$product->client->prefecture}}{{$product->client->municipality}}</p>
       <a href="{{ route('clients.show', ['id' => $product->client->id]) }}">
-        <p>{{$product->client->name}}</p>
+        <p>{{$product->client->area_name}}</p>
       </a>
       <hr>
       <p>{{$product->client->introduce}}</p>

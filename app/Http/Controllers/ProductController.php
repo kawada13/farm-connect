@@ -10,6 +10,7 @@ use App\Model\User;
 use App\Model\Client;
 use App\Model\Commitment;
 use App\Model\Review;
+use App\Model\ProductImage;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
@@ -25,8 +26,12 @@ class ProductController extends Controller
             ->get();
 
 
+        $reviews = Review::select('*')
+            ->orderBy('id', 'desc')
+            ->limit(4)
+            ->get();
 
-        return view('product.top', ['products' => $products]);
+        return view('product.top', ['products' => $products, 'reviews' => $reviews]);
     }
     public function index(Request $request)
     {
@@ -100,7 +105,11 @@ class ProductController extends Controller
             ->where('client_id', $product->client_id)
             ->get();
 
-        return view('product.show', ['product' => $product, 'is_facvoriting' => $is_facvoriting, 'commitments' => $commitments, 'products' => $products, 'reviews' => $reviews]);
+        $images = ProductImage::select('*')
+            ->where('product_id', $id)
+            ->get();
+
+        return view('product.show', ['product' => $product, 'is_facvoriting' => $is_facvoriting, 'commitments' => $commitments, 'products' => $products, 'reviews' => $reviews, 'images' => $images]);
     }
 
     public function is_facvoriting($memberId, $productId)

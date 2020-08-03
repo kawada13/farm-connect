@@ -90,8 +90,8 @@
 
                       <div class="col-md-6 text-center">
                         <div class="prefecture_client card-text text-center">
-                          <p>{{$product->client->prefecture}}</p>
-                          <p>{{$product->client->name}}</p>
+                          <p>{{$product->client->prefecture}}{{$product->client->municipality}}</p>
+                          <p>{{$product->client->area_name}}</p>
                         </div>
                       </div>
                     </a>

@@ -10,6 +10,7 @@
     @csrf
 
     <p class="h4 mb-4">商品新規追加</p>
+    
     <div class="error_text_categories"></div>
     <div class="error_text_title"></div>
     <div class="error_text_detail"></div>
@@ -19,12 +20,10 @@
     <div class="checkbox mb-4">
 
       <div class="checkbox_title">
-
         <p>商品のジャンルを選択してください(複数可)</p>
-
       </div>
 
-      <div class="checkbox_content mb-4" name="categories">
+      <div class="checkbox_content" name="categories">
 
         @foreach($categories as $category)
         <div class="custom-control custom-checkbox">
@@ -36,7 +35,7 @@
       </div>
 
 
-      <div class="product_image mb-4">
+      <div class="product_image">
         <p>商品画像を追加(最大5枚まで)</p>
         <input name="gallery1" type="file" id='gallery1'>
         <input name="gallery2" type="file" id='gallery2'>

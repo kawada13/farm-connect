@@ -49,6 +49,7 @@ $(function () {
     fd.append("gallery5", $upfile5.prop('files')[0]);
     fd.append("title", $('#title').val());
     fd.append("detail", $('#detail').val());
+    fd.append("explanation", $('#explanation').val());
     fd.append("price", $('#price').val());
     fd.append("token", $.cookie("token_clients"));
 
@@ -64,6 +65,19 @@ $(function () {
     )
       .done(function (data) {
         window.console.log(data);
+        $('.product_create_modal').html('');
+        $('.product_create_modal').html(`
+        <div class="modal-content">
+        <div class="modal-header text-center">
+          <h4 class="modal-title w-100 font-weight-bold">登録しました</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        `);
+        setTimeout(function () {
+          location.reload();
+        }, 500);
       })
       .fail(function (data) {
         window.console.log(data);
@@ -789,7 +803,7 @@ $(function () {
           html +=
             `
            <div class="card">
-            <div class="card-body">   
+            <div class="card-body">
               <h4 class="card-title"><a href="/products/${value.product_id}">${value.product_name}</a></h4>
               <hr>
               <p class="card-text">評価(3段階)::${value.score}</p>
@@ -822,6 +836,14 @@ $(function () {
         window.console.log(data);
       })
 
+  });
+
+  $('.slider').slick({
+    dots: true,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 1,
+    adaptiveHeight: true
   });
 
 

@@ -31,6 +31,7 @@ class ProductController extends Controller
         $product->client_id = $client->id;
         $product->title = $request->input('title');
         $product->detail = $request->input('detail');
+        $product->explanation = $request->input('explanation');
         $product->price = $request->input('price');
         $product->save();
 
@@ -80,6 +81,7 @@ class ProductController extends Controller
         return response()->json([
             'title' => $request->input('title'),
             'detail' => $request->input('detail'),
+            'explanation' => $request->input('explanation'),
             'price' => $request->input('price'),
             'token' => $request->input('token'),
             'categories' => $request->input('categories'),

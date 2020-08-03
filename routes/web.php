@@ -47,6 +47,9 @@ Route::get('/client/product/ordering', 'Client\ProductController@order')->name('
 Route::get('/client/product/notordering/{id}', 'Client\ProductController@notOrderShow')->name('notordering.show');
 Route::get('/client/product_area', 'Client\ProductAreaController@index')->name('product_area.index');
 Route::get('/client/product_area/edit', 'Client\ProductAreaController@edit')->name('product_area.edit');
+Route::get('/client/products', 'Client\ProductController@index')->name('client_product.index');
+Route::get('/client/products/{id}', 'Client\ProductController@show')->name('client_product.show');
+Route::get('/client/products/{id}/edit', 'Client\ProductController@edit')->name('client_product.edit');
 
 // メンバーのみ
 Route::get('/member/profile', 'UsersController@memberShow')->name('member.show');

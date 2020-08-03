@@ -90,6 +90,7 @@ class Rule {
       return [
         'title' => 'required',
         'detail' => 'required',
+        'explanation' => 'required',
         'price' => 'required|integer',
         'categories' => 'required|array',
         ];
@@ -98,9 +99,10 @@ class Rule {
   public static function createProductMessages()
     {
       return [
-        'title.required' => 'タイトルは必須です',
-        'detail.required' => '詳細は必須です',
-        'price.required' => '価格は必須です',
+        'title.required' => 'タイトル入力は必須です',
+        'detail.required' => '商品内容入力は必須です',
+        'explanation.required' => '商品解説入力は必須です',
+        'price.required' => '価格入力は必須です',
         'categories.required' => 'カテゴリー選択は必須です',
         'price.integer' => '価格は半角数値で入力してください',
         ];

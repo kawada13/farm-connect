@@ -43,8 +43,8 @@
           <img src="{{$client->client_url}}" class="img-fluid" alt="Responsive image">
         </div>
         <div class="col-md-9">
-          <p>{{$client->prefecture}}{{$client->municipality}}</p>
-          <p>{{$client->name}}</p>
+          <p>{{$client->prefecture}}{{$client->municipality}}{{$client->ward}}</p>
+          <p>{{$client->area_name}}</p>
           <input type="hidden" id="client_id" class="form-control mb-4" value="{{ $client->id }}" name="client_id">
           @if (Cookie::get('token_members'))
           <div class="follow_btn">

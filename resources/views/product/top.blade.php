@@ -26,7 +26,40 @@
           @include('commons.sidebar')
         </div>
 
+
         <div class="col-md-9 right-content">
+
+
+          <div class="group-item-header">
+            <ul class="nav grey lighten-4 py-2 font-weight-bold">
+              <li class="nav-item">
+                <h3 class="nav-link">みんなの投稿</h3>
+              </li>
+            </ul>
+          </div>
+
+          <div class="communication_items mb-2">
+            <ul class="slider mb-4">
+              @foreach($reviews as $review)
+              <li>
+                <div class="card">
+                  <div class="card-body text-center">
+                    <img src="https://mdbootstrap.com/img/Others/documentation/img%20(75)-mini.jpg" alt="thumbnail" class="img-thumbnail mx-auto" style="width: 200px">
+                    <h4 class="card-title "><a href="{{ route('product.show', ['id' => $review->product->id]) }}">{{$review->product_name}}</a></h4>
+                    <hr>
+                    <p class="card-text">評価(3段階)::{{$review->score}}</p>
+                    <p class="card-text">{{$review->comment}}</p>
+                  </div>
+                </div>
+              </li>
+              @endforeach
+            </ul>
+          </div>
+          <div class="btn_layout text-center mb-4">
+            <a href="{{ route('reviews.index') }}">
+              <button type="button" class="btn btn-outline-success btn-rounded waves-effect">全ての投稿を見る</button>
+          </div>
+          </a>
           <div class="group-item-header">
             <ul class="nav grey lighten-4 py-2 font-weight-bold">
               <li class="nav-item">
@@ -82,8 +115,8 @@
 
                       <div class="col-md-6 text-center">
                         <div class="prefecture_client card-text text-center">
-                          <p>{{$product->client->prefecture}}</p>
-                          <p>{{$product->client->name}}</p>
+                          <p>{{$product->client->prefecture}}{{$product->client->municipality}}</p>
+                          <p>{{$product->client->area_name}}</p>
                         </div>
                       </div>
 
