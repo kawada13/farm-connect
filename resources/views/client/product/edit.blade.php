@@ -109,7 +109,7 @@
 
       <div class="md-form mb-4">
         <input type="text" id="title" class="form-control" name="title" value="{{ $product->title }}">
-        <label for="name">商品名</label>
+        <label for="title">商品名</label>
       </div>
 
       <div class="md-form mb-4">

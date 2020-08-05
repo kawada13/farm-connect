@@ -40,7 +40,7 @@ Route::get('/client/mypage', 'UsersController@clientMypage')->name('client.mypag
 Route::get('/client/profile', 'UsersController@clientProfile')->name('client.profile');
 Route::get('/client/product/create', 'Client\ProductController@create')->name('product.create');
 Route::get('/client/commitment/index', 'Client\CommitmentController@index')->name('commitment.index');
-Route::get('/client/commitment/create', 'Client\CommitmentController@create')->name('commitment.create');
+Route::get('/client/commitment/{id}/show', 'Client\CommitmentController@show')->name('commitment.show');
 Route::get('/client/commitment/{id}/edit', 'Client\CommitmentController@edit')->name('commitment.edit');
 Route::get('/client/product/notordering', 'Client\ProductController@notOrder')->name('product.notordering');
 Route::get('/client/product/ordering', 'Client\ProductController@order')->name('product.ordering');

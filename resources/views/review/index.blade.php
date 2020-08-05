@@ -46,7 +46,13 @@
       <div class="card-body">
         <h4 class="card-title"><a href="{{ route('product.show', ['id' => $review->product->id]) }}">{{$review->product_name}}</a></h4>
         <hr>
-        <p class="card-text">評価(3段階)::{{$review->score}}</p>
+        @if($review->score === 1)
+        <p class="card-text">{{ '⭐️' }}</p>
+        @elseif($review->score === 2)
+        <p class="card-text">{{ '⭐️⭐️' }}</p>
+        @elseif($review->score === 3)
+        <p class="card-text">{{ '⭐️⭐️⭐️' }}</p>
+        @endif
         <p class="card-text">{{$review->comment}}</p>
       </div>
     </div>

@@ -44,10 +44,23 @@
               <li>
                 <div class="card">
                   <div class="card-body text-center">
+
+                    @if(count($review->product->productImages))
+                    <img src="{{$review->product->productImages[0]->image_url}}" alt="thumbnail" class="img-thumbnail mx-auto" style="width: 200px">
+                    @else
                     <img src="https://mdbootstrap.com/img/Others/documentation/img%20(75)-mini.jpg" alt="thumbnail" class="img-thumbnail mx-auto" style="width: 200px">
+                    @endif
+
+
                     <h4 class="card-title "><a href="{{ route('product.show', ['id' => $review->product->id]) }}">{{$review->product_name}}</a></h4>
                     <hr>
-                    <p class="card-text">評価(3段階)::{{$review->score}}</p>
+                    @if($review->score === 1)
+                    <p class="card-text">{{ '⭐️' }}</p>
+                    @elseif($review->score === 2)
+                    <p class="card-text">{{ '⭐️⭐️' }}</p>
+                    @elseif($review->score === 3)
+                    <p class="card-text">{{ '⭐️⭐️⭐️' }}</p>
+                    @endif
                     <p class="card-text">{{$review->comment}}</p>
                   </div>
                 </div>

@@ -86,17 +86,17 @@ $(function () {
 
   });
 
-  // こだわり登録
-  $(document).on('click', '.commitment_create', function () {
-    let $upfile = $('input[name="commitment_image"]');
+  // こだわり情報登録
+  $(document).on('click', '.client_commitment_create', function () {
+
     let fd = new FormData();
+    let $upfile = $('input[name="gallery"]');
     fd.append("commitment_image", $upfile.prop('files')[0]);
     fd.append("title", $('#title').val());
     fd.append("contents", $('#contents').val());
-    fd.append("client_id", $('#client_id').val());
     fd.append("token", $.cookie("token_clients"));
 
-    for (item of fd) window.console.log(item);
+
     $.ajax('/api/client/commitment/create',
       {
         type: 'post',
@@ -108,6 +108,19 @@ $(function () {
     )
       .done(function (data) {
         window.console.log(data);
+        $('.commitment_create_modal').html('');
+        $('.commitment_create_modal').html(`
+        <div class="modal-content">
+        <div class="modal-header text-center">
+          <h4 class="modal-title w-100 font-weight-bold">登録しました</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        `);
+        setTimeout(function () {
+          location.reload();
+        }, 500);
       })
       .fail(function (data) {
         window.console.log(data);
@@ -115,6 +128,38 @@ $(function () {
       })
 
   });
+  // こだわり情報編集
+  $(document).on('click', '.client_commitment_edit', function () {
+
+    let fd = new FormData();
+    let $upfile = $('input[name="gallery"]');
+    fd.append("commitment_image", $upfile.prop('files')[0]);
+    fd.append("title", $('#title').val());
+    fd.append("contents", $('#contents').val());
+    fd.append("token", $.cookie("token_clients"));
+    fd.append("commitment_id", $("#commitment_id").val());
+
+
+    $.ajax('/api/client/commitment/edit',
+      {
+        type: 'post',
+        data: fd,
+        dataType: 'json',
+        processData: false,
+        contentType: false,
+      }
+    )
+      .done(function (data) {
+        window.console.log(data);
+        location.href = `/client/commitment/${data.commitment_id}/show`;
+      })
+      .fail(function (data) {
+        window.console.log(data);
+        createErrorList(data);
+      })
+
+  });
+
 
 
   // 管理者登録
@@ -779,7 +824,6 @@ $(function () {
         window.console.log(data);
         createErrorList(data);
       })
-
   });
 
   // レビュー一覧
@@ -800,17 +844,45 @@ $(function () {
         let html = "";
         $.each(data.reviews, function (index, value) {
           window.console.log(value);
-          html +=
-            `
-           <div class="card">
-            <div class="card-body">
-              <h4 class="card-title"><a href="/products/${value.product_id}">${value.product_name}</a></h4>
-              <hr>
-              <p class="card-text">評価(3段階)::${value.score}</p>
-              <p class="card-text">${value.comment}</p>
+          if (value.score === 1) {
+            html +=
+              `
+             <div class="card">
+              <div class="card-body">
+                <h4 class="card-title"><a href="/products/${value.product_id}">${value.product_name}</a></h4>
+                <hr>
+                <p class="card-text">⭐️</p>
+                <p class="card-text">${value.comment}</p>
+              </div>
             </div>
-          </div>
-          `
+            `
+          }
+          if (value.score === 2) {
+            html +=
+              `
+             <div class="card">
+              <div class="card-body">
+                <h4 class="card-title"><a href="/products/${value.product_id}">${value.product_name}</a></h4>
+                <hr>
+                <p class="card-text">⭐️⭐️</p>
+                <p class="card-text">${value.comment}</p>
+              </div>
+            </div>
+            `
+          }
+          if (value.score === 3) {
+            html +=
+              `
+             <div class="card">
+              <div class="card-body">
+                <h4 class="card-title"><a href="/products/${value.product_id}">${value.product_name}</a></h4>
+                <hr>
+                <p class="card-text">⭐️⭐️⭐️</p>
+                <p class="card-text">${value.comment}</p>
+              </div>
+            </div>
+            `
+          }
         })
         $('.review_list').html("");
         $('.review_list').append(html);
@@ -833,7 +905,7 @@ $(function () {
       })
 
       .fail(function (data) {
-        window.console.log(data);
+        location.href = "/login/member";
       })
 
   });
@@ -844,6 +916,18 @@ $(function () {
     speed: 300,
     slidesToShow: 1,
     adaptiveHeight: true
+  });
+
+
+  // 商品詳細サムネイル画像変換
+  $(document).on('click', '.produt_show_gallay_sub', function () {
+    window.console.log($(this).attr('src'));
+    $('.produt_show_gallay_main').attr('src', $(this).attr('src'));
+  });
+
+  $(document).on('click', '.client_product_show_gallay_sub', function () {
+    window.console.log($(this).attr('src'));
+    $('.client_product_show_gallay_main').attr('src', $(this).attr('src'));
   });
 
 

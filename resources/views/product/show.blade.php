@@ -28,25 +28,25 @@
       <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" style="height: 300px">
       @endif
       @if(count($images))
-      <img class="card-img-top" src="{{$images[0]->image_url}}" style="width: 300px; height: 300px">
+      <img class="card-img-top produt_show_gallay_main" src="{{$images[0]->image_url}}" style="width: 300px; height: 300px">
+
       <div class="row mt-2">
-        @foreach($images as $key => $image)
-        @if ($key == 0)
-        @continue
-        @endif
+        @foreach($images as $image)
         <div class="col-md-3">
-          <img src="{{$image->image_url}}" alt="thumbnail" class="img-thumbnail" style="width: 200px">
+          <img src="{{$image->image_url}}" alt="thumbnail" class="img-thumbnail produt_show_gallay_sub" style="width: 200px">
         </div>
         @endforeach
       </div>
-      @endif
 
+      @endif
     </div>
     <div class="col-md-6">
       <h4 class="font-weight-bold">{{$product->title}}</h4>
       <p>内容::{{$product->detail}}</p>
       <p>価格::{{$product->price}}円</p>
       <p>発送日::{{$product->client->shipping}}</p>
+      <p class="mt-4">{{$product->client->shipping_info}}</p>
+
       <input type="hidden" id="product_id" class="form-control mb-4" value="{{ $product->id }}" name="product_id">
       @if (Cookie::get('token_members'))
       <div class="favorite_btn">
@@ -195,18 +195,17 @@
   <div class="card mt-3">
     <div class="card-body">
       <h4 class="card-title"><a href="{{ route('product.show', ['id' => $review->product->id]) }}">{{$review->product_name}}</a></h4>
-      <p class="card-text">評価(3段階)::{{$review->score}}</p>
+      @if($review->score === 1)
+      <p class="card-text">{{ '⭐️' }}</p>
+      @elseif($review->score === 2)
+      <p class="card-text">{{ '⭐️⭐️' }}</p>
+      @elseif($review->score === 3)
+      <p class="card-text">{{ '⭐️⭐️⭐️' }}</p>
+      @endif
       <p class="card-text">{{$review->comment}}</p>
     </div>
   </div>
   @endforeach
-
-
-
-
-
-
-
 
 
 

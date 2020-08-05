@@ -59,8 +59,13 @@
 
                   <a href="{{ route('product.show', ['id' => $favorite->product->id]) }}">
                     <div class="view overlay">
-                      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
+                      @if(count($favorite->product->productImages))
+                      <img class="card-img-top" src="{{$favorite->product->productImages[0]->image_url}}" alt="Card image cap" style="height: 133px;">
                       <div class="mask rgba-white-slight"></div>
+                      @else
+                      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap" style="height: 133px;">
+                      <div class="mask rgba-white-slight"></div>
+                      @endif
                     </div>
 
                     <div class="card-body">
@@ -79,14 +84,14 @@
 
                       <div class="col-md-6 text-center">
                         <div class="img_client">
-                          <img src="https://illust8.com/wp-content/uploads/2018/06/fruit_apple_illust_150.png" alt="avatar mx-auto white" class="rounded-circle img-fluid" style="width: 60px;">
+                          <img src="{{$favorite->product->client->client_url}}" alt="avatar mx-auto white" class="rounded-circle img-fluid" style="width: 60px;">
                         </div>
                       </div>
 
                       <div class="col-md-6 text-center">
                         <div class="prefecture_client card-text text-center">
-                          <p>{{$favorite->product->client->prefecture}}</p>
-                          <p>{{$favorite->product->client->name}}</p>
+                          <p>{{$favorite->product->client->prefecture}}{{$favorite->product->client->municipality}}</p>
+                          <p>{{$favorite->product->client->area_name}}</p>
                         </div>
                       </div>
                     </a>

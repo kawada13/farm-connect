@@ -9,8 +9,8 @@
   <title>
     @yield('title')
   </title>
-  <link href="js/slick/slick-theme.css" rel="stylesheet" type="text/css">
-  <link href="js/slick/slick.css" rel="stylesheet" type="text/css">
+  <link href="{{ asset('js/slick/slick-theme.css')}}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('js/slick/slick.css') }}" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -37,7 +37,7 @@
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/js/mdb.min.js"></script>
 
-  <script type="text/javascript" src="js/slick/slick.min.js"></script>
+  <script type="text/javascript" src="{{ asset('js/slick/slick.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
   @yield('js')
 </body>

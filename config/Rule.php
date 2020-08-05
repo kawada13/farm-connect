@@ -119,8 +119,8 @@ class Rule {
   public static function createCommitmentMessages()
     {
       return [
-        'title.required' => 'タイトルは必須です',
-        'contents.required' => '詳細は必須です',
+        'title.required' => 'こだわりタイトル入力は必須です',
+        'contents.required' => '詳細内容入力は必須です',
         ];
     }
 

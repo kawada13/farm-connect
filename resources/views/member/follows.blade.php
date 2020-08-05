@@ -57,7 +57,7 @@
                   <a href="{{ route('clients.show', ['id' => $follow->client->id]) }}">
                     <!--Card image-->
                     <div class="view overlay">
-                      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
+                      <img class="card-img-top" src="{{$follow->client->client_url}}" alt="Card image cap" style="height: 133px;">
                       <div class="mask rgba-white-slight"></div>
                     </div>
 
@@ -67,10 +67,10 @@
                       <div class="card-body-top" style="height: 133px;">
                         <!--Title-->
 
-                        <h4 class="card-title">{{$follow->client->name}}</h4>
+                        <h4 class="card-title">{{$follow->client->area_name}}</h4>
 
                         <!--Text-->
-                        <p class="card-text">{{$follow->client->prefecture}}</p>
+                        <p class="card-text">{{$follow->client->prefecture}}{{$follow->client->municipality}}</p>
                         <p class="card-text">紹介文</p>
                       </div>
                     </div>

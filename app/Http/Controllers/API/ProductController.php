@@ -23,6 +23,14 @@ class ProductController extends Controller
   public function review(Request $request)
   {
 
+    $member = $this->memberCheck($request->input('token'));
+
+    if (empty($member->id)) {
+      return response()->json([
+        'error' => 'ログイン必須です',
+      ], 404);
+    }
+    
     $user = User::select('*')
       ->where('remember_token', $request->input('token'))
       ->first();

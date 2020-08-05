@@ -30,9 +30,12 @@ class CommitmentController extends Controller
         $commitment->client_id = $client->id;
         $commitment->title = $request->input('title');
         $commitment->contents = $request->input('contents');
-        $commitment->commitment_url = '/images/commitment_images/' . $request->file('commitment_image')->getClientOriginalName();
+
+        if (!empty($request->file('commitment_image'))) {
+            $commitment->commitment_url = '/images/commitment_images/' . $request->file('commitment_image')->getClientOriginalName();
+            $request->file('commitment_image')->move(base_path() . '/public/images/commitment_images', $request->file('commitment_image')->getClientOriginalName());
+        }
         $commitment->save();
-        $request->file('commitment_image')->move(base_path() . '/public/images/commitment_images', $request->file('commitment_image')->getClientOriginalName());
 
 
         return response()->json([
@@ -40,6 +43,43 @@ class CommitmentController extends Controller
             'title' => $request->input('title'),
             'contents' => $request->input('contents'),
             'token' => $request->input('token'),
+        ], 200);
+    }
+
+    public function edit(Request $request)
+    {
+
+        $this->validate($request, Rule::createCommitmentRules(), Rule::createCommitmentMessages());
+
+
+        $client = $this->clientCheck($request->input('token'));
+
+        if (empty($client->id)) {
+            return response()->json([
+                'error' => 'ログイン必須です',
+            ], 404);
+        }
+
+        $commitment = Commitment::find($request->input('commitment_id'));
+        $commitment->client_id = $client->id;
+        $commitment->title = $request->input('title');
+        $commitment->contents = $request->input('contents');
+
+        if (!empty($request->file('commitment_image'))) {
+            $commitment->commitment_url = '/images/commitment_images/' . $request->file('commitment_image')->getClientOriginalName();
+            $request->file('commitment_image')->move(base_path() . '/public/images/commitment_images', $request->file('commitment_image')->getClientOriginalName());
+        }
+
+        $commitment->save();
+
+
+
+        return response()->json([
+            'client_id' => $client->id,
+            'title' => $request->input('title'),
+            'contents' => $request->input('contents'),
+            'token' => $request->input('token'),
+            'commitment_id' => $request->input('commitment_id'),
         ], 200);
     }
 }

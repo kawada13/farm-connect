@@ -37,17 +37,14 @@
 
     <div class="col-md-6">
       @if(!count($images))
-      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" style="height: 300px">
+      <img class="card-img-top text-center" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" style="height: 300px">
       @endif
       @if(count($images))
-      <img class="card-img-top" src="{{$images[0]->image_url}}" style="width: 300px; height: 300px">
+      <img class="card-img-top client_product_show_gallay_main text-center" src="{{$images[0]->image_url}}" style="width: 300px; height: 300px">
       <div class="row mt-2">
-        @foreach($images as $key => $image)
-        @if ($key == 0)
-        @continue
-        @endif
+        @foreach($images as $image)
         <div class="col-md-3">
-          <img src="{{$image->image_url}}" alt="thumbnail" class="img-thumbnail" style="width: 200px">
+          <img src="{{$image->image_url}}" alt="thumbnail" class="img-thumbnail client_product_show_gallay_sub" style="width: 200px">
         </div>
         @endforeach
       </div>
