@@ -63,7 +63,11 @@
 
         @foreach($categories as $category)
         <div class="custom-control custom-checkbox">
+          @if(in_array($category->id, $productCategories))
+          <input type="checkbox" class="custom-control-input" id="{{$category->id}}" name="categories" value="{{$category->id}}" checked>
+          @else
           <input type="checkbox" class="custom-control-input" id="{{$category->id}}" name="categories" value="{{$category->id}}">
+          @endif
           <label class="custom-control-label" for="{{$category->id}}">{{$category->name}}</label>
         </div>
         @endforeach

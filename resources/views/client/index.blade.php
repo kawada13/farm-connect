@@ -50,6 +50,7 @@
             <div class="card-deck">
 
               @foreach($clients as $client)
+              @if(!empty($client->area_name))
               <div class="col-md-4">
                 <div class="card mb-4">
                   <a href="{{ route('clients.show', ['id' => $client->id]) }}">
@@ -75,6 +76,7 @@
                   </a>
                 </div>
               </div>
+              @endif
               @endforeach
               <!-- Card -->
             </div>

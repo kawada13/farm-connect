@@ -85,7 +85,6 @@ class ProductController extends Controller
             'price' => $request->input('price'),
             'token' => $request->input('token'),
             'categories' => $request->input('categories'),
-            'gallery1' => $request->file('gallery1')->getClientOriginalName(),
         ], 200);
     }
 }

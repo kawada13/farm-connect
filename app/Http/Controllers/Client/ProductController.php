@@ -75,7 +75,8 @@ class ProductController extends Controller
 
     $productCategories = ProductCategory::select('*')
       ->where('product_id', $id)
-      ->get();
+      ->pluck('category_id')
+      ->toArray();
 
 
     return view('client.product.edit', ['product' => $product, 'client' => $client, 'images' => $images, 'categories' => $categories, 'productCategories' => $productCategories]);

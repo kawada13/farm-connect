@@ -26,7 +26,11 @@
 
         <div class="top-area mb-3 text-center">
           <div class="name_image">
+            @if(empty($member->profile_url))
+            <img src="https://lh6.googleusercontent.com/4z3UxRuBZ3kOU7FrHRWUPRw2g6T8O-9MpZGUeO7ZwBgo6Gz0shgL2-aDRlyd5pvwFMPNPX0=w1280" alt="avatar mx-auto white" class="rounded-circle img-fluid" style="width: 60px;">
+            @else
             <img src="{{$member->profile_url}}" alt="avatar mx-auto white" class="rounded-circle img-fluid" style="width: 60px;">
+            @endif
             <span class="card-text text-center">{{$member->name}}</span>
           </div>
           <div class="email">
