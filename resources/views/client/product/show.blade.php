@@ -37,7 +37,7 @@
 
     <div class="col-md-6">
       @if(!count($images))
-      <img class="card-img-top text-center" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" style="height: 300px">
+      <img class="card-img-top text-center" src="https://lh6.googleusercontent.com/8jczmW1Eb0PaECvbLwJGTAUVWvXP3lUU8Km3PmTVtC9N1GBh_w5iB6myOq5Kfx8_z_3PO60=w1280" style="height: 300px">
       @endif
       @if(count($images))
       <img class="card-img-top client_product_show_gallay_main text-center" src="{{$images[0]->image_url}}" style="width: 300px; height: 300px">
@@ -58,6 +58,12 @@
         <p>内容::{{$product->detail}}</p>
         <p>価格::{{$product->price}}円</p>
         <p>発送日::{{$product->client->shipping}}</p>
+        <p>商品カテゴリー::
+
+          @foreach($productCategories as $productCategory)
+          {{$productCategory->category->name}}、、
+          @endforeach
+        </p>
       </div>
     </div>
     <hr>

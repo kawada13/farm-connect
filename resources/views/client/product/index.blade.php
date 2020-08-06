@@ -23,7 +23,7 @@
       </ul>
     </section>
   </header>
-  
+
   <div class="card">
 
     <div class="card-body">
@@ -48,6 +48,7 @@
               <div class="error_text_detail"></div>
               <div class="error_text_explanation"></div>
               <div class="error_text_price"></div>
+              
 
               <div class="modal-body mx-3">
 
@@ -69,6 +70,7 @@
                 <div class="md-form mb-4">
                   <div class="product_image">
                     <p>商品画像を追加(最大5枚まで)</p>
+                    <small class="input_condidion">*jpg,png形式のみ</small></br>
                     <input name="gallery1" type="file" id='gallery1'>
                     <input name="gallery2" type="file" id='gallery2'>
                     <input name="gallery3" type="file" id='gallery3'>

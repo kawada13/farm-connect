@@ -53,8 +53,9 @@ class ProductController extends Controller
       ->where('product_id', $id)
       ->get();
 
+    $productCategories = ProductCategory::where('product_id', $id)->get();
 
-    return view('client.product.show', ['product' => $product, 'client' => $client, 'images' => $images]);
+    return view('client.product.show', ['product' => $product, 'client' => $client, 'images' => $images, 'productCategories' => $productCategories,]);
   }
 
   public function edit(Request $request, $id)
@@ -138,13 +139,11 @@ class ProductController extends Controller
       ->where('id', $id)
       ->first();
 
-    if (empty($purchase->delivery)) {
-      $purchase->delivery = Delivery::where('member_id', $purchase->member_id)
-        ->orderBy('updated_at', 'desc')
-        ->first();
-    }
+    $delivery = Delivery::withTrashed()
+      ->where('id', $purchase->delivery_id)
+      ->first();
 
-    return view('client.product.notorderShow', ['client' => $client, 'purchase' => $purchase]);
+    return view('client.product.notorderShow', ['client' => $client, 'purchase' => $purchase, 'delivery' => $delivery]);
   }
 
   public function order(Request $request)

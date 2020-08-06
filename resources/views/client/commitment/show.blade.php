@@ -30,7 +30,11 @@
   <div class="row my-4">
 
     <div class="col-md-6 text-center">
+      @if(empty($commitment->commitment_url))
+      <img src="https://lh3.googleusercontent.com/z6mnt_JfVRIkcUbdVCZt1xwT_vIg1Ba7WzsWEW6dgzewu9oQmIjb21xz7ox1L_OY_THKqD5APQ=w1280" class="img-fluid" alt="Responsive image">
+      @else
       <img src="{{$commitment->commitment_url}}" class="img-fluid" alt="Responsive image">
+      @endif
     </div>
 
     <div class="col-md-6">

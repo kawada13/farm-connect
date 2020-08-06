@@ -39,9 +39,9 @@
         <td>{{$purchase->product->title}}</td>
         <td>{{$purchase->product->detail}}</td>
         <td>{{$purchase->product->price}}円</td>
-        <td>{{$purchase->delivery->name}}</td>
-        <td>{{$purchase->delivery->tel}}</td>
-        <td>{{$purchase->delivery->prefecture}}{{$purchase->delivery->municipality}}{{$purchase->delivery->ward}}</td>
+        <td>{{$delivery->name}}</td>
+        <td>{{$delivery->tel}}</td>
+        <td>{{$delivery->prefecture}}{{$delivery->municipality}}{{$delivery->ward}}</td>
         <td>{{$purchase->number}}</td>
         <td>{{$purchase->shipping}}</td>
       </tr>

@@ -73,44 +73,45 @@
         @endforeach
 
       </div>
-
+      <hr>
       <div class="md-form my-4">
         <div class="product_image">
-          <div class="row">
-            <div class="col-md-4">
-              @if(!empty($images[0]))
-              <img class="card-img-top" src="{{$images[0]->image_url}}" alt="Card image cap" style="width:200px;">
-              <input name="gallery1" type="file" id='gallery1'>
-              @endif
-            </div>
-            <div class="col-md-4">
-              @if(!empty($images[1]))
-              <img class="card-img-top" src="{{$images[1]->image_url}}" alt="Card image cap" style="width:200px;">
-              <input name="gallery2" type="file" id='gallery2'>
-              @endif
-            </div>
-            <div class="col-md-4">
-              @if(!empty($images[2]))
-              <img class="card-img-top" src="{{$images[2]->image_url}}" alt="Card image cap" style="width:200px;">
-              <input name="gallery3" type="file" id='gallery3'>
-              @endif
-            </div>
-            <div class="col-md-4">
-              @if(!empty($images[3]))
-              <img class="card-img-top" src="{{$images[3]->image_url}}" alt="Card image cap" style="width:200px;">
-              <input name="gallery4" type="file" id='gallery4'>
-              @endif
-            </div>
-            <div class="col-md-4">
-              @if(!empty($images[4]))
-              <img class="card-img-top" src="{{$images[4]->image_url}}" alt="Card image cap" style="width:200px;">
-              <input name="gallery5" type="file" id='gallery5'>
-              @endif
-            </div>
+          <p>商品画像を編集(最大5枚まで)(jpg,png形式のみ)</p>
+         
+          <div>
+            @if(!empty($images[0]))
+            <img class="card-img-top" src="{{$images[0]->image_url}}" alt="Card image cap" style="width:200px;">
+            @endif
+            <input name="gallery1" type="file" id='gallery1'>
+          </div>
+          <div>
+            @if(!empty($images[1]))
+            <img class="card-img-top" src="{{$images[1]->image_url}}" alt="Card image cap" style="width:200px;">
+            @endif
+            <input name="gallery2" type="file" id='gallery2'>
+          </div>
+          <div>
+            @if(!empty($images[2]))
+            <img class="card-img-top" src="{{$images[2]->image_url}}" alt="Card image cap" style="width:200px;">
+            @endif
+            <input name="gallery3" type="file" id='gallery3'>
+          </div>
+          <div>
+            @if(!empty($images[3]))
+            <img class="card-img-top" src="{{$images[3]->image_url}}" alt="Card image cap" style="width:200px;">
+            @endif
+            <input name="gallery4" type="file" id='gallery4'>
+          </div>
+          <div>
+            @if(!empty($images[4]))
+            <img class="card-img-top" src="{{$images[4]->image_url}}" alt="Card image cap" style="width:200px;">
+            @endif
+            <input name="gallery5" type="file" id='gallery5'>
           </div>
         </div>
       </div>
 
+      <hr>
       <div class="md-form mb-4">
         <input type="text" id="title" class="form-control" name="title" value="{{ $product->title }}">
         <label for="title">商品名</label>
@@ -131,7 +132,7 @@
         <label data-error="wrong" data-success="right" for="price">商品単価</label>
       </div>
 
-      <button class="btn btn-light-green btn-block my-4 client_product_edit">変更する</button>
+      <button class="btn btn-light-green btn-block my-4 client_product_edit" data-product_id="{{$product->id}}">変更する</button>
     </div>
 
   </div>

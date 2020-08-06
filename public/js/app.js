@@ -52,6 +52,7 @@ $(function () {
     fd.append("explanation", $('#explanation').val());
     fd.append("price", $('#price').val());
     fd.append("token", $.cookie("token_clients"));
+    
 
 
     $.ajax('/api/client/product/create',
@@ -78,6 +79,53 @@ $(function () {
         setTimeout(function () {
           location.reload();
         }, 500);
+      })
+      .fail(function (data) {
+        window.console.log(data);
+        createErrorList(data);
+      })
+
+  });
+  // 生産者商品編集
+  $(document).on('click', '.client_product_edit', function () {
+
+    let fd = new FormData();
+    var categories = [];
+    $('input[name="categories"]:checked').each(function () {
+      // categories.push($(this).val());
+      fd.append("categories[]", $(this).val());
+    });
+
+    let $upfile1 = $('input[name="gallery1"]');
+    let $upfile2 = $('input[name="gallery2"]');
+    let $upfile3 = $('input[name="gallery3"]');
+    let $upfile4 = $('input[name="gallery4"]');
+    let $upfile5 = $('input[name="gallery5"]');
+    fd.append("gallery1", $upfile1.prop('files')[0]);
+    fd.append("gallery2", $upfile2.prop('files')[0]);
+    fd.append("gallery3", $upfile3.prop('files')[0]);
+    fd.append("gallery4", $upfile4.prop('files')[0]);
+    fd.append("gallery5", $upfile5.prop('files')[0]);
+    fd.append("title", $('#title').val());
+    fd.append("detail", $('#detail').val());
+    fd.append("explanation", $('#explanation').val());
+    fd.append("price", $('#price').val());
+    fd.append("token", $.cookie("token_clients"));
+    fd.append("product_id", $('.client_product_edit').data('product_id'));
+
+
+    $.ajax('/api/client/product/edit',
+      {
+        type: 'post',
+        data: fd,
+        dataType: 'json',
+        processData: false,
+        contentType: false,
+      }
+    )
+      .done(function (data) {
+        window.console.log(data);
+        location.href = `/client/products/${data.product_id}`;
       })
       .fail(function (data) {
         window.console.log(data);

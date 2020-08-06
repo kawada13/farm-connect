@@ -93,6 +93,7 @@ class Rule {
         'explanation' => 'required',
         'price' => 'required|integer',
         'categories' => 'required|array',
+
         ];
     }
 
