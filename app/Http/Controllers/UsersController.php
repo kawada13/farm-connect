@@ -200,20 +200,35 @@ class UsersController extends Controller
     {
         $member = $this->memberCheck($request->cookie('token_members'));
 
-        $purchases = Purchase::select('*')
+        $purchases = Purchase::with(['product', 'product.client'])
             ->where('member_id', $member->id)
             ->get();
 
+        // dd($purchases);
+
+        $productIds = Purchase::select('*')
+            ->where('member_id', $member->id)
+            ->pluck('product_id')
+            ->toArray();
+
+        $products = Product::withTrashed()
+            ->whereIn('id', $productIds)
+            ->get();
+
+        // dd($products);
+
         return view(
             'member.purchaseHistory',
-            ['member' => $member, 'purchases' => $purchases]
+            ['member' => $member, 'purchases' => $purchases, 'products' => $products]
         );
     }
     public function reviewCreate(Request $request, $id)
     {
         $member = $this->memberCheck($request->cookie('token_members'));
 
-        $product = Product::find($id);
+        $product = Product::withTrashed()
+            ->where('id', $id)
+            ->first();
 
         return view(
             'member.review.create',

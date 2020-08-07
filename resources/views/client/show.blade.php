@@ -79,7 +79,7 @@
               <!--Card image-->
               <div class="view overlay">
                 @if(empty($commitment->commitment_url))
-                <img class="card-img-top" src="https://lh6.googleusercontent.com/_-_8SdhcAlPnR_vmdkv-AkUJZkf30gm5VZwdu9IOIVvIfC8BtiHNIPbPf_hSM4D7_YH7gUZoMg=w1280" alt="Card image cap">
+                <img class="card-img-top" src="/defaultimages/牛.png" alt="Card image cap">
                 @else
                 <img class="card-img-top" src="{{$commitment->commitment_url}}" alt="Card image cap">
                 @endif
@@ -128,7 +128,7 @@
                   <img class="card-img-top" src="{{$product->productImages[0]->image_url}}" alt="Card image cap" style="height: 150px;">
                   <div class="mask rgba-white-slight"></div>
                   @else
-                  <img class="card-img-top" src="https://lh6.googleusercontent.com/kDryoH7mwKDHPT-Q63HJkAY0wkOn7GtpK6kuMHRn40aWpipdHWkGvsgY29BtKEvgPjuBcFA=w1280" alt="Card image cap" style="height: 150px;">
+                  <img class="card-img-top" src="/defaultimages/にんじん.png" alt="Card image cap" style="height: 150px;">
                   <div class="mask rgba-white-slight"></div>
                   @endif
                 </div>

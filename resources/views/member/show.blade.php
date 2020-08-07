@@ -27,7 +27,7 @@
         <div class="top-area mb-3 text-center">
           <div class="name_image">
             @if(empty($member->profile_url))
-            <img src="https://lh6.googleusercontent.com/4z3UxRuBZ3kOU7FrHRWUPRw2g6T8O-9MpZGUeO7ZwBgo6Gz0shgL2-aDRlyd5pvwFMPNPX0=w1280" alt="avatar mx-auto white" class="rounded-circle img-fluid" style="width: 60px;">
+            <img src="/defaultimages/りんごデフォ.png" alt="avatar mx-auto white" class="rounded-circle img-fluid" style="width: 60px;">
             @else
             <img src="{{$member->profile_url}}" alt="avatar mx-auto white" class="rounded-circle img-fluid" style="width: 60px;">
             @endif
@@ -98,18 +98,6 @@
               <a href="{{ route('purchase.history') }}" class="profile-panel btn btn-light">
                 <i class="far fa-list-alt mb-2"></i>
                 <p class="mb-0">購入履歴</p>
-              </a>
-            </div>
-            <div class="col-md-4 text-center">
-              <a href="#" class="profile-panel btn btn-light">
-                <i class="far fa-bell mb-2"></i>
-                <p class="mb-0">通知設定</p>
-              </a>
-            </div>
-            <div class="col-md-4 text-center">
-              <a href="{{ route('member.social_setting.edit') }}" class="profile-panel btn btn-light">
-                <i class="far fa-share-square mb-2"></i>
-                <p class="mb-0">ソーシャル連携</p>
               </a>
             </div>
           </div>

@@ -61,7 +61,7 @@
         <p>商品カテゴリー::
 
           @foreach($productCategories as $productCategory)
-          {{$productCategory->category->name}}、、
+          {{$productCategory->category->name}}、
           @endforeach
         </p>
       </div>
@@ -73,7 +73,25 @@
     </div>
 
     <a type="button" class="btn btn-light-green" href="{{ route('client_product.edit', ['id' => $product->id]) }}">内容を編集する</a>
-    <button type="button" class="btn btn-deep-orange">削除</button>
+    <button type="button" class="btn btn-deep-orange" data-toggle="modal" data-target="#basicExampleModal">
+      削除
+    </button>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content product_show_delete">
+          <div class="modal-body">
+            削除しますか？
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+            <button type="button" class="btn btn-primary client_product_show_delete" data-product_id="{{$product->id}}">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 </div>

@@ -8,7 +8,7 @@ class Purchase extends Model
 {
     public function product()
   {
-    return $this->belongsTo('App\Model\Product', 'product_id', 'id');
+    return $this->belongsTo('App\Model\Product', 'product_id', 'id')->withTrashed();
   }
     public function delivery()
   {

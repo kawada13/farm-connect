@@ -63,7 +63,7 @@
                       <img class="card-img-top" src="{{$favorite->product->productImages[0]->image_url}}" alt="Card image cap" style="height: 133px;">
                       <div class="mask rgba-white-slight"></div>
                       @else
-                      <img class="card-img-top" src="https://lh6.googleusercontent.com/kDryoH7mwKDHPT-Q63HJkAY0wkOn7GtpK6kuMHRn40aWpipdHWkGvsgY29BtKEvgPjuBcFA=w1280" alt="Card image cap" style="height: 133px;">
+                      <img class="card-img-top" src="/defaultimages/にんじん.png" alt="Card image cap" style="height: 133px;">
                       <div class="mask rgba-white-slight"></div>
                       @endif
                     </div>

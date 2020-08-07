@@ -16,6 +16,7 @@
       </ul>
     </section>
   </header>
+  
   <section class="main-content">
     <div class="inner-main-content">
       <div class="row">
@@ -59,7 +60,7 @@
                       <img class="card-img-top" src="{{$product->productImages[0]->image_url}}" alt="Card image cap" style="height: 133px;">
                       <div class="mask rgba-white-slight"></div>
                       @else
-                      <img class="card-img-top" src="https://lh6.googleusercontent.com/kDryoH7mwKDHPT-Q63HJkAY0wkOn7GtpK6kuMHRn40aWpipdHWkGvsgY29BtKEvgPjuBcFA=w1280" alt="Card image cap" style="height: 133px;">
+                      <img class="card-img-top" src="/defaultimages/にんじん.png" alt="Card image cap" style="height: 133px;">
                       <div class="mask rgba-white-slight"></div>
                       @endif
                     </div>
@@ -80,7 +81,7 @@
                   <hr>
                   <div class="card-body-bottom">
 
-                    <a class="row" href="{{ route('clients.show', ['id' => $product->client->id]) }}">
+                    <a class="row" href="{{ route('clients.show', ['id' => $product->client->id]) }}" style="height: 100px;">
 
                       <div class="col-md-6 text-center">
                         <div class="img_client">

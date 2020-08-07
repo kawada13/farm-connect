@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Model\Product;
 use App\Model\User;
 use App\Model\Category;
+use App\Model\Favorite;
+use App\Model\Review;
 use App\Model\ProductCategory;
 use App\Model\ProductImage;
 use App\config\Rule;
@@ -162,6 +164,38 @@ class ProductController extends Controller
             'price' => $request->input('price'),
             'token' => $request->input('token'),
             'categories' => $request->input('categories'),
+            'product_id' => $request->input('product_id'),
+        ], 200);
+    }
+
+
+    public function delete(Request $request)
+    {
+        $client = $this->clientCheck($request->input('token'));
+
+        if (empty($client->id)) {
+            return response()->json([
+                'error' => 'ログイン必須です',
+            ], 404);
+        }
+
+        $product = Product::where('id', $request->input('product_id'))
+            ->delete();
+
+        $product_image = ProductImage::where('product_id', $request->input('product_id'))
+            ->delete();
+
+        $favorite = Favorite::where('product_id', $request->input('product_id'))
+            ->delete();
+
+        $product_categories = ProductCategory::where('product_id', $request->input('product_id'))
+            ->delete();
+
+        $reviews = Review::where('product_id', $request->input('product_id'))
+            ->delete();
+
+        return response()->json([
+            'token' => $request->input('token'),
             'product_id' => $request->input('product_id'),
         ], 200);
     }

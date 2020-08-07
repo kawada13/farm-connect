@@ -134,6 +134,28 @@ $(function () {
 
   });
 
+  // 商品削除
+  $(document).on('click', '.client_product_show_delete', function () {
+    $.ajax('/api/client/product/delete',
+      {
+        type: 'post',
+        data: {
+          token: $.cookie("token_clients"),
+          product_id: $('.client_product_show_delete').data('product_id'),
+        },
+        dataType: 'json'
+      }
+    )
+      .done(function (data) {
+        window.console.log(data);
+        $('.product_show_delete').html('');
+        $('.product_show_delete').html('<div class="modal-body text-center">削除しました</div>');
+        location.href = "/client/products";
+      })
+      .fail(function (data) {
+      })
+  });
+
   // こだわり情報登録
   $(document).on('click', '.client_commitment_create', function () {
 

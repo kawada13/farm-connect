@@ -9,7 +9,7 @@
 <div class="container">
 
   <header class="header">
-    <div class="jumbotron card card-image" style="background-image: url(https://lh4.googleusercontent.com/NRXOecoC2p2dMMEptFRp6pgRr8mZGBvGkwm8bhjW7cuprM2qbSQwCNEPXXTuoGxCbDttabxfpHSRUTqfJ0s6A1sMyWubXTxkDj1npBRsJOs2m-k2xt9L=w1280); background-size:cover;">
+    <div class="jumbotron card card-image" style="background-image: url(/defaultimages/568893_s.jpg); background-size:cover;">
       <div class="text-white text-center py-5 px-4">
         <div>
           <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>農家と直接つながれば、料理はもっと美味しくなる</strong></h2>
@@ -48,7 +48,7 @@
                     @if(count($review->product->productImages))
                     <img src="{{$review->product->productImages[0]->image_url}}" alt="thumbnail" class="img-thumbnail mx-auto" style="width: 200px">
                     @else
-                    <img src="https://lh3.googleusercontent.com/EJ9Hm6CQ_tm8ClMFhlutSAclrS8YovHdU1q9XYWW3J-QJcBzBfmN5e2KuuzfEe1RQTdxfD0=w1280" alt="thumbnail" class="img-thumbnail mx-auto" style="width: 200px">
+                    <img src="/defaultimages/にんじん.png" alt="thumbnail" class="img-thumbnail mx-auto" style="width: 200px">
                     @endif
 
 
@@ -97,7 +97,7 @@
                       <img class="card-img-top" src="{{$product->productImages[0]->image_url}}" alt="Card image cap" style="height: 133px;">
                       <div class="mask rgba-white-slight"></div>
                       @else
-                      <img class="card-img-top" src="https://lh6.googleusercontent.com/kDryoH7mwKDHPT-Q63HJkAY0wkOn7GtpK6kuMHRn40aWpipdHWkGvsgY29BtKEvgPjuBcFA=w1280" alt="Card image cap" style="height: 133px;">
+                      <img class="card-img-top" src="/defaultimages/にんじん.png" alt="Card image cap" style="height: 133px;">
                       <div class="mask rgba-white-slight"></div>
                       @endif
                     </div>
@@ -118,7 +118,7 @@
                   <hr>
                   <div class="card-body-bottom">
 
-                    <a class="row" href="{{ route('clients.show', ['id' => $product->client->id]) }}">
+                    <a class="row" href="{{ route('clients.show', ['id' => $product->client->id]) }}" style="height: 100px;">
 
                       <div class="col-md-6 text-center">
                         <div class="img_client">

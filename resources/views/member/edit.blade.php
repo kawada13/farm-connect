@@ -44,7 +44,7 @@
 
       <div class="text-center">
         @if(empty($member->profile_url))
-        <img class="card-img-top" src="https://lh6.googleusercontent.com/4z3UxRuBZ3kOU7FrHRWUPRw2g6T8O-9MpZGUeO7ZwBgo6Gz0shgL2-aDRlyd5pvwFMPNPX0=w1280" alt="Card image cap" style="width:200px;">
+        <img class="card-img-top" src="/defaultimages/りんごデフォ.png" alt="Card image cap" style="width:200px;">
         @else
         <img class="card-img-top" src="{{$member->profile_url}}" alt="Card image cap" style="width:200px;">
         @endif

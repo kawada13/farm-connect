@@ -42,7 +42,7 @@
 
       <div class="text-center">
         @if(empty($client->client_url))
-        <img class="card-img-top" src="https://lh6.googleusercontent.com/9APhUq3puo-AnHsObTj0eAQWnE9p2ZAL00cjitZROqITWSd-uEenKRcy80Lr_sLExC4HXjvCyQ=w1280" alt="Card image cap" style="width:200px;">
+        <img class="card-img-top" src="/defaultimages/なす.png" alt="Card image cap" style="width:200px;">
         @else
         <img class="card-img-top" src="{{$client->client_url}}" alt="Card image cap" style="width:200px;">
         @endif

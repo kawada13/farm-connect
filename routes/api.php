@@ -29,6 +29,7 @@ Route::post('/product/serach', 'API\ProductController@index');
 // クライアント
 Route::post('/client/product/create', 'API\Client\ProductController@create');
 Route::post('/client/product/edit', 'API\Client\ProductController@edit');
+Route::post('/client/product/delete', 'API\Client\ProductController@delete');
 Route::post('/client/commitment/create', 'API\Client\CommitmentController@create');
 Route::post('/client/commitment/edit', 'API\Client\CommitmentController@edit');
 Route::post('/client/shipment', 'API\UsersController@shipment');

@@ -18,7 +18,7 @@
         <div class="top-area mb-3 text-center">
           <div class="name_image">
             @if(empty($client->client_url))
-            <img src="https://lh6.googleusercontent.com/9APhUq3puo-AnHsObTj0eAQWnE9p2ZAL00cjitZROqITWSd-uEenKRcy80Lr_sLExC4HXjvCyQ=w1280" alt="client_profile_image" class="rounded-circle img-fluid" style="width: 60px;">
+            <img src="/defaultimages/なす.png" alt="client_profile_image" class="rounded-circle img-fluid" style="width: 60px;">
             @else
             <img src="{{$client->client_url}}" alt="client_profile_image" class="rounded-circle img-fluid" style="width: 60px;">
             @endif

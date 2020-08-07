@@ -5,25 +5,55 @@
 @section('content')
 @include('commons.navbar')
 <div class="container">
-  <!-- <form class="text-center border border-light p-5" action="" method="POST"> -->
-  @csrf
 
-  <p class="h4 mb-4">管理者ログイン</p>
-  
-  <div class="error">
-    <div class="error_login"></div>
-    <div class="error_text_email"></div>
-    <div class="error_text_password"></div>
+  <section class="bread-crum">
+    <ul class="nav red lighten-5 pt-2">
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('products.top') }}">トップ</a>
+      </li>
+      <li class="nav-item">
+        <i class="fas fa-angle-right" style="padding-top: 10px;"></i>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">ログイン</a>
+      </li>
+    </ul>
+  </section>
+
+  <h4 class="card-title text-center my-4"><a>管理者ログイン</a></h4>
+
+  <div class="card">
+
+    <div class="card-body">
+
+
+      <div class="error_login"></div>
+      <div class="error_text_email"></div>
+      <div class="error_text_password"></div>
+
+
+      <div class="md-form my-4">
+        <input type="email" id="email" class="form-control" name="email">
+        <label for="email">メールアドレス</label>
+      </div>
+
+      <div class="md-form my-4">
+        <input type="password" id="password" class="form-control" name="password">
+        <label for="password">パスワード(6文字以上)</label>
+      </div>
+
+      <input type="hidden" name="scope" value="admins" id="scope">
+
+      <button class="btn btn-light-green btn-block my-4 login">ログイン</button>
+
+      <p>まだ会員ではない方はこちら
+        <a href="{{ route('admin.create') }}">登録</a>
+      </p>
+
+    </div>
+
+
   </div>
 
-  <input type="email" id="email" class="form-control mb-4" placeholder="E-mail" name="email">
-
-  <input type="password" id="password" class="form-control mb-4" placeholder="Password(6文字以上)" name="password">
-  <input type="hidden" name="scope" value="admins" id="scope">
-
-  <button class="btn btn-light-green btn-block my-4 login">ログイン</button>
-
-
-  <!-- </form> -->
 </div>
 @endsection
