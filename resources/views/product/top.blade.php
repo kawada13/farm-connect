@@ -61,7 +61,7 @@
                     @elseif($review->score === 3)
                     <p class="card-text">{{ '⭐️⭐️⭐️' }}</p>
                     @endif
-                    <p class="card-text">{{$review->comment}}</p>
+                    <p class="card-text" >{{$review->comment}}</p>
                   </div>
                 </div>
               </li>
@@ -105,11 +105,11 @@
                     <!--Card content-->
                     <div class="card-body">
 
-                      <div class="card-body-top" style="height: 133px;">
+                      <div class="card-body-top">
                         <!--Title-->
-                        <h4>{{$product->title}}</h4>
+                        <h4 class="product_top_title" style="width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{$product->title}}</h4>
                         <!--Text-->
-                        <p class="card-text">{{$product->detail}}</p>
+                        <p class="card-text" style="width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{$product->detail}}</p>
                         <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
                         <p class="card-text">{{$product->price}}円</p>
                       </div>

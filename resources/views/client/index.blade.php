@@ -70,7 +70,7 @@
 
                         <!--Text-->
                         <p class="card-text">{{$client->prefecture}}{{$client->municipality}}</p>
-                        <p class="card-text">{{$client->introduce}}</p>
+                        <p class="card-text" style="width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{$client->introduce}}</p>
                       </div>
                     </div>
                   </a>

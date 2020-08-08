@@ -57,21 +57,30 @@
                   <a href="{{ route('clients.show', ['id' => $follow->client->id]) }}">
                     <!--Card image-->
                     <div class="view overlay">
+
+                      @if(empty($follow->client->client_url))
+                      <img class="card-img-top" src="/defaultimages/なす.png" alt="Card image cap" style="height: 133px;">
+                      @else
                       <img class="card-img-top" src="{{$follow->client->client_url}}" alt="Card image cap" style="height: 133px;">
+                      @endif
+
+
+
+
                       <div class="mask rgba-white-slight"></div>
                     </div>
 
                     <!--Card content-->
                     <div class="card-body">
 
-                      <div class="card-body-top" style="height: 133px;">
+                      <div class="card-body-top">
                         <!--Title-->
 
                         <h4 class="card-title">{{$follow->client->area_name}}</h4>
 
                         <!--Text-->
                         <p class="card-text">{{$follow->client->prefecture}}{{$follow->client->municipality}}</p>
-                        <p class="card-text">紹介文</p>
+                        <p class="card-text"  style="width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{$follow->client->introduce}}</p>
                       </div>
                     </div>
                   </a>

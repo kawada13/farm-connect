@@ -22,6 +22,10 @@
   <table class="table mt-2">
     <tbody>
       <tr>
+        <th scope="row">生産者名</th>
+        <td>{{$product->client->name}}</td>
+      </tr>
+      <tr>
         <th scope="row">生産地名</th>
         <td>{{$product->client->area_name}}</td>
       </tr>

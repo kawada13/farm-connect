@@ -49,7 +49,7 @@
         @if(count($product->productImages))
         <img src="{{$product->productImages[0]->image_url}}" class="img-fluid" alt="Responsive image">
         @else
-        <img src="https://mdbootstrap.com/img/Others/documentation/img%20(75)-mini.jpg" class="img-fluid" alt="Responsive image">
+        <img src="/defaultimages/にんじん.png" class="img-fluid" alt="Responsive image">
         @endif
       </div>
       <div class="col-md-9">

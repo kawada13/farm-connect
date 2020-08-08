@@ -86,9 +86,9 @@
           <!--Card image-->
           <div class="view overlay">
             @if(empty($commitment->commitment_url))
-            <img class="card-img-top" src="/defaultimages/牛.png" alt="Card image cap">
+            <img class="card-img-top mx-auto" src="/defaultimages/牛.png" alt="Card image cap" style="height: 200px; width:300px">
             @else
-            <img class="card-img-top" src="{{$commitment->commitment_url}}" alt="Card image cap">
+            <img class="card-img-top mx-auto" src="{{$commitment->commitment_url}}" alt="Card image cap" style="height: 200px; width:300px">
             @endif
             <div class="mask rgba-white-slight"></div>
           </div>
@@ -96,7 +96,7 @@
           <!--Card content-->
           <div class="card-body">
 
-            <div class="card-body-top" style="height: 133px;">
+            <div class="card-body-top">
               <!--Title-->
 
               <h4 class="card-title">{{$commitment->title}}</h4>
@@ -125,7 +125,15 @@
   <div class="row">
     <div class="col-md-3">
       <a href="{{ route('clients.show', ['id' => $product->client->id]) }}">
+
+
+        @if(empty($product->client->client_url))
+        <img src="/defaultimages/なす.png" class="img-fluid" alt="Responsive image">
+        @else
         <img src="{{$product->client->client_url}}" class="img-fluid" alt="Responsive image">
+        @endif
+        
+        
       </a>
     </div>
     <div class="col-md-9">
@@ -169,13 +177,13 @@
             <!--Card content-->
             <div class="card-body">
 
-              <div class="card-body-top" style="height: 133px;">
+              <div class="card-body-top mx-auto">
                 <!--Title-->
 
-                <h4 class="card-title">{{$product->title}}</h4>
+                <h4 class="card-title" style="width: 120px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{$product->title}}</h4>
 
                 <!--Text-->
-                <p class="card-text">{{$product->detail}}</p>
+                <p class="card-text" style="width: 120px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{$product->detail}}</p>
               </div>
             </div>
           </a>

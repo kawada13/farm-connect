@@ -748,6 +748,7 @@ $(function () {
     )
       .done(function (data) {
         window.console.log(data);
+        location.href = "/member/purchase/history";
       })
       .fail(function (data) {
         window.console.log(data);
