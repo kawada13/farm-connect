@@ -12,8 +12,8 @@
     <div class="jumbotron card card-image" style="background-image: url(/defaultimages/568893_s.jpg); background-size:cover;">
       <div class="text-white text-center py-5 px-4">
         <div>
-          <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>農家と直接つながれば、料理はもっと美味しくなる</strong></h2>
-          <h4 class="mx-5 mb-5">こだわり生産者が集うオンライン・マルシェ</h4>
+          <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>直産品で日々の食事をよりよく</strong></h2>
+          <h4 class="mx-5 mb-5">生産者と繋がって、楽しい食事にしよう</h4>
         </div>
       </div>
     </div>
@@ -61,7 +61,8 @@
                     @elseif($review->score === 3)
                     <p class="card-text">{{ '⭐️⭐️⭐️' }}</p>
                     @endif
-                    <p class="card-text" >{{$review->comment}}</p>
+                    <p >{{$review->comment}}</p>
+                    <p class="card-text" >投稿日::{{$review->created_at}}</p>
                   </div>
                 </div>
               </li>

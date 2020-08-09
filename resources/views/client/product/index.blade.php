@@ -42,7 +42,7 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-
+              
               <div class="error_text_categories"></div>
               <div class="error_text_title"></div>
               <div class="error_text_detail"></div>

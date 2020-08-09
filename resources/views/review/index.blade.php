@@ -53,7 +53,8 @@
         @elseif($review->score === 3)
         <p class="card-text">{{ '⭐️⭐️⭐️' }}</p>
         @endif
-        <p class="card-text">{{$review->comment}}</p>
+        <p>{{$review->comment}}</p>
+        <p class="card-text">投稿日::{{$review->created_at}}</p>
       </div>
     </div>
     @endforeach

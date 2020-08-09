@@ -923,7 +923,9 @@ $(function () {
                 <h4 class="card-title"><a href="/products/${value.product_id}">${value.product_name}</a></h4>
                 <hr>
                 <p class="card-text">⭐️</p>
-                <p class="card-text">${value.comment}</p>
+                
+                <p>${value.comment}</p>
+                <p class="card-text">投稿日::${value.format_created_at}</p>
               </div>
             </div>
             `
@@ -936,7 +938,10 @@ $(function () {
                 <h4 class="card-title"><a href="/products/${value.product_id}">${value.product_name}</a></h4>
                 <hr>
                 <p class="card-text">⭐️⭐️</p>
-                <p class="card-text">${value.comment}</p>
+
+                <p>${value.comment}</p>
+                <p class="card-text">投稿日::${value.format_created_at}</p>
+
               </div>
             </div>
             `
@@ -949,7 +954,9 @@ $(function () {
                 <h4 class="card-title"><a href="/products/${value.product_id}">${value.product_name}</a></h4>
                 <hr>
                 <p class="card-text">⭐️⭐️⭐️</p>
-                <p class="card-text">${value.comment}</p>
+                
+                <p>${value.comment}</p>
+                <p class="card-text">投稿日::${value.format_created_at}</p>
               </div>
             </div>
             `
