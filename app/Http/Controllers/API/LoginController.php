@@ -91,6 +91,11 @@ class LoginController extends Controller
 
     public function createMember(Request $request)
     {
+        // return response()->json([
+        //     'email' => $request->input('email'),
+        //     'password' => $request->input('password'),
+        // ], 200);
+
         $this->validate($request, Rule::createMemberRules(), Rule::createMemberMessages());
 
         $member = new Member();

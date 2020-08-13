@@ -314,11 +314,11 @@ $(function () {
     )
       .done(function (data) {
         window.console.log(data);
-        $.cookie('token_admins', "", { path: "/", expires: -1 });
-        $.cookie('token_clients', "", { path: "/", expires: -1 });
-        $.cookie('token_members', "", { path: "/", expires: -1 });
-        $.cookie("token_members", data.token, { path: '/' });
-        location.href = "/";
+        // $.cookie('token_admins', "", { path: "/", expires: -1 });
+        // $.cookie('token_clients', "", { path: "/", expires: -1 });
+        // $.cookie('token_members', "", { path: "/", expires: -1 });
+        // $.cookie("token_members", data.token, { path: '/' });
+        // location.href = "/";
       })
       .fail(function (data) {
         window.console.log(data);
