@@ -9,7 +9,7 @@ $(function () {
       }
     )
       .done(function (data) {
-        // window.console.log(data);
+        window.console.log(data);
         data.categories.forEach((value, index) => {
           $('.search_categories').append("<div class='custom-control custom-checkbox'><input type='checkbox' class='custom-control-input' id='categories_" + value.id + "' name='categories' value='" + value.id + "'><label class='custom-control-label' for='categories_" + value.id + "'>" + value.name + "</label></div>");
           $('.side_categories').append("<li class='nav-item'> <a class='nav-link' href='/products?categories[]=" + value.id + "'>" + value.name + " <i class='fas fa-chevron-right'></i></a> </li>");
