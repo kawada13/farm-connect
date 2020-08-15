@@ -44,7 +44,7 @@
 
       <div class="text-center">
         @if(empty($member->profile_url))
-        <img class="card-img-top" src="/defaultimages/りんごデフォ.png" alt="プロフィールイメージ" style="width:200px;">
+        <img class="card-img-top" src="/defaultimages/りんごデフォ.png" alt="プロフィールイメージ" style="width:200px;">
         @else
         <img class="card-img-top" src="{{$member->profile_url}}" alt="Card image cap" style="width:200px;">
         @endif
