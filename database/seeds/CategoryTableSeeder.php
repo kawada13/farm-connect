@@ -19,6 +19,5 @@ class CategoryTableSeeder extends Seeder
             ]);
         }
 
-        
     }
 }
