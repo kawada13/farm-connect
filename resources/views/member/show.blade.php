@@ -27,7 +27,7 @@
         <div class="top-area mb-3 text-center">
           <div class="name_image">
             @if(empty($member->profile_url))
-            <img src="/images/member_profile/人体のアイコン.png" alt="プロフィール画像" class="rounded-circle img-fluid" style="width: 60px;">
+            <img src="/defaultimages/りんごデフォ.png" alt="プロフィール画像" class="rounded-circle img-fluid" style="width: 60px;">
             @else
             <img src="{{$member->profile_url}}" alt="avatar mx-auto white" class="rounded-circle img-fluid" style="width: 60px;">
             @endif
