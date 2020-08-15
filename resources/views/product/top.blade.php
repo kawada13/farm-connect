@@ -9,7 +9,7 @@
 <div class="container">
 
   <header class="header">
-    <div class="jumbotron card card-image" style="background-image: url(/defaultimages/568893_s.jpg); background-size:cover;">
+    <div class="jumbotron card card-image" style="background-image: url(/defaultimages/なす.png); background-size:cover;">
       <div class="text-white text-center py-5 px-4">
         <div>
           <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>直産品で日々の食事を</strong></h2>
