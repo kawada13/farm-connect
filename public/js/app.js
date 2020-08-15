@@ -1010,6 +1010,38 @@ $(function () {
 
 
 
+  $(document).on('click', '.aaa', function () {
+    $.ajax('/api/aaa',
+      {
+        type: 'post',
+        data: {
+
+          category_1: $('#category_1').val(),
+          category_2: $('#category_2').val(),
+          category_3: $('#category_3').val(),
+          category_4: $('#category_4').val(),
+          category_5: $('#category_5').val(),
+          category_6: $('#category_6').val(),
+          category_7: $('#category_7').val(),
+          category_8: $('#category_8').val(),
+          category_9: $('#category_9').val(),
+          category_10: $('#category_10').val(),
+          category_11: $('#category_11').val(),
+          category_12: $('#category_12').val(),
+        },
+        dataType: 'json'
+      }
+    )
+      .done(function (data) {
+        window.console.log(data);
+      })
+      .fail(function (data) {
+        window.console.log(data);
+      })
+  });
+
+
+
 });
 
 

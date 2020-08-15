@@ -50,3 +50,7 @@ Route::post('/member/follow', 'API\UsersController@follow');
 Route::post('/member/unfollow', 'API\UsersController@unfollow');
 Route::post('/member/purcase', 'API\UsersController@purcase');
 Route::post('/member/review/create', 'API\UsersController@review');
+
+
+
+Route::post('/aaa', 'API\UsersController@aaa');

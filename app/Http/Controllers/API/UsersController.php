@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\config\Rule;
 use App\Model\User;
 use App\Model\Admin;
+use App\Model\Category;
 use App\Model\Client;
 use App\Model\Delivery;
 use App\Model\Member;
@@ -30,8 +31,7 @@ class UsersController extends Controller
             ], 404);
         }
 
-        if(!empty($request->file('image')))
-        {
+        if (!empty($request->file('image'))) {
             $request->file('image')->move(base_path() . '/public/images/member_profile', $request->file('image')->getClientOriginalName());
             $member->profile_url = '/images/member_profile/' . $request->file('image')->getClientOriginalName();
         }
@@ -59,8 +59,7 @@ class UsersController extends Controller
             ], 404);
         }
 
-        if(!empty($request->file('image')))
-        {
+        if (!empty($request->file('image'))) {
             $request->file('image')->move(base_path() . '/public/images/client_profile', $request->file('image')->getClientOriginalName());
             $client->client_url = '/images/client_profile/' . $request->file('image')->getClientOriginalName();
         }
@@ -366,7 +365,7 @@ class UsersController extends Controller
     public function review(Request $request)
     {
 
-        
+
         $this->validate($request, Rule::reviewRules(), Rule::reviewMessages());
 
         $user = User::select('*')
@@ -395,6 +394,73 @@ class UsersController extends Controller
             'member_id' => $user->member_id,
             'score' => $request->input('score'),
             'comment' => $request->input('comment'),
+        ], 200);
+    }
+
+    public function aaa(Request $request)
+    {
+
+        $category = new Category();
+        $category->name = $request->input('category_1');
+        $category->save();
+
+        $category = new Category();
+        $category->name = $request->input('category_2');
+        $category->save();
+
+        $category = new Category();
+        $category->name = $request->input('category_3');
+        $category->save();
+
+        $category = new Category();
+        $category->name = $request->input('category_4');
+        $category->save();
+
+        $category = new Category();
+        $category->name = $request->input('category_5');
+        $category->save();
+
+        $category = new Category();
+        $category->name = $request->input('category_6');
+        $category->save();
+
+        $category = new Category();
+        $category->name = $request->input('category_7');
+        $category->save();
+
+        $category = new Category();
+        $category->name = $request->input('category_8');
+        $category->save();
+
+        $category = new Category();
+        $category->name = $request->input('category_9');
+        $category->save();
+        $category = new Category();
+        $category->name = $request->input('category_10');
+        $category->save();
+
+        $category = new Category();
+        $category->name = $request->input('category_11');
+        $category->save();
+
+        $category = new Category();
+        $category->name = $request->input('category_12');
+        $category->save();
+
+
+        return response()->json([
+            'category_1' => $request->input('category_1'),
+            'category_2' => $request->input('category_2'),
+            'category_3' => $request->input('category_3'),
+            'category_4' => $request->input('category_4'),
+            'category_5' => $request->input('category_5'),
+            'category_6' => $request->input('category_6'),
+            'category_7' => $request->input('category_7'),
+            'category_8' => $request->input('category_8'),
+            'category_9' => $request->input('category_9'),
+            'category_10' => $request->input('category_10'),
+            'category_11' => $request->input('category_11'),
+            'category_12' => $request->input('category_12'),
         ], 200);
     }
 }
