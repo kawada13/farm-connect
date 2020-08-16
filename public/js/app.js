@@ -647,6 +647,7 @@ $(function () {
         window.console.log(data);
         $('.password_edit').html('');
         $('.password_edit').html('<p>更新しました</p>');
+        location.reload();
       })
       .fail(function (data) {
         window.console.log(data);
@@ -669,6 +670,7 @@ $(function () {
         window.console.log(data);
         $('.password_edit').html('');
         $('.password_edit').html('<p>更新しました</p>');
+        location.reload();
       })
       .fail(function (data) {
         window.console.log(data);
