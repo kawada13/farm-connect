@@ -96,6 +96,7 @@ class UsersController extends Controller
         $delinfo->tel = $request->input('tel');
         $delinfo->member_id = $member->id;
         $delinfo->save();
+        
 
 
         return response()->json([
