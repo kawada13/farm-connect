@@ -64,9 +64,6 @@
                       <img class="card-img-top" src="{{$follow->client->client_url}}" alt="Card image cap" style="height: 150px;">
                       @endif
 
-
-
-
                       <div class="mask rgba-white-slight"></div>
                     </div>
 
