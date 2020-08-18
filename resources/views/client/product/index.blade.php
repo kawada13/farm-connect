@@ -42,13 +42,13 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              
+
               <div class="error_text_categories"></div>
               <div class="error_text_title"></div>
               <div class="error_text_detail"></div>
               <div class="error_text_explanation"></div>
               <div class="error_text_price"></div>
-              
+
 
               <div class="modal-body mx-3">
 
@@ -115,7 +115,7 @@
       </div>
       <hr>
 
-
+      @if(count($products))
       <table class="table">
         <thead>
           <tr>
@@ -138,7 +138,7 @@
         </tbody>
       </table>
 
-
+      @endif
     </div>
   </div>
 </div>

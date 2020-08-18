@@ -37,7 +37,7 @@
 
     <div class="col-md-6">
       @if(!count($images))
-      <img class="card-img-top text-center" src="https://lh6.googleusercontent.com/8jczmW1Eb0PaECvbLwJGTAUVWvXP3lUU8Km3PmTVtC9N1GBh_w5iB6myOq5Kfx8_z_3PO60=w1280" style="height: 300px">
+      <img class="card-img-top text-center" src="/defaultimages/にんじん.png" style="height: 300px">
       @endif
       @if(count($images))
       <img class="card-img-top client_product_show_gallay_main text-center" src="{{$images[0]->image_url}}" style="width: 300px; height: 300px">
@@ -66,33 +66,36 @@
         </p>
       </div>
     </div>
-    <hr>
+  </div>
+  <hr>
 
-    <div class="explanetion my-4">
-      <p>{{$product->explanation}}</p>
-    </div>
+  <div class="explanetion my-4">
+    <p>{{$product->explanation}}</p>
+  </div>
 
+  <div>
     <a type="button" class="btn btn-light-green" href="{{ route('client_product.edit', ['id' => $product->id]) }}">内容を編集する</a>
     <button type="button" class="btn btn-deep-orange" data-toggle="modal" data-target="#basicExampleModal">
       削除
     </button>
+  </div>
 
 
-    <!-- Modal -->
-    <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content product_show_delete">
-          <div class="modal-body">
-            削除しますか？
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-            <button type="button" class="btn btn-primary client_product_show_delete" data-product_id="{{$product->id}}">OK</button>
-          </div>
+  <!-- Modal -->
+  <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content product_show_delete">
+        <div class="modal-body">
+          削除しますか？
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+          <button type="button" class="btn btn-primary client_product_show_delete" data-product_id="{{$product->id}}">OK</button>
         </div>
       </div>
     </div>
-    
   </div>
+
+
 </div>
 </div>
