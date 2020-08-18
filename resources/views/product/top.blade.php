@@ -107,11 +107,8 @@
                     <div class="card-body">
 
                       <div class="card-body-top">
-                        <!--Title-->
                         <h4 class="product_top_title" style="width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{$product->title}}</h4>
-                        <!--Text-->
                         <p class="card-text" style="width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{$product->detail}}</p>
-                        <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
                         <p class="card-text">{{$product->price}}円</p>
                       </div>
                   </a>
@@ -126,7 +123,7 @@
                           @if(!empty($product->client->client_url))
                           <img src="{{$product->client->client_url}}" alt="avatar mx-auto white" class="rounded-circle img-fluid">
                           @else
-                          <img src="/defaultimages/なす.png" alt="avatar mx-auto white" class="rounded-circle img-fluid">
+                          <img src="/defaultimages/りんごデフォ.png" alt="avatar mx-auto white" class="rounded-circle img-fluid">
                           @endif
                         </div>
                       </div>
