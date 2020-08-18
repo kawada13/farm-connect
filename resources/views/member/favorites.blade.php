@@ -78,7 +78,7 @@
                   </a>
 
                   <hr>
-                  <div class="card-body-bottom">
+                  <div class="card-body-bottom" style="height: 100px;">
 
                     <a class="row" href="{{ route('clients.show', ['id' => $favorite->product->client->id]) }}">
 

@@ -114,16 +114,16 @@
                   </a>
 
                   <hr>
-                  <div class="card-body-bottom">
+                  <div class="card-body-bottom" style="height: 100px;">
 
-                    <a class="row" href="{{ route('clients.show', ['id' => $product->client->id]) }}">
+                    <a class="row" href="{{ route('clients.show', ['id' => $product->client->id]) }}" >
 
                       <div class="col-md-6 text-center">
                         <div class="img_client">
                           @if(!empty($product->client->client_url))
                           <img src="{{$product->client->client_url}}" alt="avatar mx-auto white" class="rounded-circle img-fluid">
                           @else
-                          <img src="/defaultimages/りんごデフォ.png" alt="avatar mx-auto white" class="rounded-circle img-fluid">
+                          <img src="/defaultimages/なす.png" alt="avatar mx-auto white" class="rounded-circle img-fluid">
                           @endif
                         </div>
                       </div>
