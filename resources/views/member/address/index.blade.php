@@ -38,6 +38,7 @@
       <a href="{{ route('member.address.create') }}">
         <button type="button" class="btn btn-light-green text-center">お届け先情報を登録</button>
       </a>
+      @if(count($deliveries))
 
       <div class="card my-4">
 
@@ -100,6 +101,7 @@
         </div>
 
       </div>
+      @endif
 
     </div>
 
