@@ -82,4 +82,26 @@ class CommitmentController extends Controller
             'commitment_id' => $request->input('commitment_id'),
         ], 200);
     }
+
+
+    public function delete(Request $request)
+    {
+
+        $client = $this->clientCheck($request->input('token'));
+
+        if (empty($client->id)) {
+            return response()->json([
+                'error' => 'ログイン必須です',
+            ], 404);
+        }
+
+        $commitment = Commitment::where('id', $request->input('commitment_id'))
+            ->delete();
+
+
+        return response()->json([
+            'token' => $request->input('token'),
+            'commitment_id' => $request->input('commitment_id'),
+        ], 200);
+    }
 }

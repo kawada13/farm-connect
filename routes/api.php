@@ -32,6 +32,7 @@ Route::post('/client/product/edit', 'API\Client\ProductController@edit');
 Route::post('/client/product/delete', 'API\Client\ProductController@delete');
 Route::post('/client/commitment/create', 'API\Client\CommitmentController@create');
 Route::post('/client/commitment/edit', 'API\Client\CommitmentController@edit');
+Route::post('/client/commitment/delete', 'API\Client\CommitmentController@delete');
 Route::post('/client/shipment', 'API\UsersController@shipment');
 Route::post('/client/profile/edit', 'API\UsersController@updateClientProfile');
 Route::post('/client/product_area/create', 'API\Client\ProductAreaController@create');

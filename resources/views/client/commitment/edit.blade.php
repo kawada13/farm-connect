@@ -57,9 +57,13 @@
           @if(!empty($commitment->commitment_url))
           <img class="card-img-top" src="{{$commitment->commitment_url}}" alt="Card image cap" style="width:200px;">
           <input name="gallery" type="file" id='gallery'>
+          @else
+          <img class="card-img-top" src="/defaultimages/牛.png" alt="Card image cap" style="width:200px;">
+          <input name="gallery" type="file" id='gallery'>
           @endif
         </div>
       </div>
+
 
       <div class="md-form my-4">
         <input type="text" id="title" class="form-control" name="title" value="{{ $commitment->title }}">

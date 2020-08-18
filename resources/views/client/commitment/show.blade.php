@@ -42,7 +42,23 @@
       <hr>
       <p>{{$commitment->contents}}</p>
       <a type="button" class="btn btn-light-green" href="{{ route('commitment.edit', ['id' => $commitment->id]) }}">内容を編集する</a>
-      <button type="button" class="btn btn-deep-orange">削除</button>
+      <button type="button" class="btn btn-deep-orange" data-toggle="modal" data-target="#basicExampleModal">
+        削除
+      </button>
+    </div>
+
+    <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content commitment_show_delete">
+          <div class="modal-body">
+            削除しますか？
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+            <button type="button" class="btn btn-primary client_commitment_delete" data-commitment_id="{{$commitment->id}}">OK</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 

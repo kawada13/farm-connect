@@ -230,6 +230,29 @@ $(function () {
 
   });
 
+  // こだわり削除
+  $(document).on('click', '.client_commitment_delete', function () {
+
+    $.ajax('/api/client/commitment/delete',
+      {
+        type: 'post',
+        data: {
+          token: $.cookie("token_clients"),
+          commitment_id: $('.client_commitment_delete').data('commitment_id'),
+        },
+        dataType: 'json'
+      }
+    )
+      .done(function (data) {
+        window.console.log(data);
+        $('.commitment_show_delete').html('');
+        $('.commitment_show_delete').html('<div class="modal-body text-center">削除しました</div>');
+        location.href = "/client/commitment/index";
+      })
+      .fail(function (data) {
+      })
+  });
+
 
 
   // 管理者登録

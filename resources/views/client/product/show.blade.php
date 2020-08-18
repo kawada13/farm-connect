@@ -78,6 +78,7 @@
     <button type="button" class="btn btn-deep-orange" data-toggle="modal" data-target="#basicExampleModal">
       削除
     </button>
+    
   </div>
 
 
