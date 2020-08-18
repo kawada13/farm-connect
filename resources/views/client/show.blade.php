@@ -87,9 +87,9 @@
               <!--Card image-->
               <div class="view overlay">
                 @if(empty($commitment->commitment_url))
-                <img class="card-img-top mx-auto" src="/defaultimages/牛.png" alt="Card image cap" style="height: 150px;">
+                <img class="card-img-top mx-auto" src="/defaultimages/牛.png" alt="Card image cap" style="height: 300px;">
                 @else
-                <img class="card-img-top mx-auto" src="{{$commitment->commitment_url}}" alt="Card image cap" style="height: 150px;">
+                <img class="card-img-top mx-auto" src="{{$commitment->commitment_url}}" alt="Card image cap" style="height: 300px;">
                 @endif
                 <div class="mask rgba-white-slight"></div>
               </div>
