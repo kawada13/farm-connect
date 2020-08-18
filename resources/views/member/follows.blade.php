@@ -59,9 +59,9 @@
                     <div class="view overlay">
 
                       @if(empty($follow->client->client_url))
-                      <img class="card-img-top" src="/defaultimages/なす.png" alt="Card image cap" style="height: 133px;">
+                      <img class="card-img-top" src="/defaultimages/なす.png" alt="Card image cap">
                       @else
-                      <img class="card-img-top" src="{{$follow->client->client_url}}" alt="Card image cap" style="height: 133px;">
+                      <img class="card-img-top" src="{{$follow->client->client_url}}" alt="Card image cap">
                       @endif
 
 
@@ -80,7 +80,7 @@
 
                         <!--Text-->
                         <p class="card-text">{{$follow->client->prefecture}}{{$follow->client->municipality}}</p>
-                        <p class="card-text"  style="width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{$follow->client->introduce}}</p>
+                        <p class="card-text"  style="width: 800px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{$follow->client->introduce}}</p>
                       </div>
                     </div>
                   </a>

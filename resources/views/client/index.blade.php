@@ -56,21 +56,21 @@
                   <a href="{{ route('clients.show', ['id' => $client->id]) }}">
                     <!--Card image-->
                     <div class="view overlay">
-                      <img class="card-img-top" src="{{$client->client_url}}" style="height: 133px;">
+                      <img class="card-img-top" src="{{$client->client_url}}">
                       <div class="mask rgba-white-slight"></div>
                     </div>
 
                     <!--Card content-->
                     <div class="card-body">
 
-                      <div class="card-body-top" style="height: 133px;">
+                      <div class="card-body-top">
                         <!--Title-->
 
                         <h4 class="card-title">{{$client->area_name}}</h4>
 
                         <!--Text-->
                         <p class="card-text">{{$client->prefecture}}{{$client->municipality}}</p>
-                        <p class="card-text" style="width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{$client->introduce}}</p>
+                        <p class="card-text" style="width: 800px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{$client->introduce}}</p>
                       </div>
                     </div>
                   </a>

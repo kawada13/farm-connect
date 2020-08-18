@@ -75,16 +75,10 @@ class ProductController extends Controller
 
     public function show(Request $request, $id)
     {
-        $client = $this->clientCheck($request->cookie('token_clients'));
-        if (!empty($client)) {
-            return redirect('/login/member');
-        }
-
 
         $user = User::select('*')
             ->where('remember_token', $request->cookie('token_members'))
             ->first();
-
 
         $product = Product::find($id);
 
@@ -97,9 +91,9 @@ class ProductController extends Controller
             ->where('product_id', $id)
             ->get();
 
-
-
-        $is_facvoriting = $this->is_facvoriting($user->member_id, $product->id);
+        if (!empty($user)) {
+            $is_facvoriting = $this->is_facvoriting($user->member_id, $product->id);
+        }
 
         $commitments = Commitment::select('*')
             ->where('client_id', $product->client_id)
@@ -109,7 +103,11 @@ class ProductController extends Controller
             ->where('product_id', $id)
             ->get();
 
-        return view('product.show', ['product' => $product, 'is_facvoriting' => $is_facvoriting, 'commitments' => $commitments, 'products' => $products, 'reviews' => $reviews, 'images' => $images]);
+        if (!empty($user)) {
+            return view('product.show', ['product' => $product, 'is_facvoriting' => $is_facvoriting, 'commitments' => $commitments, 'products' => $products, 'reviews' => $reviews, 'images' => $images]);
+        } else {
+            return view('product.show', ['product' => $product,'commitments' => $commitments, 'products' => $products, 'reviews' => $reviews, 'images' => $images]);
+        }
     }
 
     public function is_facvoriting($memberId, $productId)

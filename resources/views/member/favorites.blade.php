@@ -60,10 +60,10 @@
                   <a href="{{ route('product.show', ['id' => $favorite->product->id]) }}">
                     <div class="view overlay">
                       @if(count($favorite->product->productImages))
-                      <img class="card-img-top" src="{{$favorite->product->productImages[0]->image_url}}" alt="Card image cap" style="height: 133px;">
+                      <img class="card-img-top" src="{{$favorite->product->productImages[0]->image_url}}" alt="Card image cap">
                       <div class="mask rgba-white-slight"></div>
                       @else
-                      <img class="card-img-top" src="/defaultimages/にんじん.png" alt="Card image cap" style="height: 133px;">
+                      <img class="card-img-top" src="/defaultimages/にんじん.png" alt="Card image cap">
                       <div class="mask rgba-white-slight"></div>
                       @endif
                     </div>
@@ -71,8 +71,8 @@
                     <div class="card-body">
 
                       <div class="card-body-top" style="height: 133px;">
-                        <h4 style="width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{$favorite->product->title}}</h4>
-                        <p class="card-text" style="width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{$favorite->product->detail}}</p>
+                        <h4 style="width: 800px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{$favorite->product->title}}</h4>
+                        <p class="card-text" style="width: 800px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{$favorite->product->detail}}</p>
                         <p class="card-text">{{$favorite->product->price}}円</p>
                       </div>
                   </a>

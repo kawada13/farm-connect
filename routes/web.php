@@ -34,7 +34,6 @@ Route::get('/products', 'ProductController@index')->name('products.index');
 Route::get('/products/{id}', 'ProductController@show')->name('product.show');
 
 
-
 // クライアントのみ
 Route::get('/client/mypage', 'UsersController@clientMypage')->name('client.mypage');
 Route::get('/client/profile', 'UsersController@clientProfile')->name('client.profile');

@@ -147,11 +147,15 @@ class UsersController extends Controller
             ->where('client_id', $client->id)
             ->get();
 
+        if (!empty($user)) {
+            $is_following = $this->is_following($user->member_id, $client->id);
+        }
 
-
-        $is_following = $this->is_following($user->member_id, $client->id);
-
-        return view('client.show', ['client' => $client, 'commitments' => $commitments, 'products' => $products, 'is_following' => $is_following, 'reviews' => $reviews]);
+        if (!empty($user)) {
+            return view('client.show', ['client' => $client, 'commitments' => $commitments, 'products' => $products, 'is_following' => $is_following, 'reviews' => $reviews]);
+        } else {
+            return view('client.show', ['client' => $client, 'commitments' => $commitments, 'products' => $products, 'reviews' => $reviews]);
+        }
     }
 
     public function is_following($memberId, $clientId)
