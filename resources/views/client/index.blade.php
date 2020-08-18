@@ -56,7 +56,11 @@
                   <a href="{{ route('clients.show', ['id' => $client->id]) }}">
                     <!--Card image-->
                     <div class="view overlay">
-                      <img class="card-img-top" src="{{$client->client_url}}">
+                      @if(!empty($client->client_url))
+                      <img class="card-img-top" src="{{$client->client_url}}" style="height: 150px;">
+                      @else
+                      <img class="card-img-top" src="/defaultimages/なす.png" style="height: 150px;">
+                      @endif
                       <div class="mask rgba-white-slight"></div>
                     </div>
 

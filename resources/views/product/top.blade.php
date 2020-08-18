@@ -95,10 +95,10 @@
                     <!--Card image-->
                     <div class="view overlay">
                       @if(count($product->productImages))
-                      <img class="card-img-top" src="{{$product->productImages[0]->image_url}}" alt="Card image cap" >
+                      <img class="card-img-top" src="{{$product->productImages[0]->image_url}}" alt="Card image cap" style="height: 150px;">
                       <div class="mask rgba-white-slight"></div>
                       @else
-                      <img class="card-img-top" src="/defaultimages/にんじん.png" alt="Card image cap">
+                      <img class="card-img-top" src="/defaultimages/にんじん.png" alt="Card image cap" style="height: 150px;">
                       <div class="mask rgba-white-slight"></div>
                       @endif
                     </div>
@@ -123,7 +123,11 @@
 
                       <div class="col-md-6 text-center">
                         <div class="img_client">
+                          @if(!empty($product->client->client_url))
                           <img src="{{$product->client->client_url}}" alt="avatar mx-auto white" class="rounded-circle img-fluid">
+                          @else
+                          <img src="/defaultimages/なす.png" alt="avatar mx-auto white" class="rounded-circle img-fluid">
+                          @endif
                         </div>
                       </div>
 
@@ -153,5 +157,7 @@
     </div>
 </div>
 </section>
+
+
 </div>
 @endsection
