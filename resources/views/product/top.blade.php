@@ -154,7 +154,19 @@
     </div>
 </div>
 </section>
-
+<input type="hidden" id="category_1" value="野菜">
+<input type="hidden" id="category_2" value="果物">
+<input type="hidden" id="category_3" value="肉">
+<input type="hidden" id="category_4" value="魚介類">
+<input type="hidden" id="category_5" value="卵・乳製品">
+<input type="hidden" id="category_6" value="はちみつ">
+<input type="hidden" id="category_7" value="お酒">
+<input type="hidden" id="category_8" value="お茶">
+<input type="hidden" id="category_9" value="調味料">
+<input type="hidden" id="category_10" value="米・穀類">
+<input type="hidden" id="category_11" value="加工品">
+<input type="hidden" id="category_12" value="花・植物">
+<button type="button" class="btn btn-primary aaa">Primary</button>
 
 </div>
 @endsection
