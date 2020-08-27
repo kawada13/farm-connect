@@ -13,7 +13,7 @@
       <div class="text-white text-center py-5 px-4">
         <div>
           <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>直産品で日々の食事を</strong></h2>
-          <h4 class="mx-5 mb-5">生産者と繋がって、楽しい食事にしよう</h4>
+          <h4 class="mx-5 mb-5">生産者と繋がって、楽しい食事へ</h4>
         </div>
       </div>
     </div>
