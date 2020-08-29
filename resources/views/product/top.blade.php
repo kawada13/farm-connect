@@ -51,7 +51,6 @@
                     <img src="/defaultimages/にんじん.png" alt="thumbnail" class="img-thumbnail mx-auto" style="width: 200px">
                     @endif
 
-
                     <h4 class="card-title "><a href="{{ route('product.show', ['id' => $review->product->id]) }}">{{$review->product_name}}</a></h4>
                     <hr>
                     @if($review->score === 1)
@@ -154,6 +153,7 @@
     </div>
 </div>
 </section>
+
 
 </div>
 @endsection
