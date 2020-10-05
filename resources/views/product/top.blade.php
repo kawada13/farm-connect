@@ -12,7 +12,7 @@
     <div class="jumbotron card card-image" style="background-image: url(/defaultimages/568893_s.jpg); background-size:cover;">
       <div class="text-white text-center py-5 px-4">
         <div>
-          <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>直産品で日々の食事を</strong></h2>
+          <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>ファームコネクト</strong></h2>
           <h4 class="mx-5 mb-5">生産者と繋がって、楽しい食事へ</h4>
         </div>
       </div>
@@ -154,6 +154,18 @@
 </div>
 </section>
 
-
+<input type="hidden" id="category_1" value="野菜">
+<input type="hidden" id="category_2" value="果物">
+<input type="hidden" id="category_3" value="肉">
+<input type="hidden" id="category_4" value="魚介類">
+<input type="hidden" id="category_5" value="卵・乳製品">
+<input type="hidden" id="category_6" value="はちみつ">
+<input type="hidden" id="category_7" value="お酒">
+<input type="hidden" id="category_8" value="お茶">
+<input type="hidden" id="category_9" value="調味料">
+<input type="hidden" id="category_10" value="米・穀類">
+<input type="hidden" id="category_11" value="加工品">
+<input type="hidden" id="category_12" value="花・植物">
+<button type="button" class="btn btn-primary aaa">Primary</button>
 </div>
 @endsection
