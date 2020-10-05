@@ -44,6 +44,8 @@ class ProductController extends Controller
             $categories->save();
         }
 
+        // $image = base64_encode(file_get_contents($request->file('gallery1')->getClientOriginalName());
+
         if (!empty($request->file('gallery1'))) {
             $gallery = new ProductImage();
             $gallery->product_id = $product->id;

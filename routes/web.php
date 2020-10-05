@@ -49,9 +49,14 @@ Route::get('/client/product_area/edit', 'Client\ProductAreaController@edit')->na
 Route::get('/client/products', 'Client\ProductController@index')->name('client_product.index');
 Route::get('/client/products/{id}', 'Client\ProductController@show')->name('client_product.show');
 Route::get('/client/products/{id}/edit', 'Client\ProductController@edit')->name('client_product.edit');
+Route::get('/client/products/{id}/imageupload', 'Client\ProductController@imageupload')->name('client_product.imageupload');
+Route::post('/client/products/{id}/imagecomplete', 'Client\ProductController@imagecomplete')->name('client_product.imagecomplete');
+Route::post('/client/profile/imagecomplete', 'Client\ProductController@profileimagecomplete')->name('client_product.profileimagecomplete');
+Route::post('/client/commitment/imagecomplete', 'Client\ProductController@commitmentimagecomplete')->name('client_product.commitmentimagecomplete');
 
 // メンバーのみ
 Route::get('/member/profile', 'UsersController@memberShow')->name('member.show');
+Route::post('/member/profile/imagecomplete', 'UsersController@imagecomplete')->name('member.imagecomplete');
 Route::get('/member/profile/edit', 'UsersController@memberEdit')->name('member.profile.edit');
 Route::get('/member/address', 'UsersController@memberAdressIndex')->name('member.address');
 Route::get('/member/address/create', 'UsersController@memberAdressCreate')->name('member.address.create');

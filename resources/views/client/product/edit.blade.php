@@ -74,7 +74,7 @@
 
       </div>
       <hr>
-      <div class="md-form my-4">
+      <!-- <div class="md-form my-4">
         <div class="product_image">
           <p>商品画像を編集(最大5枚まで)(jpg,png形式のみ)</p>
          
@@ -109,7 +109,7 @@
             <input name="gallery5" type="file" id='gallery5'>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <hr>
       <div class="md-form mb-4">

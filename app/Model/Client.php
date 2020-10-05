@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {
+
+  protected $fillable = ['client_url', 'name', 'email'];
+
     public function user()
   {
     return $this->hasOne('App\Model\User', 'client_id', 'id');

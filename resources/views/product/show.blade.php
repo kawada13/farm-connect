@@ -28,11 +28,13 @@
       <img class="card-img-top" src="/defaultimages/にんじん.png" style="height: 300px">
       @endif
       @if(count($images))
+      <!-- <img src="data:image/png;base64,{{ $images[0]->image_url }}" alt="image" style="width: 300px; height: 300px" class="card-img-top produt_show_gallay_main"> -->
       <img class="card-img-top produt_show_gallay_main" src="{{$images[0]->image_url}}" style="width: 300px; height: 300px">
 
       <div class="row mt-2">
         @foreach($images as $image)
         <div class="col-md-3">
+        <!-- <img src="data:image/png;base64,{{ $image->image_url }}" alt="image" style="width: 200px" class="img-thumbnail produt_show_gallay_sub" > -->
           <img src="{{$image->image_url}}" alt="thumbnail" class="img-thumbnail produt_show_gallay_sub" style="width: 200px">
         </div>
         @endforeach
@@ -130,6 +132,7 @@
         @if(empty($product->client->client_url))
         <img src="/defaultimages/なす.png" class="img-fluid" alt="Responsive image">
         @else
+        <!-- <img src="data:image/png;base64,{{ $product->client->client_url }}" alt="image" class="img-fluid"> -->
         <img src="{{$product->client->client_url}}" class="img-fluid" alt="Responsive image">
         @endif
         
@@ -166,6 +169,7 @@
             <!--Card image-->
             <div class="view overlay">
               @if(count($product->productImages))
+              <!-- <img src="data:image/png;base64,{{ $product->productImages[0]->image_url }}" alt="image" style="height: 150px;" class="card-img-top"> -->
               <img class="card-img-top" src="{{$product->productImages[0]->image_url}}" alt="Card image cap" style="height: 150px;">
               <div class="mask rgba-white-slight"></div>
               @else

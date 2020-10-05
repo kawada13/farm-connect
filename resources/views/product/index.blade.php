@@ -57,6 +57,7 @@
                     <!--Card image-->
                     <div class="view overlay">
                       @if(count($product->productImages))
+                      <!-- <img src="data:image/png;base64,{{ $product->productImages[0]->image_url }}" alt="image" style="height: 150px;" class="card-img-top"> -->
                       <img class="card-img-top" src="{{$product->productImages[0]->image_url}}" alt="Card image cap" style="height: 150px;">
                       <div class="mask rgba-white-slight"></div>
                       @else
@@ -86,6 +87,7 @@
                       <div class="col-md-6 text-center">
                         <div class="img_client">
                           @if(!empty($product->client->client_url))
+                          <!-- <img src="data:image/png;base64,{{ $product->client->client_url }}" alt="image" class="rounded-circle img-fluid"> -->
                           <img src="{{$product->client->client_url}}" alt="avatar mx-auto white" class="rounded-circle img-fluid">
                           @else
                           <img src="/defaultimages/なす.png" alt="avatar mx-auto white" class="rounded-circle img-fluid">

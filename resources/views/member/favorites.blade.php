@@ -60,6 +60,7 @@
                   <a href="{{ route('product.show', ['id' => $favorite->product->id]) }}">
                     <div class="view overlay">
                       @if(count($favorite->product->productImages))
+                      <!-- <img src="data:image/png;base64,{{ $favorite->product->productImages[0]->image_url }}" alt="image" style="height: 150px;" class="card-img-top"> -->
                       <img class="card-img-top" src="{{$favorite->product->productImages[0]->image_url}}" alt="Card image cap" style="height: 150px;">
                       <div class="mask rgba-white-slight"></div>
                       @else
@@ -85,6 +86,7 @@
                       <div class="col-md-6 text-center">
                         <div class="img_client">
                           @if(!empty($favorite->product->client->client_url))
+                          <!-- <img src="data:image/png;base64,{{ $favorite->product->client->client_url }}" alt="image" style="width: 60px;" class="rounded-circle img-fluid"> -->
                           <img src="{{$favorite->product->client->client_url}}" alt="avatar mx-auto white" class="rounded-circle img-fluid" style="width: 60px;">
                           @else
                           <img src="/defaultimages/なす.png" alt="avatar mx-auto white" class="rounded-circle img-fluid" style="width: 60px;">

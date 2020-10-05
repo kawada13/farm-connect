@@ -37,16 +37,6 @@ $(function () {
       fd.append("categories[]", $(this).val());
     });
 
-    let $upfile1 = $('input[name="gallery1"]');
-    let $upfile2 = $('input[name="gallery2"]');
-    let $upfile3 = $('input[name="gallery3"]');
-    let $upfile4 = $('input[name="gallery4"]');
-    let $upfile5 = $('input[name="gallery5"]');
-    fd.append("gallery1", $upfile1.prop('files')[0]);
-    fd.append("gallery2", $upfile2.prop('files')[0]);
-    fd.append("gallery3", $upfile3.prop('files')[0]);
-    fd.append("gallery4", $upfile4.prop('files')[0]);
-    fd.append("gallery5", $upfile5.prop('files')[0]);
     fd.append("title", $('#title').val());
     fd.append("detail", $('#detail').val());
     fd.append("explanation", $('#explanation').val());
@@ -96,16 +86,6 @@ $(function () {
       fd.append("categories[]", $(this).val());
     });
 
-    let $upfile1 = $('input[name="gallery1"]');
-    let $upfile2 = $('input[name="gallery2"]');
-    let $upfile3 = $('input[name="gallery3"]');
-    let $upfile4 = $('input[name="gallery4"]');
-    let $upfile5 = $('input[name="gallery5"]');
-    fd.append("gallery1", $upfile1.prop('files')[0]);
-    fd.append("gallery2", $upfile2.prop('files')[0]);
-    fd.append("gallery3", $upfile3.prop('files')[0]);
-    fd.append("gallery4", $upfile4.prop('files')[0]);
-    fd.append("gallery5", $upfile5.prop('files')[0]);
     fd.append("title", $('#title').val());
     fd.append("detail", $('#detail').val());
     fd.append("explanation", $('#explanation').val());
@@ -160,8 +140,6 @@ $(function () {
   $(document).on('click', '.client_commitment_create', function () {
 
     let fd = new FormData();
-    let $upfile = $('input[name="gallery"]');
-    fd.append("commitment_image", $upfile.prop('files')[0]);
     fd.append("title", $('#title').val());
     fd.append("contents", $('#contents').val());
     fd.append("token", $.cookie("token_clients"));
@@ -202,8 +180,6 @@ $(function () {
   $(document).on('click', '.client_commitment_edit', function () {
 
     let fd = new FormData();
-    let $upfile = $('input[name="gallery"]');
-    fd.append("commitment_image", $upfile.prop('files')[0]);
     fd.append("title", $('#title').val());
     fd.append("contents", $('#contents').val());
     fd.append("token", $.cookie("token_clients"));
@@ -460,9 +436,7 @@ $(function () {
   // クライアント基本情報編集
   $(document).on('click', '.client_edit', function () {
 
-    let $upfile = $('input[name="image"]');
     let fd = new FormData();
-    fd.append("image", $upfile.prop('files')[0]);
     fd.append("name", $('#name').val());
     fd.append("email", $('#email').val());
     fd.append("token", $.cookie("token_clients"));

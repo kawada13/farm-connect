@@ -57,6 +57,7 @@
                     <!--Card image-->
                     <div class="view overlay">
                       @if(!empty($client->client_url))
+                      <!-- <img src="data:image/png;base64,{{ $client->client_url }}" alt="image" style="height: 150px;" class="card-img-top"> -->
                       <img class="card-img-top" src="{{$client->client_url}}" style="height: 150px;">
                       @else
                       <img class="card-img-top" src="/defaultimages/なす.png" style="height: 150px;">

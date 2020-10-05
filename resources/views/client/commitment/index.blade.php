@@ -48,14 +48,6 @@
 
               <div class="modal-body mx-3">
 
-
-                <div class="md-form mb-4">
-                  <div class="commitment_image">
-                    <p>こだわり画像アップロード</p>
-                    <input name="gallery" type="file" id='gallery'>
-                  </div>
-                </div>
-
                 <div class="md-form mb-4">
                   <input type="text" id="title" class="form-control validate" name="title">
                   <label data-error="wrong" data-success="right" for="title">こだわりタイトル</label>

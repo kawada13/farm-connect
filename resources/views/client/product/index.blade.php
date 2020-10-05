@@ -68,7 +68,7 @@
                 </div>
 
                 <div class="md-form mb-4">
-                  <div class="product_image">
+                  <!-- <div class="product_image">
                     <p>商品画像を追加(最大5枚まで)</p>
                     <small class="input_condidion">*jpg,png形式のみ</small></br>
                     <input name="gallery1" type="file" id='gallery1'>
@@ -76,7 +76,8 @@
                     <input name="gallery3" type="file" id='gallery3'>
                     <input name="gallery4" type="file" id='gallery4'>
                     <input name="gallery5" type="file" id='gallery5'>
-                  </div>
+                  </div> -->
+
                 </div>
 
                 <div class="md-form mb-4">
@@ -99,7 +100,6 @@
                   <input type="number" id="price" class="form-control validate" name="price">
                   <label data-error="wrong" data-success="right" for="price">商品単価</label>
                 </div>
-
 
               </div>
               <div class="modal-footer d-flex justify-content-center">

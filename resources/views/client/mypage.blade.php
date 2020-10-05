@@ -20,9 +20,10 @@
             @if(empty($client->client_url))
             <img src="/defaultimages/なす.png" alt="client_profile_image" class="rounded-circle img-fluid" style="width: 60px;">
             @else
+            <!-- <img src="data:image/png;base64,{{ $client->client_url }}" alt="image" style="width: 60px;" class="rounded-circle img-fluid"> -->
             <img src="{{$client->client_url}}" alt="client_profile_image" class="rounded-circle img-fluid" style="width: 60px;">
             @endif
-            <span class="card-text text-center">{{$client->name}}</span>
+            <p class="card-text text-center">{{$client->name}}</p>
           </div>
           <div class="email">
 

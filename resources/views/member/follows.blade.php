@@ -61,6 +61,7 @@
                       @if(empty($follow->client->client_url))
                       <img class="card-img-top" src="/defaultimages/なす.png" alt="Card image cap" style="height: 150px;">
                       @else
+                      <!-- <img src="data:image/png;base64,{{ $follow->client->client_url }}" alt="image" style="height: 150px;" class="card-img-top"> -->
                       <img class="card-img-top" src="{{$follow->client->client_url}}" alt="Card image cap" style="height: 150px;">
                       @endif
 

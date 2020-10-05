@@ -73,7 +73,7 @@
               <button type="button" class="btn btn-outline-success btn-rounded waves-effect">全ての投稿を見る</button>
           </div>
           </a>
-          <div class="group-item-header">
+          <div class="group-item-header mb-4">
             <ul class="nav grey lighten-4 py-2 font-weight-bold">
               <li class="nav-item">
                 <h3 class="nav-link">商品一覧</h3>
@@ -92,12 +92,13 @@
 
                   <a href="{{ route('product.show', ['id' => $product->id]) }}">
                     <!--Card image-->
-                    <div class="view overlay">
+                    <div class="view overlay" style="cursor: pointer">
                       @if(count($product->productImages))
+                      <!-- <img src="data:image/png;base64,{{ $product->productImages[0]->image_url }}" alt="image" style="height: 200px;" class="card-img-top"> -->
                       <img class="card-img-top" src="{{$product->productImages[0]->image_url}}" alt="Card image cap" style="height: 150px;">
                       <div class="mask rgba-white-slight"></div>
                       @else
-                      <img class="card-img-top" src="/defaultimages/にんじん.png" alt="Card image cap" style="height: 150px;">
+                      <img class="card-img-top" src="/defaultimages/にんじん.png" alt="Card image cap" style="height: 200px;">
                       <div class="mask rgba-white-slight"></div>
                       @endif
                     </div>
@@ -113,21 +114,22 @@
                   </a>
 
                   <hr>
-                  <div class="card-body-bottom" style="height: 100px;">
+                  <div class="card-body-bottom">
 
-                    <a class="row" href="{{ route('clients.show', ['id' => $product->client->id]) }}" >
+                    <a class="row" href="{{ route('clients.show', ['id' => $product->client->id]) }}" style="align-items: center; ">
 
-                      <div class="col-md-6 text-center">
+                      <div class="col-md-6 text-center" style="width: 50%;">
                         <div class="img_client">
                           @if(!empty($product->client->client_url))
+                          <!-- <img src="data:image/png;base64,{{ $product->client->client_url }}" alt="image" class="rounded-circle img-fluid" style="width: 30vw; height: auto"> -->
                           <img src="{{$product->client->client_url}}" alt="avatar mx-auto white" class="rounded-circle img-fluid">
                           @else
-                          <img src="/defaultimages/なす.png" alt="avatar mx-auto white" class="rounded-circle img-fluid">
+                          <img src="/defaultimages/なす.png" alt="avatar mx-auto white" class="rounded-circle img-fluid" style="width: 30vw; height: auto">
                           @endif
                         </div>
                       </div>
 
-                      <div class="col-md-6 text-center">
+                      <div class="col-md-6 text-center" style="width: 50%;">
                         <div class="prefecture_client card-text text-center">
                           <p>{{$product->client->prefecture}}{{$product->client->municipality}}</p>
                           <p>{{$product->client->area_name}}</p>
@@ -153,6 +155,20 @@
     </div>
 </div>
 </section>
+
+<input type="hidden" id="category_1" value="野菜">
+<input type="hidden" id="category_2" value="果物">
+<input type="hidden" id="category_3" value="肉">
+<input type="hidden" id="category_4" value="魚介類">
+<input type="hidden" id="category_5" value="卵・乳製品">
+<input type="hidden" id="category_6" value="はちみつ">
+<input type="hidden" id="category_7" value="お酒">
+<input type="hidden" id="category_8" value="お茶">
+<input type="hidden" id="category_9" value="調味料">
+<input type="hidden" id="category_10" value="米・穀類">
+<input type="hidden" id="category_11" value="加工品">
+<input type="hidden" id="category_12" value="花・植物">
+<button type="button" class="btn btn-primary aaa">Primary</button>
 
 </div>
 @endsection

@@ -15,6 +15,7 @@ use App\Model\ProductImage;
 use App\Model\Purchase;
 use App\Model\Review;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class UsersController extends Controller
 {
@@ -249,5 +250,21 @@ class UsersController extends Controller
             'review.index',
             ['reviews' => $reviews,]
         );
+    }
+
+    public function imagecomplete(Request $request)
+    {
+        // dd($request->file('gallery'));
+
+        $member = $this->memberCheck($request->cookie('token_members'));
+
+        if (!empty($request->file('gallery'))) {
+            $uploadImg = $member->profile_url = $request->file('gallery');
+            $path = Storage::disk('s3')->putFile('/', $uploadImg, 'public');
+            $member->profile_url = Storage::disk('s3')->url($path);
+            $member->save();
+        }
+
+        return redirect(route('member.profile.edit'));
     }
 }

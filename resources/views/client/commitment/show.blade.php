@@ -32,6 +32,34 @@
     <div class="col-md-6 text-center">
       @if(empty($commitment->commitment_url))
       <img src="/defaultimages/牛.png" class="img-fluid" alt="Responsive image">
+      <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title w-100 font-weight-bold">こだわり画像をアップロード</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body mx-3">
+              <div class="md-form mb-5">
+                <form method="POST" action="{{ route('client_product.commitmentimagecomplete') }}" enctype="multipart/form-data">
+                  @csrf
+                  <input id="image" type="file" name="image">
+                  <input name="id" type="hidden" value="{{$commitment->id}}">
+              </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <button class="btn btn-default">アップロード</button>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <a href="" class="btn btn-indigo btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">画像をアップロードする</a>
+      </div>
       @else
       <img src="{{$commitment->commitment_url}}" class="img-fluid" alt="Responsive image">
       @endif
@@ -45,6 +73,7 @@
       <button type="button" class="btn btn-deep-orange" data-toggle="modal" data-target="#basicExampleModal">
         削除
       </button>
+
     </div>
 
     <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

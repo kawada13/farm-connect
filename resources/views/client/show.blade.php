@@ -44,6 +44,7 @@
           @if(empty($client->client_url))
           <img src="/defaultimages/なす.png" class="img-fluid" alt="Responsive image">
           @else
+          <!-- <img src="data:image/png;base64,{{ $client->client_url }}" alt="image" class="img-fluid"> -->
           <img src="{{$client->client_url}}" class="img-fluid" alt="Responsive image">
           @endif
 
@@ -133,6 +134,7 @@
                 <!--Card image-->
                 <div class="view overlay">
                   @if(count($product->productImages))
+                  <!-- <img src="data:image/png;base64,{{ $product->productImages[0]->image_url }}" alt="image" style="height: 150px;" class="card-img-top"> -->
                   <img class="card-img-top" src="{{$product->productImages[0]->image_url}}" alt="Card image cap" style="height: 150px;">
                   <div class="mask rgba-white-slight"></div>
                   @else

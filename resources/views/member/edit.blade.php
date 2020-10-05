@@ -48,7 +48,37 @@
         @else
         <img class="card-img-top" src="{{$member->profile_url}}" alt="Card image cap" style="width:200px;">
         @endif
-        <input name="image" type="file" id='image'>
+        <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">プロフィール画像編集</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body mx-3">
+
+                <form action="/member/profile/imagecomplete" method="POST" enctype="multipart/form-data" class="post_form">
+                  @csrf
+                  <div class="md-form mb-5">
+                    <div class="form-group">
+                      <small class="input_condidion">*jpg,png形式のみ</small></br>
+                      <input name="gallery" type="file" id='gallery'>
+                    </div>
+                  </div>
+              </div>
+              <div class="modal-footer d-flex justify-content-center">
+                <button class="btn btn-default" type="submit">登録</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalLoginForm">プロフィール画を変更する</a>
+        </div>
       </div>
 
 
