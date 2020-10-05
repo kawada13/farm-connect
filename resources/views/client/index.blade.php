@@ -73,8 +73,7 @@
                         <h4 class="card-title">{{$client->area_name}}</h4>
 
                         <!--Text-->
-                        <p class="card-text">{{$client->prefecture}}{{$client->municipality}}</p>
-                        <p class="card-text" style="width: 800px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{$client->introduce}}</p>
+                        <p class="card-text" style="width: 800px;">{{$client->prefecture}}{{$client->municipality}}</p>
                       </div>
                     </div>
                   </a>
